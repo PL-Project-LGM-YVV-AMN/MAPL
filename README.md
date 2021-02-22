@@ -25,6 +25,7 @@ After this short overview through the most widely used programming languages for
 -  Data Types: square matrix, non-square matrix
 
 ### III. Example of a Program
+[![ProgramExample](https://github.com/PL-Project-LGM-YVV-AMN/PL-Project/blob/main/ProgramExample.PNG)]()
 
 ### IV. Implementation Requirements and Tools
 -   For the following program to work, as an implementation requirement the user must have already installed Python3 in the machine they plan to work on. This is very important, since the language itself is derived from said program.
@@ -32,3 +33,4 @@ After this short overview through the most widely used programming languages for
 -   The program will be using PLY (Python Lex - Yacc) for lexing and parsing in our code. The current version for PLY is 3.5, this being compatible with both Python 2 (specifically version Python 2.6) and Python 3.
 
 ### V.  Project Plan and Timeline
+[![GanttChart](https://github.com/PL-Project-LGM-YVV-AMN/PL-Project/blob/main/GanttChart.png)]()
