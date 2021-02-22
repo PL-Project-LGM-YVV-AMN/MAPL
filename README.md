@@ -25,7 +25,7 @@ After this short overview through the most widely used programming languages for
 -  Data Types: square matrix, non-square matrix
 
 ### III. Example of a Program
-[![ProgramExample](https://github.com/PL-Project-LGM-YVV-AMN/PL-Project/blob/main/ProgramExample.PNG)]()
+[![ProgramExample](https://github.com/PL-Project-LGM-YVV-AMN/PL-Project/blob/main/ProgramExample.png)]()
 
 ### IV. Implementation Requirements and Tools
 -   For the following program to work, as an implementation requirement the user must have already installed Python3 in the machine they plan to work on. This is very important, since the language itself is derived from said program.
