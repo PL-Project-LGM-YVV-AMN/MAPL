@@ -4,6 +4,7 @@ _Lenier Gerena Meléndez, Yadiel Vélez Vargas, Aramis Matos Nieves_
 Universidad de Puerto Rico, Mayagüez
 
 [Link to Phase I document](https://docs.google.com/document/d/1dfvMnkUe5Wjo51EHsakjpaxmlbP3l3K8RXAxQnGUtbM/edit?usp=sharing)
+
 [Link to Documentation](https://github.com/PL-Project-LGM-YVV-AMN/PL-Project/blob/main/PreliminaryDocumentation.md)
 
 ## I. Introduction
