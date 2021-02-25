@@ -1,5 +1,6 @@
 # Matrix & Matrix Operations Programming Language
 _Lenier Gerena Meléndez, Yadiel Vélez Vargas, Aramis Matos Nieves_
+
 Universidad de Puerto Rico, Mayagüez
 
 [Link to Phase I document](https://docs.google.com/document/d/1dfvMnkUe5Wjo51EHsakjpaxmlbP3l3K8RXAxQnGUtbM/edit?usp=sharing)
