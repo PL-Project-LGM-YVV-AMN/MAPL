@@ -1,4 +1,4 @@
-# Matrix & Matrix Operations Programming Language
+# Matrix Operations Programming Language (MOPL)
 _Lenier Gerena Meléndez, Yadiel Vélez Vargas, Aramis Matos Nieves_
 
 Universidad de Puerto Rico, Mayagüez
@@ -27,6 +27,7 @@ After this short overview through the most widely used programming languages for
 ## II  Main language features
 1.  It is designed to have a very lightweight, readable, and intuitive syntax.
 2.  It has a complete functions library for practically all linear algebra operations and most common methods (i.e. reduced row echelon form).
+3.  Strong typed programming language
 
 ## III Example of a program
 ![Program Example](https://github.com/PL-Project-LGM-YVV-AMN/PL-Project/blob/main/ProgramExample.PNG)
