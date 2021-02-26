@@ -8,7 +8,7 @@
 | ^ | Scalar and matrix exponentiation operator|
 | / | Right-division operator |
 | () |  Encloses function arguments; overrides precedence |
-| . | Decimal point |
+| . | Decimal point; dot product |
 | , | separates statements and elements in a row |
 | ; | End of statement operator |
 | % | designates a comment and specifies formatting| 
@@ -32,7 +32,7 @@ MATLAB has two types of vectors
  ```MATLAB
  rvec v =  [7  8  9  10  11]
  ```
- 3. Column vectors
+ 2. Column vectors
 **Column vectors** are created by enclosing the set of elements in square brackets, using semicolon to delimit the elements.
 ```MATLAB
 cvec =  [7;  8;  9;  10;  11]
@@ -57,7 +57,6 @@ matrix a =  [  1  2  3  4  5;  2  3  4  5  6;  3  4  5  6  7;  4  5  6  7  8]
 ```MATLAB
 a[1, 2];
 ```
-
 
 ## Functions
 ### Calling functions
