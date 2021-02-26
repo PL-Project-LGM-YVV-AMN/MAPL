@@ -76,6 +76,7 @@ functionName(A, B) for a 2 predicate function
 | inv | Computes inverse of a matrix |
 | rank | Computes rank of a matrix |
 | rref | Computes reduced row echelon form |
+| log | outputs to the console |
 
 ## Data types
 | Data type | Description |
