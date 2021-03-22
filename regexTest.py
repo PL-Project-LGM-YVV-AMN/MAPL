@@ -12,4 +12,6 @@ class vector:
 
 x = vector("[10.00 20 30.00 40.11 5.22]")
 
+
+
 print(x.elems)
