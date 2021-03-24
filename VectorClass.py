@@ -9,17 +9,4 @@ class vector:
     
     def __str__(self):
         return re.sub("'", '', str(self.elems))
-
-"""
-x = vector("[10.00 20 30.00 40.11 5.22]")
-y = vector("[10.00 20 30.00 40.11 5.22]")
-z = []
-
-for i in range(x.size):
-    z.append(float(x.elems[i]) + float(y.elems[i]))
-
-new_vec = vector(re.sub("'", " ", str(z)))
-
-print(new_vec.elems)
-"""
-
+    
