@@ -2,7 +2,7 @@ import ply.yacc as yacc
 
 # Get the token map from the lexer.  This is required.
 from lexer_test import tokens
-from regexTest import vector
+from VectorClass import vector
 import re
 
 
@@ -94,3 +94,4 @@ while True:
         continue
     result = parser.parse(s)
     print(result)
+

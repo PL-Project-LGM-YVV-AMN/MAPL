@@ -27,7 +27,7 @@ t_comma = r'\,'
 t_lCurlyBracket = r'\{'
 t_rCurlyBracket = r'\}'
 t_vector = t_lHardBracket + \
-    r'(\s*(' + t_float + r'|' + t_int + r')\s*)+' + t_rHardBracket
+    r'(\s*-*(' + t_float + r'|' + t_int + r')\s*)+' + t_rHardBracket
 t_ignore = ' \t'
 
 print
