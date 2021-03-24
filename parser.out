@@ -1,245 +1,239 @@
 Created by PLY version 3.11 (http://www.dabeaz.com/ply)
 
+Unused terminals:
+
+    crossProduct
+    dotProduct
+    minus
+
 Grammar
 
 Rule 0     S' -> expression
-Rule 1     expression -> expression PLUS term
-Rule 2     expression -> expression MINUS term
-Rule 3     expression -> term
-Rule 4     term -> term TIMES factor
-Rule 5     term -> term DIVIDE factor
-Rule 6     term -> factor
-Rule 7     factor -> NUMBER
-Rule 8     factor -> LPAREN expression RPAREN
+Rule 1     expression -> term
+Rule 2     term -> factor
+Rule 3     term -> vector
+Rule 4     term -> comma
+Rule 5     term -> float
+Rule 6     term -> int
+Rule 7     factor -> lCurlyBracket expression rCurlyBracket
+Rule 8     factor -> lHardBracket expression rHardBracket
+Rule 9     expression -> expression plus vector
 
 Terminals, with rules where they appear
 
-DIVIDE               : 5
-LPAREN               : 8
-MINUS                : 2
-NUMBER               : 7
-PLUS                 : 1
-RPAREN               : 8
-TIMES                : 4
+comma                : 4
+crossProduct         : 
+dotProduct           : 
 error                : 
+float                : 5
+int                  : 6
+lCurlyBracket        : 7
+lHardBracket         : 8
+minus                : 
+plus                 : 9
+rCurlyBracket        : 7
+rHardBracket         : 8
+vector               : 3 9
 
 Nonterminals, with rules where they appear
 
-expression           : 1 2 8 0
-factor               : 4 5 6
-term                 : 1 2 3 4 5
+expression           : 7 8 9 0
+factor               : 2
+term                 : 1
 
 Parsing method: LALR
 
 state 0
 
     (0) S' -> . expression
-    (1) expression -> . expression PLUS term
-    (2) expression -> . expression MINUS term
-    (3) expression -> . term
-    (4) term -> . term TIMES factor
-    (5) term -> . term DIVIDE factor
-    (6) term -> . factor
-    (7) factor -> . NUMBER
-    (8) factor -> . LPAREN expression RPAREN
+    (1) expression -> . term
+    (9) expression -> . expression plus vector
+    (2) term -> . factor
+    (3) term -> . vector
+    (4) term -> . comma
+    (5) term -> . float
+    (6) term -> . int
+    (7) factor -> . lCurlyBracket expression rCurlyBracket
+    (8) factor -> . lHardBracket expression rHardBracket
 
-    NUMBER          shift and go to state 4
-    LPAREN          shift and go to state 5
+    vector          shift and go to state 3
+    comma           shift and go to state 5
+    float           shift and go to state 6
+    int             shift and go to state 7
+    lCurlyBracket   shift and go to state 8
+    lHardBracket    shift and go to state 9
 
     expression                     shift and go to state 1
     term                           shift and go to state 2
-    factor                         shift and go to state 3
+    factor                         shift and go to state 4
 
 state 1
 
     (0) S' -> expression .
-    (1) expression -> expression . PLUS term
-    (2) expression -> expression . MINUS term
+    (9) expression -> expression . plus vector
 
-    PLUS            shift and go to state 6
-    MINUS           shift and go to state 7
+    plus            shift and go to state 10
 
 
 state 2
 
-    (3) expression -> term .
-    (4) term -> term . TIMES factor
-    (5) term -> term . DIVIDE factor
+    (1) expression -> term .
 
-    PLUS            reduce using rule 3 (expression -> term .)
-    MINUS           reduce using rule 3 (expression -> term .)
-    $end            reduce using rule 3 (expression -> term .)
-    RPAREN          reduce using rule 3 (expression -> term .)
-    TIMES           shift and go to state 8
-    DIVIDE          shift and go to state 9
+    plus            reduce using rule 1 (expression -> term .)
+    $end            reduce using rule 1 (expression -> term .)
+    rCurlyBracket   reduce using rule 1 (expression -> term .)
+    rHardBracket    reduce using rule 1 (expression -> term .)
 
 
 state 3
 
-    (6) term -> factor .
+    (3) term -> vector .
 
-    TIMES           reduce using rule 6 (term -> factor .)
-    DIVIDE          reduce using rule 6 (term -> factor .)
-    PLUS            reduce using rule 6 (term -> factor .)
-    MINUS           reduce using rule 6 (term -> factor .)
-    $end            reduce using rule 6 (term -> factor .)
-    RPAREN          reduce using rule 6 (term -> factor .)
+    plus            reduce using rule 3 (term -> vector .)
+    $end            reduce using rule 3 (term -> vector .)
+    rCurlyBracket   reduce using rule 3 (term -> vector .)
+    rHardBracket    reduce using rule 3 (term -> vector .)
 
 
 state 4
 
-    (7) factor -> NUMBER .
+    (2) term -> factor .
 
-    TIMES           reduce using rule 7 (factor -> NUMBER .)
-    DIVIDE          reduce using rule 7 (factor -> NUMBER .)
-    PLUS            reduce using rule 7 (factor -> NUMBER .)
-    MINUS           reduce using rule 7 (factor -> NUMBER .)
-    $end            reduce using rule 7 (factor -> NUMBER .)
-    RPAREN          reduce using rule 7 (factor -> NUMBER .)
+    plus            reduce using rule 2 (term -> factor .)
+    $end            reduce using rule 2 (term -> factor .)
+    rCurlyBracket   reduce using rule 2 (term -> factor .)
+    rHardBracket    reduce using rule 2 (term -> factor .)
 
 
 state 5
 
-    (8) factor -> LPAREN . expression RPAREN
-    (1) expression -> . expression PLUS term
-    (2) expression -> . expression MINUS term
-    (3) expression -> . term
-    (4) term -> . term TIMES factor
-    (5) term -> . term DIVIDE factor
-    (6) term -> . factor
-    (7) factor -> . NUMBER
-    (8) factor -> . LPAREN expression RPAREN
+    (4) term -> comma .
 
-    NUMBER          shift and go to state 4
-    LPAREN          shift and go to state 5
+    plus            reduce using rule 4 (term -> comma .)
+    $end            reduce using rule 4 (term -> comma .)
+    rCurlyBracket   reduce using rule 4 (term -> comma .)
+    rHardBracket    reduce using rule 4 (term -> comma .)
 
-    expression                     shift and go to state 10
-    term                           shift and go to state 2
-    factor                         shift and go to state 3
 
 state 6
 
-    (1) expression -> expression PLUS . term
-    (4) term -> . term TIMES factor
-    (5) term -> . term DIVIDE factor
-    (6) term -> . factor
-    (7) factor -> . NUMBER
-    (8) factor -> . LPAREN expression RPAREN
+    (5) term -> float .
 
-    NUMBER          shift and go to state 4
-    LPAREN          shift and go to state 5
+    plus            reduce using rule 5 (term -> float .)
+    $end            reduce using rule 5 (term -> float .)
+    rCurlyBracket   reduce using rule 5 (term -> float .)
+    rHardBracket    reduce using rule 5 (term -> float .)
 
-    term                           shift and go to state 11
-    factor                         shift and go to state 3
 
 state 7
 
-    (2) expression -> expression MINUS . term
-    (4) term -> . term TIMES factor
-    (5) term -> . term DIVIDE factor
-    (6) term -> . factor
-    (7) factor -> . NUMBER
-    (8) factor -> . LPAREN expression RPAREN
+    (6) term -> int .
 
-    NUMBER          shift and go to state 4
-    LPAREN          shift and go to state 5
+    plus            reduce using rule 6 (term -> int .)
+    $end            reduce using rule 6 (term -> int .)
+    rCurlyBracket   reduce using rule 6 (term -> int .)
+    rHardBracket    reduce using rule 6 (term -> int .)
 
-    term                           shift and go to state 12
-    factor                         shift and go to state 3
 
 state 8
 
-    (4) term -> term TIMES . factor
-    (7) factor -> . NUMBER
-    (8) factor -> . LPAREN expression RPAREN
+    (7) factor -> lCurlyBracket . expression rCurlyBracket
+    (1) expression -> . term
+    (9) expression -> . expression plus vector
+    (2) term -> . factor
+    (3) term -> . vector
+    (4) term -> . comma
+    (5) term -> . float
+    (6) term -> . int
+    (7) factor -> . lCurlyBracket expression rCurlyBracket
+    (8) factor -> . lHardBracket expression rHardBracket
 
-    NUMBER          shift and go to state 4
-    LPAREN          shift and go to state 5
+    vector          shift and go to state 3
+    comma           shift and go to state 5
+    float           shift and go to state 6
+    int             shift and go to state 7
+    lCurlyBracket   shift and go to state 8
+    lHardBracket    shift and go to state 9
 
-    factor                         shift and go to state 13
+    expression                     shift and go to state 11
+    term                           shift and go to state 2
+    factor                         shift and go to state 4
 
 state 9
 
-    (5) term -> term DIVIDE . factor
-    (7) factor -> . NUMBER
-    (8) factor -> . LPAREN expression RPAREN
+    (8) factor -> lHardBracket . expression rHardBracket
+    (1) expression -> . term
+    (9) expression -> . expression plus vector
+    (2) term -> . factor
+    (3) term -> . vector
+    (4) term -> . comma
+    (5) term -> . float
+    (6) term -> . int
+    (7) factor -> . lCurlyBracket expression rCurlyBracket
+    (8) factor -> . lHardBracket expression rHardBracket
 
-    NUMBER          shift and go to state 4
-    LPAREN          shift and go to state 5
+    vector          shift and go to state 3
+    comma           shift and go to state 5
+    float           shift and go to state 6
+    int             shift and go to state 7
+    lCurlyBracket   shift and go to state 8
+    lHardBracket    shift and go to state 9
 
-    factor                         shift and go to state 14
+    expression                     shift and go to state 12
+    term                           shift and go to state 2
+    factor                         shift and go to state 4
 
 state 10
 
-    (8) factor -> LPAREN expression . RPAREN
-    (1) expression -> expression . PLUS term
-    (2) expression -> expression . MINUS term
+    (9) expression -> expression plus . vector
 
-    RPAREN          shift and go to state 15
-    PLUS            shift and go to state 6
-    MINUS           shift and go to state 7
+    vector          shift and go to state 13
 
 
 state 11
 
-    (1) expression -> expression PLUS term .
-    (4) term -> term . TIMES factor
-    (5) term -> term . DIVIDE factor
+    (7) factor -> lCurlyBracket expression . rCurlyBracket
+    (9) expression -> expression . plus vector
 
-    PLUS            reduce using rule 1 (expression -> expression PLUS term .)
-    MINUS           reduce using rule 1 (expression -> expression PLUS term .)
-    $end            reduce using rule 1 (expression -> expression PLUS term .)
-    RPAREN          reduce using rule 1 (expression -> expression PLUS term .)
-    TIMES           shift and go to state 8
-    DIVIDE          shift and go to state 9
+    rCurlyBracket   shift and go to state 14
+    plus            shift and go to state 10
 
 
 state 12
 
-    (2) expression -> expression MINUS term .
-    (4) term -> term . TIMES factor
-    (5) term -> term . DIVIDE factor
+    (8) factor -> lHardBracket expression . rHardBracket
+    (9) expression -> expression . plus vector
 
-    PLUS            reduce using rule 2 (expression -> expression MINUS term .)
-    MINUS           reduce using rule 2 (expression -> expression MINUS term .)
-    $end            reduce using rule 2 (expression -> expression MINUS term .)
-    RPAREN          reduce using rule 2 (expression -> expression MINUS term .)
-    TIMES           shift and go to state 8
-    DIVIDE          shift and go to state 9
+    rHardBracket    shift and go to state 15
+    plus            shift and go to state 10
 
 
 state 13
 
-    (4) term -> term TIMES factor .
+    (9) expression -> expression plus vector .
 
-    TIMES           reduce using rule 4 (term -> term TIMES factor .)
-    DIVIDE          reduce using rule 4 (term -> term TIMES factor .)
-    PLUS            reduce using rule 4 (term -> term TIMES factor .)
-    MINUS           reduce using rule 4 (term -> term TIMES factor .)
-    $end            reduce using rule 4 (term -> term TIMES factor .)
-    RPAREN          reduce using rule 4 (term -> term TIMES factor .)
+    plus            reduce using rule 9 (expression -> expression plus vector .)
+    $end            reduce using rule 9 (expression -> expression plus vector .)
+    rCurlyBracket   reduce using rule 9 (expression -> expression plus vector .)
+    rHardBracket    reduce using rule 9 (expression -> expression plus vector .)
 
 
 state 14
 
-    (5) term -> term DIVIDE factor .
+    (7) factor -> lCurlyBracket expression rCurlyBracket .
 
-    TIMES           reduce using rule 5 (term -> term DIVIDE factor .)
-    DIVIDE          reduce using rule 5 (term -> term DIVIDE factor .)
-    PLUS            reduce using rule 5 (term -> term DIVIDE factor .)
-    MINUS           reduce using rule 5 (term -> term DIVIDE factor .)
-    $end            reduce using rule 5 (term -> term DIVIDE factor .)
-    RPAREN          reduce using rule 5 (term -> term DIVIDE factor .)
+    plus            reduce using rule 7 (factor -> lCurlyBracket expression rCurlyBracket .)
+    $end            reduce using rule 7 (factor -> lCurlyBracket expression rCurlyBracket .)
+    rCurlyBracket   reduce using rule 7 (factor -> lCurlyBracket expression rCurlyBracket .)
+    rHardBracket    reduce using rule 7 (factor -> lCurlyBracket expression rCurlyBracket .)
 
 
 state 15
 
-    (8) factor -> LPAREN expression RPAREN .
+    (8) factor -> lHardBracket expression rHardBracket .
 
-    TIMES           reduce using rule 8 (factor -> LPAREN expression RPAREN .)
-    DIVIDE          reduce using rule 8 (factor -> LPAREN expression RPAREN .)
-    PLUS            reduce using rule 8 (factor -> LPAREN expression RPAREN .)
-    MINUS           reduce using rule 8 (factor -> LPAREN expression RPAREN .)
-    $end            reduce using rule 8 (factor -> LPAREN expression RPAREN .)
-    RPAREN          reduce using rule 8 (factor -> LPAREN expression RPAREN .)
+    plus            reduce using rule 8 (factor -> lHardBracket expression rHardBracket .)
+    $end            reduce using rule 8 (factor -> lHardBracket expression rHardBracket .)
+    rCurlyBracket   reduce using rule 8 (factor -> lHardBracket expression rHardBracket .)
+    rHardBracket    reduce using rule 8 (factor -> lHardBracket expression rHardBracket .)
 

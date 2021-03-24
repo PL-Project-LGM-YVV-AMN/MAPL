@@ -4,14 +4,14 @@ tokens = (
     'rHardBracket',
     'lHardBracket',
     'int',
-    'float',
+    'float', 
     'plus',
     'minus',
     'dotProduct',
     'crossProduct',
     'comma',
     'rCurlyBracket',
-    'lCurlyBracket',
+    'lCurlyBracket', 
     'vector'
 )
 
@@ -26,10 +26,12 @@ t_crossProduct = 'X'
 t_comma = r'\,'
 t_lCurlyBracket = r'\{'
 t_rCurlyBracket = r'\}'
-t_vector = t_lHardBracket + r'(\s*(' + t_float + r'|' + t_int + r')\s*)+' + t_rHardBracket
+t_vector = t_lHardBracket + \
+    r'(\s*(' + t_float + r'|' + t_int + r')\s*)+' + t_rHardBracket
 t_ignore = ' \t'
 
 print
+
 
 def t_newline(t):
     r'\n+'
@@ -49,5 +51,3 @@ if __name__ == "__main__":
     for tok in lexer:
         print(tok)
 """
-
-[0]
