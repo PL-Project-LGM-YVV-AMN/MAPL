@@ -3,8 +3,8 @@ Created by PLY version 3.11 (http://www.dabeaz.com/ply)
 Unused terminals:
 
     crossProduct
+    determinant
     dotProduct
-    minus
 
 Grammar
 
@@ -18,26 +18,28 @@ Rule 6     term -> int
 Rule 7     factor -> lCurlyBracket expression rCurlyBracket
 Rule 8     factor -> lHardBracket expression rHardBracket
 Rule 9     expression -> expression plus vector
+Rule 10    expression -> expression minus vector
 
 Terminals, with rules where they appear
 
 comma                : 4
 crossProduct         : 
+determinant          : 
 dotProduct           : 
 error                : 
 float                : 5
 int                  : 6
 lCurlyBracket        : 7
 lHardBracket         : 8
-minus                : 
+minus                : 10
 plus                 : 9
 rCurlyBracket        : 7
 rHardBracket         : 8
-vector               : 3 9
+vector               : 3 9 10
 
 Nonterminals, with rules where they appear
 
-expression           : 7 8 9 0
+expression           : 7 8 9 10 0
 factor               : 2
 term                 : 1
 
@@ -48,6 +50,7 @@ state 0
     (0) S' -> . expression
     (1) expression -> . term
     (9) expression -> . expression plus vector
+    (10) expression -> . expression minus vector
     (2) term -> . factor
     (3) term -> . vector
     (4) term -> . comma
@@ -71,8 +74,10 @@ state 1
 
     (0) S' -> expression .
     (9) expression -> expression . plus vector
+    (10) expression -> expression . minus vector
 
     plus            shift and go to state 10
+    minus           shift and go to state 11
 
 
 state 2
@@ -80,6 +85,7 @@ state 2
     (1) expression -> term .
 
     plus            reduce using rule 1 (expression -> term .)
+    minus           reduce using rule 1 (expression -> term .)
     $end            reduce using rule 1 (expression -> term .)
     rCurlyBracket   reduce using rule 1 (expression -> term .)
     rHardBracket    reduce using rule 1 (expression -> term .)
@@ -90,6 +96,7 @@ state 3
     (3) term -> vector .
 
     plus            reduce using rule 3 (term -> vector .)
+    minus           reduce using rule 3 (term -> vector .)
     $end            reduce using rule 3 (term -> vector .)
     rCurlyBracket   reduce using rule 3 (term -> vector .)
     rHardBracket    reduce using rule 3 (term -> vector .)
@@ -100,6 +107,7 @@ state 4
     (2) term -> factor .
 
     plus            reduce using rule 2 (term -> factor .)
+    minus           reduce using rule 2 (term -> factor .)
     $end            reduce using rule 2 (term -> factor .)
     rCurlyBracket   reduce using rule 2 (term -> factor .)
     rHardBracket    reduce using rule 2 (term -> factor .)
@@ -110,6 +118,7 @@ state 5
     (4) term -> comma .
 
     plus            reduce using rule 4 (term -> comma .)
+    minus           reduce using rule 4 (term -> comma .)
     $end            reduce using rule 4 (term -> comma .)
     rCurlyBracket   reduce using rule 4 (term -> comma .)
     rHardBracket    reduce using rule 4 (term -> comma .)
@@ -120,6 +129,7 @@ state 6
     (5) term -> float .
 
     plus            reduce using rule 5 (term -> float .)
+    minus           reduce using rule 5 (term -> float .)
     $end            reduce using rule 5 (term -> float .)
     rCurlyBracket   reduce using rule 5 (term -> float .)
     rHardBracket    reduce using rule 5 (term -> float .)
@@ -130,6 +140,7 @@ state 7
     (6) term -> int .
 
     plus            reduce using rule 6 (term -> int .)
+    minus           reduce using rule 6 (term -> int .)
     $end            reduce using rule 6 (term -> int .)
     rCurlyBracket   reduce using rule 6 (term -> int .)
     rHardBracket    reduce using rule 6 (term -> int .)
@@ -140,30 +151,7 @@ state 8
     (7) factor -> lCurlyBracket . expression rCurlyBracket
     (1) expression -> . term
     (9) expression -> . expression plus vector
-    (2) term -> . factor
-    (3) term -> . vector
-    (4) term -> . comma
-    (5) term -> . float
-    (6) term -> . int
-    (7) factor -> . lCurlyBracket expression rCurlyBracket
-    (8) factor -> . lHardBracket expression rHardBracket
-
-    vector          shift and go to state 3
-    comma           shift and go to state 5
-    float           shift and go to state 6
-    int             shift and go to state 7
-    lCurlyBracket   shift and go to state 8
-    lHardBracket    shift and go to state 9
-
-    expression                     shift and go to state 11
-    term                           shift and go to state 2
-    factor                         shift and go to state 4
-
-state 9
-
-    (8) factor -> lHardBracket . expression rHardBracket
-    (1) expression -> . term
-    (9) expression -> . expression plus vector
+    (10) expression -> . expression minus vector
     (2) term -> . factor
     (3) term -> . vector
     (4) term -> . comma
@@ -183,56 +171,106 @@ state 9
     term                           shift and go to state 2
     factor                         shift and go to state 4
 
+state 9
+
+    (8) factor -> lHardBracket . expression rHardBracket
+    (1) expression -> . term
+    (9) expression -> . expression plus vector
+    (10) expression -> . expression minus vector
+    (2) term -> . factor
+    (3) term -> . vector
+    (4) term -> . comma
+    (5) term -> . float
+    (6) term -> . int
+    (7) factor -> . lCurlyBracket expression rCurlyBracket
+    (8) factor -> . lHardBracket expression rHardBracket
+
+    vector          shift and go to state 3
+    comma           shift and go to state 5
+    float           shift and go to state 6
+    int             shift and go to state 7
+    lCurlyBracket   shift and go to state 8
+    lHardBracket    shift and go to state 9
+
+    expression                     shift and go to state 13
+    term                           shift and go to state 2
+    factor                         shift and go to state 4
+
 state 10
 
     (9) expression -> expression plus . vector
 
-    vector          shift and go to state 13
+    vector          shift and go to state 14
 
 
 state 11
 
-    (7) factor -> lCurlyBracket expression . rCurlyBracket
-    (9) expression -> expression . plus vector
+    (10) expression -> expression minus . vector
 
-    rCurlyBracket   shift and go to state 14
-    plus            shift and go to state 10
+    vector          shift and go to state 15
 
 
 state 12
 
-    (8) factor -> lHardBracket expression . rHardBracket
+    (7) factor -> lCurlyBracket expression . rCurlyBracket
     (9) expression -> expression . plus vector
+    (10) expression -> expression . minus vector
 
-    rHardBracket    shift and go to state 15
+    rCurlyBracket   shift and go to state 16
     plus            shift and go to state 10
+    minus           shift and go to state 11
 
 
 state 13
 
+    (8) factor -> lHardBracket expression . rHardBracket
+    (9) expression -> expression . plus vector
+    (10) expression -> expression . minus vector
+
+    rHardBracket    shift and go to state 17
+    plus            shift and go to state 10
+    minus           shift and go to state 11
+
+
+state 14
+
     (9) expression -> expression plus vector .
 
     plus            reduce using rule 9 (expression -> expression plus vector .)
+    minus           reduce using rule 9 (expression -> expression plus vector .)
     $end            reduce using rule 9 (expression -> expression plus vector .)
     rCurlyBracket   reduce using rule 9 (expression -> expression plus vector .)
     rHardBracket    reduce using rule 9 (expression -> expression plus vector .)
 
 
-state 14
+state 15
+
+    (10) expression -> expression minus vector .
+
+    plus            reduce using rule 10 (expression -> expression minus vector .)
+    minus           reduce using rule 10 (expression -> expression minus vector .)
+    $end            reduce using rule 10 (expression -> expression minus vector .)
+    rCurlyBracket   reduce using rule 10 (expression -> expression minus vector .)
+    rHardBracket    reduce using rule 10 (expression -> expression minus vector .)
+
+
+state 16
 
     (7) factor -> lCurlyBracket expression rCurlyBracket .
 
     plus            reduce using rule 7 (factor -> lCurlyBracket expression rCurlyBracket .)
+    minus           reduce using rule 7 (factor -> lCurlyBracket expression rCurlyBracket .)
     $end            reduce using rule 7 (factor -> lCurlyBracket expression rCurlyBracket .)
     rCurlyBracket   reduce using rule 7 (factor -> lCurlyBracket expression rCurlyBracket .)
     rHardBracket    reduce using rule 7 (factor -> lCurlyBracket expression rCurlyBracket .)
 
 
-state 15
+state 17
 
     (8) factor -> lHardBracket expression rHardBracket .
 
     plus            reduce using rule 8 (factor -> lHardBracket expression rHardBracket .)
+    minus           reduce using rule 8 (factor -> lHardBracket expression rHardBracket .)
     $end            reduce using rule 8 (factor -> lHardBracket expression rHardBracket .)
     rCurlyBracket   reduce using rule 8 (factor -> lHardBracket expression rHardBracket .)
     rHardBracket    reduce using rule 8 (factor -> lHardBracket expression rHardBracket .)

@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'comma crossProduct dotProduct float int lCurlyBracket lHardBracket minus plus rCurlyBracket rHardBracket vectorexpression : termterm : factor\n            | vector\n            | comma\n            | float\n            | intfactor : lCurlyBracket expression rCurlyBracket\n              | lHardBracket expression rHardBracketexpression : expression plus vector'
+_lr_signature = 'leftplusminuscomma crossProduct determinant dotProduct float int lCurlyBracket lHardBracket minus plus rCurlyBracket rHardBracket vectorexpression : termterm : factor\n            | vector\n            | comma\n            | float\n            | intfactor : lCurlyBracket expression rCurlyBracket\n              | lHardBracket expression rHardBracketexpression : expression plus vectorexpression : expression minus vector'
     
-_lr_action_items = {'vector':([0,8,9,10,],[3,3,3,13,]),'comma':([0,8,9,],[5,5,5,]),'float':([0,8,9,],[6,6,6,]),'int':([0,8,9,],[7,7,7,]),'lCurlyBracket':([0,8,9,],[8,8,8,]),'lHardBracket':([0,8,9,],[9,9,9,]),'$end':([1,2,3,4,5,6,7,13,14,15,],[0,-1,-3,-2,-4,-5,-6,-9,-7,-8,]),'plus':([1,2,3,4,5,6,7,11,12,13,14,15,],[10,-1,-3,-2,-4,-5,-6,10,10,-9,-7,-8,]),'rCurlyBracket':([2,3,4,5,6,7,11,13,14,15,],[-1,-3,-2,-4,-5,-6,14,-9,-7,-8,]),'rHardBracket':([2,3,4,5,6,7,12,13,14,15,],[-1,-3,-2,-4,-5,-6,15,-9,-7,-8,]),}
+_lr_action_items = {'vector':([0,8,9,10,11,],[3,3,3,14,15,]),'comma':([0,8,9,],[5,5,5,]),'float':([0,8,9,],[6,6,6,]),'int':([0,8,9,],[7,7,7,]),'lCurlyBracket':([0,8,9,],[8,8,8,]),'lHardBracket':([0,8,9,],[9,9,9,]),'$end':([1,2,3,4,5,6,7,14,15,16,17,],[0,-1,-3,-2,-4,-5,-6,-9,-10,-7,-8,]),'plus':([1,2,3,4,5,6,7,12,13,14,15,16,17,],[10,-1,-3,-2,-4,-5,-6,10,10,-9,-10,-7,-8,]),'minus':([1,2,3,4,5,6,7,12,13,14,15,16,17,],[11,-1,-3,-2,-4,-5,-6,11,11,-9,-10,-7,-8,]),'rCurlyBracket':([2,3,4,5,6,7,12,14,15,16,17,],[-1,-3,-2,-4,-5,-6,16,-9,-10,-7,-8,]),'rHardBracket':([2,3,4,5,6,7,13,14,15,16,17,],[-1,-3,-2,-4,-5,-6,17,-9,-10,-7,-8,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'expression':([0,8,9,],[1,11,12,]),'term':([0,8,9,],[2,2,2,]),'factor':([0,8,9,],[4,4,4,]),}
+_lr_goto_items = {'expression':([0,8,9,],[1,12,13,]),'term':([0,8,9,],[2,2,2,]),'factor':([0,8,9,],[4,4,4,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,13 +27,14 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> expression","S'",1,None,None,None),
-  ('expression -> term','expression',1,'p_expression_term','yacc_test.py',19),
-  ('term -> factor','term',1,'p_term_vector','yacc_test.py',54),
-  ('term -> vector','term',1,'p_term_vector','yacc_test.py',55),
-  ('term -> comma','term',1,'p_term_vector','yacc_test.py',56),
-  ('term -> float','term',1,'p_term_vector','yacc_test.py',57),
-  ('term -> int','term',1,'p_term_vector','yacc_test.py',58),
-  ('factor -> lCurlyBracket expression rCurlyBracket','factor',3,'p_factor','yacc_test.py',62),
-  ('factor -> lHardBracket expression rHardBracket','factor',3,'p_factor','yacc_test.py',63),
-  ('expression -> expression plus vector','expression',3,'p_expression_plus_vector','yacc_test.py',70),
+  ('expression -> term','expression',1,'p_expression_term','yacc_test.py',14),
+  ('term -> factor','term',1,'p_term_vector','yacc_test.py',24),
+  ('term -> vector','term',1,'p_term_vector','yacc_test.py',25),
+  ('term -> comma','term',1,'p_term_vector','yacc_test.py',26),
+  ('term -> float','term',1,'p_term_vector','yacc_test.py',27),
+  ('term -> int','term',1,'p_term_vector','yacc_test.py',28),
+  ('factor -> lCurlyBracket expression rCurlyBracket','factor',3,'p_factor','yacc_test.py',32),
+  ('factor -> lHardBracket expression rHardBracket','factor',3,'p_factor','yacc_test.py',33),
+  ('expression -> expression plus vector','expression',3,'p_expression_plus_vector','yacc_test.py',40),
+  ('expression -> expression minus vector','expression',3,'p_expression_minus_vector','yacc_test.py',49),
 ]
