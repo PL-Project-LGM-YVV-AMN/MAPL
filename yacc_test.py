@@ -2,7 +2,7 @@ import ply.yacc as yacc
 
 # Get the token map from the lexer.  This is required.
 from lexer_test import tokens
-from VectorClass import vector
+from VecMatClass import vector, matrix
 import re
 
 
@@ -25,7 +25,8 @@ def p_term_vector(p):
             | vector
             | comma
             | float
-            | int'''
+            | int
+            | matrix'''
     p[0] = p[1]
 
 def p_factor(p):
@@ -53,12 +54,20 @@ def p_expression_minus_vector(p):
         print("Vectors are not of equal size")
         return
     p[0] = RightVector-LeftVector
-        
-    
+
+def p_expression_plus_matrix(p):
+    'expression : expression plus matrix'
+    RightMatrix = matrix(p[3])
+    LeftMatrix = matrix(p[1])
+    p[0] = LeftMatrix + RightMatrix
+
+def p_expression_minus_matrix(p):
+    'expression : expression minus matrix'
+    RightMatrix = matrix(p[3])
+    LeftMatrix = matrix(p[1])
+    p[0] = LeftMatrix - RightMatrix
 
 
-
-# Build the parser
 parser = yacc.yacc()
 while True:
     try:
