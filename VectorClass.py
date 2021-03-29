@@ -18,13 +18,15 @@ class vector:
         result = []
         for i in range(self.size):
             result.append(float(self.elems[i])+float(RightVec.elems[i]))
-        return result
+        vecResult = vector(matrix.FormatColumnVectors(str(result)))
+        return vecResult
 
     def __sub__(self, RightVec):
         result = []
         for i in range(self.size):
             result.append(float(self.elems[i])-float(RightVec.elems[i]))
-        return result
+        vecResult = vector(matrix.FormatColumnVectors(str(result)))
+        return vecResult
     
     def __len__(self):
         return self.size
@@ -44,15 +46,61 @@ class matrix:
             sizeOfVecs.append(len(self.ColumnVecs[i]))
         maxColumnSize = max(sizeOfVecs)
         for j in range(self.numOfColumns):
-            self.ColumnVecs[i] =  matrix.appendZeroes(self.ColumnVecs[j],self.ColumnVecs[j].size,maxColumnSize)
-        self.RowVecs = []
+            self.ColumnVecs[j] =  matrix.appendZeroes(self.ColumnVecs[j],self.ColumnVecs[j].size,maxColumnSize)
+        RowVecs = []
         temp_list = []
-        for k in range(self.numOfColumns):
+        for k in range(maxColumnSize):
             if k != 0:
-                self.RowVecs.append(temp_list)
-                temp_list.clear()
-            for z in range(maxColumnSize):
+                RowVecs.append(temp_list)
+                del temp_list
+                temp_list = []
+            for z in range(self.numOfColumns):
                 temp_list.append(self.ColumnVecs[z].elems[k])
+        RowVecs.append(temp_list)
+        del temp_list
+        self.size = maxColumnSize*self.numOfColumns
+        self.numOfRows = len(RowVecs)
+        self.RowVecs = []
+        for i in range(self.numOfRows):
+            self.RowVecs.append(vector(matrix.FormatColumnVectors(RowVecs[i])))
+
+    def __str__(self):
+        ans = ""
+        for i in range(self.numOfRows):
+           ans = ans + vector.__str__(self.RowVecs[i]) + '\n'
+        return ans
+
+    def __add__(self,RightMatrix):
+        if self.numOfColumns != RightMatrix.numOfColumns and self.numOfRows != RightMatrix.numOfRows:
+            return None
+        vecList = []
+        for vecs in range(self.numOfColumns):
+            vecList.append(self.ColumnVecs[vecs] + RightMatrix.ColumnVecs[vecs])
+        tempStr = "["
+        i = 0
+        for i in range(len(vecList)):
+            if i != len(vecList) - 1:
+                tempStr = tempStr + vector.__str__(vecList[i]) + ';'
+            else:
+                tempStr = tempStr + vector.__str__(vecList[i])
+        tempStr += "]"
+        return matrix(tempStr)
+
+    def __sub__(self,RightMatrix):
+        if self.numOfColumns != RightMatrix.numOfColumns and self.numOfRows != RightMatrix.numOfRows:
+            return None
+        vecList = []
+        for vecs in range(self.numOfColumns):
+            vecList.append(self.ColumnVecs[vecs] - RightMatrix.ColumnVecs[vecs])
+        tempStr = "["
+        i = 0
+        for i in range(len(vecList)):
+            if i != len(vecList) - 1:
+                tempStr = tempStr + vector.__str__(vecList[i]) + ';'
+            else:
+                tempStr = tempStr + vector.__str__(vecList[i])
+        tempStr += "]"
+        return matrix(tempStr)
 
 
     @staticmethod
@@ -73,9 +121,10 @@ class matrix:
 
 
 
-x = "[[1.0 2.0 3];[1 2];[3 4]]"
+y = matrix("[[1.0 2.0 3];[1 2]]")
 
-y = matrix(x)
+z = matrix("[[2 3 4];[5 6]]")
 
-print(y.RowVecs)
+b = y-z
 
+print(b)
