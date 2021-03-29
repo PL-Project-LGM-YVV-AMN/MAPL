@@ -25,6 +25,10 @@ class vector:
         for i in range(self.size):
             result.append(float(self.elems[i])-float(RightVec.elems[i]))
         return result
+    
+    def __len__(self):
+        return self.size
+
 
 class matrix:
     
@@ -32,26 +36,46 @@ class matrix:
 
     def __init__(self, string):
         ColumnVecsFromRE = matrix.VectorRule.findall(string)
-        self.ColumnSize = len(ColumnVecsFromRE)
+        self.numOfColumns = len(ColumnVecsFromRE)
         self.ColumnVecs = []
-        for i in range(self.ColumnSize):
+        sizeOfVecs = []
+        for i in range(self.numOfColumns):
             self.ColumnVecs.append(vector(matrix.FormatColumnVectors(ColumnVecsFromRE[i])))
+            sizeOfVecs.append(len(self.ColumnVecs[i]))
+        maxColumnSize = max(sizeOfVecs)
+        for j in range(self.numOfColumns):
+            self.ColumnVecs[i] =  matrix.appendZeroes(self.ColumnVecs[j],self.ColumnVecs[j].size,maxColumnSize)
+        self.RowVecs = []
+        temp_list = []
+        for k in range(self.numOfColumns):
+            if k != 0:
+                self.RowVecs.append(temp_list)
+                temp_list.clear()
+            for z in range(maxColumnSize):
+                temp_list.append(self.ColumnVecs[z].elems[k])
 
-    
 
     @staticmethod
     def FormatColumnVectors(string):
         result = re.sub(r'\'', '', str(string))
         result = re.sub(",","", str(result))
         return result
+    
+    @staticmethod
+    def appendZeroes(vec,initialSize ,maxColumnSize):
+        while initialSize < maxColumnSize:
+            vec.elems.append(0.0)
+            vec.size = vec.size + 1
+            initialSize = initialSize + 1
+        return vec
+        
 
 
 
 
-x = "[[1.0 2.0 3];[1 2 3];[3 4 5]]"
+x = "[[1.0 2.0 3];[1 2];[3 4]]"
 
 y = matrix(x)
 
-for i  in range(y.ColumnSize):
-    print(y.ColumnVecs[i])
+print(y.RowVecs)
 
