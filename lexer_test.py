@@ -33,8 +33,6 @@ t_vector = t_lHardBracket + r'(?:\s*(?:-?' + t_float + r'|-?' + t_int + r')\s*)+
 t_matrix = t_lHardBracket + r'((' + t_vector + r')\s*;?)+' + t_rHardBracket
 t_ignore = ' \t'
 
-print
-
 
 def t_newline(t):
     r'\n+'
