@@ -1,1 +1,12 @@
 .vscode/launch.json
+.idea/misc.xml
+.idea/modules.xml
+.idea/plyTest.iml
+.idea/vcs.xml
+.idea/inspectionProfiles/profiles_settings.xml
+__pycache__/lexer_example.cpython-39.pyc
+__pycache__/lexer_test.cpython-39.pyc
+__pycache__/parsetab.cpython-39.pyc
+__pycache__/regexTest.cpython-39.pyc
+__pycache__/VecMatClass.cpython-39.pyc
+__pycache__/VectorClass.cpython-39.pyc
