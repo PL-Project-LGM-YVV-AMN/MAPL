@@ -45,15 +45,7 @@ class matrix:
         vecList = []
         for vecs in range(self.numOfColumns):
             vecList.append(self.ColumnVecs[vecs] + RightMatrix.ColumnVecs[vecs])
-        tempStr = "["
-        i = 0
-        for i in range(len(vecList)):
-            if i != len(vecList) - 1:
-                tempStr = tempStr + vector.__str__(vecList[i]) + ';'
-            else:
-                tempStr = tempStr + vector.__str__(vecList[i])
-        tempStr += "]"
-        return matrix(tempStr)
+        return matrix(matrix.formatList(vecList))
 
     def __sub__(self,RightMatrix):
         if self.numOfColumns != RightMatrix.numOfColumns and self.numOfRows != RightMatrix.numOfRows:
@@ -61,29 +53,13 @@ class matrix:
         vecList = []
         for vecs in range(self.numOfColumns):
             vecList.append(self.ColumnVecs[vecs] - RightMatrix.ColumnVecs[vecs])
-        tempStr = "["
-        i = 0
-        for i in range(len(vecList)):
-            if i != len(vecList) - 1:
-                tempStr = tempStr + vector.__str__(vecList[i]) + ';'
-            else:
-                tempStr = tempStr + vector.__str__(vecList[i])
-        tempStr += "]"
-        return matrix(tempStr)
+        return matrix(matrix.formatList(vecList))
 
     def scalar_multiplication(self, multiplier):
         vecList = []
         for i in range(self.numOfColumns):
             vecList.append(self.ColumnVecs[i].scalar_multiplication(multiplier))
-        tempStr = "["
-        i = 0
-        for i in range(len(vecList)):
-            if i != len(vecList) - 1:
-                tempStr = tempStr + matrix.columnVecStr(vecList[i]) + ';'
-            else:
-                tempStr = tempStr + vector.__str__(vecList[i])
-        tempStr += "]"
-        return matrix(tempStr)
+        return matrix(matrix.formatList(vecList))
     
     @staticmethod
     def columnVecStr(vector):
@@ -104,3 +80,19 @@ class matrix:
             vec.size = vec.size + 1
             initialSize = initialSize + 1
         return vec
+
+    @staticmethod
+    def formatList(vecList):
+        tempStr = "["
+        for i in range(len(vecList)):
+            if i != len(vecList) - 1:
+                tempStr = tempStr + vector.__str__(vecList[i]) + ';'
+            else:
+                tempStr = tempStr + vector.__str__(vecList[i])
+        tempStr += "]"
+        return tempStr
+
+x = matrix("[[1 2];[3 4]]")
+y = matrix("[[5 6];[7 8]]")
+
+print(x.scalar_multiplication(2))

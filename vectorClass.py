@@ -43,8 +43,19 @@ class vector:
         result = re.sub(",","", str(result))
         return result
 
+    def dot_product(self, rightVec):
+        product_nums = []
+        if self.size != rightVec.size:
+            print("Vectors are not of equal size")
+            return None
+        for i in range(self.size):
+            product_nums.append(float(self.elems[i])*float(rightVec.elems[i]))
+        return sum(product_nums)
 
 
-        
+'''
+x = vector("[1 2 3]")
+y = vector("[4 5 6]")
 
-
+print(x.dot_product(y))
+'''
