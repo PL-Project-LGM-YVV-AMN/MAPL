@@ -2,11 +2,13 @@ import ply.yacc as yacc
 
 # Get the token map from the lexer.  This is required.
 from lexer_test import tokens
-from VecMatClass import vector, matrix
+from vectorClass import vector
+from matrixClass import matrix
 import re
 
 
 precedence = (
+    ('left','multiplier'),
     ('left', 'plus', 'minus'),
 )
 
@@ -26,7 +28,8 @@ def p_term_vector(p):
             | comma
             | float
             | int
-            | matrix'''
+            | matrix
+            | multiplier'''
     p[0] = p[1]
 
 def p_factor(p):
@@ -34,7 +37,6 @@ def p_factor(p):
               | lHardBracket expression rHardBracket'''
     p[0] = p[2]
 
-'def p_expression_minus(p):'
 
 def p_expression_plus_vector(p):
     'expression : expression plus vector'
@@ -66,6 +68,17 @@ def p_expression_minus_matrix(p):
     LeftMatrix = matrix(p[1])
     p[0] = LeftMatrix - RightMatrix
 
+def p_expression_scalar_vector(p):
+    'expression : multiplier vector'
+    vecToBeMultiplied = vector(p[2])
+    multiplier = float(p[1])
+    p[0] = vecToBeMultiplied.scalar_multiplication(multiplier)
+
+def p_expression_scalar_matrix(p):
+    'expression : multiplier matrix'
+    matrixToBeMultiplied = matrix(p[2])
+    multiplier = float(p[1])
+    p[0] = matrixToBeMultiplied.scalar_multiplication(multiplier)
 
 parser = yacc.yacc()
 while True:

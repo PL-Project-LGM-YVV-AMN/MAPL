@@ -1,37 +1,6 @@
 import lexer_test as lt
+from vectorClass import vector
 import re
-
-
-class vector:
-    elemsRule = re.compile((r'-?' + lt.t_float + r'|-?' + lt.t_int))
-
-    def __init__(self, string):
-        self.elems = vector.elemsRule.findall(string)
-        self.size = len(self.elems)
-
-    def __str__(self):
-        result = re.sub(r'\'', '', str(self.elems))
-        result = re.sub(",","", str(result))
-        return result
-
-    def __add__(self, RightVec):
-        result = []
-        for i in range(self.size):
-            result.append(float(self.elems[i])+float(RightVec.elems[i]))
-        vecResult = vector(matrix.FormatColumnVectors(str(result)))
-        return vecResult
-
-    def __sub__(self, RightVec):
-        result = []
-        for i in range(self.size):
-            result.append(float(self.elems[i])-float(RightVec.elems[i]))
-        vecResult = vector(matrix.FormatColumnVectors(str(result)))
-        return vecResult
-    
-    def __len__(self):
-        return self.size
-
-
 class matrix:
     
     VectorRule = re.compile(lt.t_vector)
@@ -102,6 +71,25 @@ class matrix:
         tempStr += "]"
         return matrix(tempStr)
 
+    def scalar_multiplication(self, multiplier):
+        vecList = []
+        for i in range(self.numOfColumns):
+            vecList.append(self.ColumnVecs[i].scalar_multiplication(multiplier))
+        tempStr = "["
+        i = 0
+        for i in range(len(vecList)):
+            if i != len(vecList) - 1:
+                tempStr = tempStr + matrix.columnVecStr(vecList[i]) + ';'
+            else:
+                tempStr = tempStr + vector.__str__(vecList[i])
+        tempStr += "]"
+        return matrix(tempStr)
+    
+    @staticmethod
+    def columnVecStr(vector):
+        result = re.sub(r'\'', '', str(vector.elems))
+        result = re.sub(",","", str(result))
+        return result
 
     @staticmethod
     def FormatColumnVectors(string):
@@ -116,16 +104,3 @@ class matrix:
             vec.size = vec.size + 1
             initialSize = initialSize + 1
         return vec
-        
-
-
-
-'''
-y = matrix("[[1.0 2.0 3];[1 2]]")
-
-z = matrix("[[2 3 4];[5 6]]")
-
-b = y-z
-
-print(b)
-'''

@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'leftplusminuscomma crossProduct determinant dotProduct float int lCurlyBracket lHardBracket matrix minus plus rCurlyBracket rHardBracket vectorexpression : termterm : factor\n            | vector\n            | comma\n            | float\n            | int\n            | matrixfactor : lCurlyBracket expression rCurlyBracket\n              | lHardBracket expression rHardBracketexpression : expression plus vectorexpression : expression minus vectorexpression : expression plus matrixexpression : expression minus matrix'
+_lr_signature = 'leftmultiplierleftplusminuscomma crossProduct determinant dotProduct float int lCurlyBracket lHardBracket matrix minus multiplier plus rCurlyBracket rHardBracket vectorexpression : termterm : factor\n            | vector\n            | comma\n            | float\n            | int\n            | matrix\n            | multiplierfactor : lCurlyBracket expression rCurlyBracket\n              | lHardBracket expression rHardBracketexpression : expression plus vectorexpression : expression minus vectorexpression : expression plus matrixexpression : expression minus matrixexpression : multiplier vectorexpression : multiplier matrix'
     
-_lr_action_items = {'vector':([0,9,10,11,12,],[3,3,3,15,17,]),'comma':([0,9,10,],[6,6,6,]),'float':([0,9,10,],[7,7,7,]),'int':([0,9,10,],[8,8,8,]),'matrix':([0,9,10,11,12,],[4,4,4,16,18,]),'lCurlyBracket':([0,9,10,],[9,9,9,]),'lHardBracket':([0,9,10,],[10,10,10,]),'$end':([1,2,3,4,5,6,7,8,15,16,17,18,19,20,],[0,-1,-3,-7,-2,-4,-5,-6,-10,-12,-11,-13,-8,-9,]),'plus':([1,2,3,4,5,6,7,8,13,14,15,16,17,18,19,20,],[11,-1,-3,-7,-2,-4,-5,-6,11,11,-10,-12,-11,-13,-8,-9,]),'minus':([1,2,3,4,5,6,7,8,13,14,15,16,17,18,19,20,],[12,-1,-3,-7,-2,-4,-5,-6,12,12,-10,-12,-11,-13,-8,-9,]),'rCurlyBracket':([2,3,4,5,6,7,8,13,15,16,17,18,19,20,],[-1,-3,-7,-2,-4,-5,-6,19,-10,-12,-11,-13,-8,-9,]),'rHardBracket':([2,3,4,5,6,7,8,14,15,16,17,18,19,20,],[-1,-3,-7,-2,-4,-5,-6,20,-10,-12,-11,-13,-8,-9,]),}
+_lr_action_items = {'multiplier':([0,10,11,],[5,5,5,]),'vector':([0,5,10,11,12,13,],[3,14,3,3,18,20,]),'comma':([0,10,11,],[7,7,7,]),'float':([0,10,11,],[8,8,8,]),'int':([0,10,11,],[9,9,9,]),'matrix':([0,5,10,11,12,13,],[4,15,4,4,19,21,]),'lCurlyBracket':([0,10,11,],[10,10,10,]),'lHardBracket':([0,10,11,],[11,11,11,]),'$end':([1,2,3,4,5,6,7,8,9,14,15,18,19,20,21,22,23,],[0,-1,-3,-7,-8,-2,-4,-5,-6,-15,-16,-11,-13,-12,-14,-9,-10,]),'plus':([1,2,3,4,5,6,7,8,9,14,15,16,17,18,19,20,21,22,23,],[12,-1,-3,-7,-8,-2,-4,-5,-6,-15,-16,12,12,-11,-13,-12,-14,-9,-10,]),'minus':([1,2,3,4,5,6,7,8,9,14,15,16,17,18,19,20,21,22,23,],[13,-1,-3,-7,-8,-2,-4,-5,-6,-15,-16,13,13,-11,-13,-12,-14,-9,-10,]),'rCurlyBracket':([2,3,4,5,6,7,8,9,14,15,16,18,19,20,21,22,23,],[-1,-3,-7,-8,-2,-4,-5,-6,-15,-16,22,-11,-13,-12,-14,-9,-10,]),'rHardBracket':([2,3,4,5,6,7,8,9,14,15,17,18,19,20,21,22,23,],[-1,-3,-7,-8,-2,-4,-5,-6,-15,-16,23,-11,-13,-12,-14,-9,-10,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'expression':([0,9,10,],[1,13,14,]),'term':([0,9,10,],[2,2,2,]),'factor':([0,9,10,],[5,5,5,]),}
+_lr_goto_items = {'expression':([0,10,11,],[1,16,17,]),'term':([0,10,11,],[2,2,2,]),'factor':([0,10,11,],[6,6,6,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,17 +27,20 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> expression","S'",1,None,None,None),
-  ('expression -> term','expression',1,'p_expression_term','yacc_test.py',14),
-  ('term -> factor','term',1,'p_term_vector','yacc_test.py',24),
-  ('term -> vector','term',1,'p_term_vector','yacc_test.py',25),
-  ('term -> comma','term',1,'p_term_vector','yacc_test.py',26),
-  ('term -> float','term',1,'p_term_vector','yacc_test.py',27),
-  ('term -> int','term',1,'p_term_vector','yacc_test.py',28),
-  ('term -> matrix','term',1,'p_term_vector','yacc_test.py',29),
-  ('factor -> lCurlyBracket expression rCurlyBracket','factor',3,'p_factor','yacc_test.py',33),
-  ('factor -> lHardBracket expression rHardBracket','factor',3,'p_factor','yacc_test.py',34),
+  ('expression -> term','expression',1,'p_expression_term','yacc_test.py',15),
+  ('term -> factor','term',1,'p_term_vector','yacc_test.py',25),
+  ('term -> vector','term',1,'p_term_vector','yacc_test.py',26),
+  ('term -> comma','term',1,'p_term_vector','yacc_test.py',27),
+  ('term -> float','term',1,'p_term_vector','yacc_test.py',28),
+  ('term -> int','term',1,'p_term_vector','yacc_test.py',29),
+  ('term -> matrix','term',1,'p_term_vector','yacc_test.py',30),
+  ('term -> multiplier','term',1,'p_term_vector','yacc_test.py',31),
+  ('factor -> lCurlyBracket expression rCurlyBracket','factor',3,'p_factor','yacc_test.py',35),
+  ('factor -> lHardBracket expression rHardBracket','factor',3,'p_factor','yacc_test.py',36),
   ('expression -> expression plus vector','expression',3,'p_expression_plus_vector','yacc_test.py',41),
   ('expression -> expression minus vector','expression',3,'p_expression_minus_vector','yacc_test.py',50),
   ('expression -> expression plus matrix','expression',3,'p_expression_plus_matrix','yacc_test.py',59),
   ('expression -> expression minus matrix','expression',3,'p_expression_minus_matrix','yacc_test.py',65),
+  ('expression -> multiplier vector','expression',2,'p_expression_scalar_vector','yacc_test.py',71),
+  ('expression -> multiplier matrix','expression',2,'p_expression_scalar_matrix','yacc_test.py',77),
 ]

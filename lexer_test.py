@@ -14,7 +14,8 @@ tokens = (
     'lCurlyBracket', 
     'vector',
     'matrix',
-    'determinant'
+    'determinant',
+    'multiplier',
 )
 
 t_lHardBracket = r'\['
@@ -31,6 +32,7 @@ t_lCurlyBracket = r'\{'
 t_rCurlyBracket = r'\}'
 t_vector = t_lHardBracket + r'(?:\s*(?:-?' + t_float + r'|-?' + t_int + r')\s*)+' + t_rHardBracket
 t_matrix = t_lHardBracket + r'((' + t_vector + r')\s*;?)+' + t_rHardBracket
+t_multiplier = r'\s*(?:-?' + t_float + r'|-?' + t_int + r')'
 t_ignore = ' \t'
 
 
@@ -45,9 +47,9 @@ def t_error(t):
 
 
 lexer = lex.lex()
-'''
+"""
 data = input("Input data: ")
 lexer.input(data)
 for tok in lexer:
     print(tok)
-'''
+"""
