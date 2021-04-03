@@ -36,7 +36,6 @@ def p_factor(p):
 
 'def p_expression_minus(p):'
 
-
 def p_expression_plus_vector(p):
     'expression : expression plus vector'
     RightVector = vector(p[1])
