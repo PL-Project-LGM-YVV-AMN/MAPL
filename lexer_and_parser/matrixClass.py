@@ -61,6 +61,29 @@ class matrix:
             vecList.append(self.ColumnVecs[i].scalar_multiplication(multiplier))
         return matrix(matrix.formatList(vecList))
     
+    def cross_product(self, rightMat):
+        if self.numOfColumns != rightMat.numOfRows:
+            print("Left matrix's number of columns not equal to right matrix's number of rows")
+            return None
+        new_column_vecs = []
+        temp_list = []
+        for i in range(rightMat.numOfColumns):
+            if i != 0:
+                new_column_vecs.append(temp_list)
+                del temp_list
+                temp_list = []
+            for j in range(self.numOfRows):
+                temp_list.append(self.RowVecs[j].dot_product(rightMat.ColumnVecs[i]))
+        new_column_vecs.append(temp_list)
+        del temp_list
+        new_mat_str_list = []
+        for k in range(len(new_column_vecs)):
+            new_mat_str_list.append(vector(vector.FormatColumnVectors(new_column_vecs[k])))
+        return matrix(matrix.formatList(new_mat_str_list))
+
+
+
+    
     @staticmethod
     def columnVecStr(vector):
         result = re.sub(r'\'', '', str(vector.elems))
@@ -92,7 +115,3 @@ class matrix:
         tempStr += "]"
         return tempStr
 
-x = matrix("[[1 2];[3 4]]")
-y = matrix("[[5 6];[7 8]]")
-
-print(x.scalar_multiplication(2))

@@ -80,6 +80,13 @@ def p_expression_scalar_matrix(p):
     multiplier = float(p[1])
     p[0] = matrixToBeMultiplied.scalar_multiplication(multiplier)
 
+def p_expression_cross_product_matrix(p):
+    'expression : matrix matrix'
+    leftMat = matrix(p[1])
+    rightMat = matrix(p[2])
+    p[0] = leftMat.cross_product(rightMat)
+
+
 parser = yacc.yacc()
 while True:
     try:
