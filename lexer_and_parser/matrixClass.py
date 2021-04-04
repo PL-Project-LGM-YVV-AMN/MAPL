@@ -80,15 +80,12 @@ class matrix:
         for k in range(len(new_column_vecs)):
             new_mat_str_list.append(vector(vector.FormatColumnVectors(new_column_vecs[k])))
         return matrix(matrix.formatList(new_mat_str_list))
-
-
-
     
-    @staticmethod
-    def columnVecStr(vector):
-        result = re.sub(r'\'', '', str(vector.elems))
-        result = re.sub(",","", str(result))
-        return result
+    def transpose(self):
+        new_column_vecs = []
+        for i in range(self.numOfRows):
+            new_column_vecs.append(vector(matrix.FormatColumnVectors(self.RowVecs[i])))
+        return matrix(matrix.formatList(new_column_vecs))
 
     @staticmethod
     def FormatColumnVectors(string):
@@ -115,3 +112,7 @@ class matrix:
         tempStr += "]"
         return tempStr
 
+
+x = matrix("[[1 2 3];[4 5 6]]")
+
+print(x.transpose())

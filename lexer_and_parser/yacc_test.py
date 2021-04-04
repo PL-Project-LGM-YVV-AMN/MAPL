@@ -86,6 +86,10 @@ def p_expression_cross_product_matrix(p):
     rightMat = matrix(p[2])
     p[0] = leftMat.cross_product(rightMat)
 
+def p_expression_transpose_matrix(p):
+    'expression : transpose matrix'
+    p[0] = matrix(p[2]).transpose()
+
 
 parser = yacc.yacc()
 while True:
