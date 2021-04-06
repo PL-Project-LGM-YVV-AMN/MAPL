@@ -14,9 +14,9 @@ tokens = (
     'lCurlyBracket', 
     'vector',
     'matrix',
-    'determinant',
     'multiplier',
     'transpose',
+    'determinant',
 )
 
 t_lHardBracket = r'\['
@@ -27,7 +27,7 @@ t_plus = r'\+'
 t_minus = r'\-'
 t_dotProduct = r'\.'
 t_crossProduct = 'X'
-t_determinant = r"'"
+t_determinant = r'det'
 t_comma = r'\,'
 t_lCurlyBracket = r'\{'
 t_rCurlyBracket = r'\}'

@@ -90,6 +90,15 @@ def p_expression_transpose_matrix(p):
     'expression : transpose matrix'
     p[0] = matrix(p[2]).transpose()
 
+def p_expression_det_matrix(p):
+    'expression : determinant matrix'
+    p[0] = matrix(p[2]).det()
+
+def p_expression_dot_product_vector(p):
+    'expression : vector dotProduct vector'
+
+    p[0] = vector(p[1]).dot_product(vector(p[3]))
+
 
 parser = yacc.yacc()
 while True:

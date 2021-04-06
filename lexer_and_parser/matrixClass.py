@@ -1,6 +1,7 @@
 import lexer_test as lt
 from vectorClass import vector
 import re
+import math
 class matrix:
     
     VectorRule = re.compile(lt.t_vector)
@@ -32,6 +33,9 @@ class matrix:
         self.RowVecs = []
         for i in range(self.numOfRows):
             self.RowVecs.append(vector(matrix.FormatColumnVectors(RowVecs[i])))
+        self.isSquare = False
+        if math.sqrt(self.size) == math.floor(math.sqrt(self.size)):
+            self.isSquare = True
 
     def __str__(self):
         ans = ""
@@ -87,6 +91,43 @@ class matrix:
             new_column_vecs.append(vector(matrix.FormatColumnVectors(self.RowVecs[i])))
         return matrix(matrix.formatList(new_column_vecs))
 
+    def det(self):
+        if self.isSquare == False:
+            print("Matrix is not square")
+            return None
+        row_matrix = []
+        for i in range(self.numOfRows):
+            temp_vec = [int(x) for x in self.RowVecs[i].elems]
+            row_matrix.append(temp_vec.copy())
+            temp_vec.clear()
+        return matrix.rec_det(row_matrix)
+
+    @staticmethod
+    def rec_det(mat):
+        mat_cpy = mat.copy()
+        if len(mat) <= 1:
+            return float(re.sub(r'\[|\]',"",str(mat_cpy)))
+        else:
+            sum = 0
+            for row in range(len(mat)):
+                sum += pow(-1,row)*mat[row][0]*matrix.rec_det(matrix.not_in_row_or_column(mat_cpy,len(mat_cpy),row,0))
+            return sum
+
+    @staticmethod
+    def not_in_row_or_column(mat,size,target_row,target_column):
+        temp_vec = []
+        new_mat = []
+        for row in range(size):
+            if row != 0:
+                new_mat.append(temp_vec.copy())
+                temp_vec.clear()
+            for column in range(size):
+                if row != target_row and column != target_column:
+                    temp_vec.append(mat[row][column])
+        new_mat.append(temp_vec)
+        new_mat = list([x for x in new_mat.copy() if x])
+        return new_mat
+
     @staticmethod
     def FormatColumnVectors(string):
         result = re.sub(r'\'', '', str(string))
@@ -113,6 +154,3 @@ class matrix:
         return tempStr
 
 
-x = matrix("[[1 2 3];[4 5 6]]")
-
-print(x.transpose())
