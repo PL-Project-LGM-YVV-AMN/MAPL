@@ -17,6 +17,7 @@ tokens = (
     'multiplier',
     'transpose',
     'determinant',
+    'inverse',
 )
 
 t_lHardBracket = r'\['
@@ -35,6 +36,7 @@ t_vector = t_lHardBracket + r'(?:\s*(?:-?' + t_float + r'|-?' + t_int + r')\s*)+
 t_matrix = t_lHardBracket + r'((' + t_vector + r')\s*;?)+' + t_rHardBracket
 t_multiplier = r'\s*(?:-?' + t_float + r'|-?' + t_int + r')'
 t_transpose = r"\s*\s*T"
+t_inverse = r'inv'
 t_ignore = ' \t'
 
 

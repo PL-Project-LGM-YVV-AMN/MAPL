@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'leftmultiplierleftplusminuscomma crossProduct determinant dotProduct float int lCurlyBracket lHardBracket matrix minus multiplier plus rCurlyBracket rHardBracket transpose vectorexpression : termterm : factor\n            | vector\n            | comma\n            | float\n            | int\n            | matrix\n            | multiplierfactor : lCurlyBracket expression rCurlyBracket\n              | lHardBracket expression rHardBracketexpression : expression plus vectorexpression : expression minus vectorexpression : expression plus matrixexpression : expression minus matrixexpression : multiplier vectorexpression : multiplier matrixexpression : matrix matrixexpression : transpose matrixexpression : determinant matrixexpression : vector dotProduct vector'
+_lr_signature = 'leftmultiplierleftplusminuscomma crossProduct determinant dotProduct float int inverse lCurlyBracket lHardBracket matrix minus multiplier plus rCurlyBracket rHardBracket transpose vectorexpression : termterm : factor\n            | vector\n            | comma\n            | float\n            | int\n            | matrix\n            | multiplierfactor : lCurlyBracket expression rCurlyBracket\n              | lHardBracket expression rHardBracketexpression : expression plus vectorexpression : expression minus vectorexpression : expression plus matrixexpression : expression minus matrixexpression : multiplier vectorexpression : multiplier matrixexpression : matrix matrixexpression : transpose matrixexpression : determinant matrixexpression : vector dotProduct vectorexpression : inverse matrix'
     
-_lr_action_items = {'multiplier':([0,12,13,],[5,5,5,]),'matrix':([0,4,5,6,7,12,13,14,15,],[4,17,19,20,21,4,4,25,27,]),'transpose':([0,12,13,],[6,6,6,]),'determinant':([0,12,13,],[7,7,7,]),'vector':([0,5,12,13,14,15,16,],[3,18,3,3,24,26,28,]),'comma':([0,12,13,],[9,9,9,]),'float':([0,12,13,],[10,10,10,]),'int':([0,12,13,],[11,11,11,]),'lCurlyBracket':([0,12,13,],[12,12,12,]),'lHardBracket':([0,12,13,],[13,13,13,]),'$end':([1,2,3,4,5,8,9,10,11,17,18,19,20,21,24,25,26,27,28,29,30,],[0,-1,-3,-7,-8,-2,-4,-5,-6,-17,-15,-16,-18,-19,-11,-13,-12,-14,-20,-9,-10,]),'plus':([1,2,3,4,5,8,9,10,11,17,18,19,20,21,22,23,24,25,26,27,28,29,30,],[14,-1,-3,-7,-8,-2,-4,-5,-6,-17,-15,-16,-18,-19,14,14,-11,-13,-12,-14,-20,-9,-10,]),'minus':([1,2,3,4,5,8,9,10,11,17,18,19,20,21,22,23,24,25,26,27,28,29,30,],[15,-1,-3,-7,-8,-2,-4,-5,-6,-17,-15,-16,-18,-19,15,15,-11,-13,-12,-14,-20,-9,-10,]),'rCurlyBracket':([2,3,4,5,8,9,10,11,17,18,19,20,21,22,24,25,26,27,28,29,30,],[-1,-3,-7,-8,-2,-4,-5,-6,-17,-15,-16,-18,-19,29,-11,-13,-12,-14,-20,-9,-10,]),'rHardBracket':([2,3,4,5,8,9,10,11,17,18,19,20,21,23,24,25,26,27,28,29,30,],[-1,-3,-7,-8,-2,-4,-5,-6,-17,-15,-16,-18,-19,30,-11,-13,-12,-14,-20,-9,-10,]),'dotProduct':([3,],[16,]),}
+_lr_action_items = {'multiplier':([0,13,14,],[5,5,5,]),'matrix':([0,4,5,6,7,8,13,14,15,16,],[4,18,20,21,22,23,4,4,27,29,]),'transpose':([0,13,14,],[6,6,6,]),'determinant':([0,13,14,],[7,7,7,]),'vector':([0,5,13,14,15,16,17,],[3,19,3,3,26,28,30,]),'inverse':([0,13,14,],[8,8,8,]),'comma':([0,13,14,],[10,10,10,]),'float':([0,13,14,],[11,11,11,]),'int':([0,13,14,],[12,12,12,]),'lCurlyBracket':([0,13,14,],[13,13,13,]),'lHardBracket':([0,13,14,],[14,14,14,]),'$end':([1,2,3,4,5,9,10,11,12,18,19,20,21,22,23,26,27,28,29,30,31,32,],[0,-1,-3,-7,-8,-2,-4,-5,-6,-17,-15,-16,-18,-19,-21,-11,-13,-12,-14,-20,-9,-10,]),'plus':([1,2,3,4,5,9,10,11,12,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,],[15,-1,-3,-7,-8,-2,-4,-5,-6,-17,-15,-16,-18,-19,-21,15,15,-11,-13,-12,-14,-20,-9,-10,]),'minus':([1,2,3,4,5,9,10,11,12,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,],[16,-1,-3,-7,-8,-2,-4,-5,-6,-17,-15,-16,-18,-19,-21,16,16,-11,-13,-12,-14,-20,-9,-10,]),'rCurlyBracket':([2,3,4,5,9,10,11,12,18,19,20,21,22,23,24,26,27,28,29,30,31,32,],[-1,-3,-7,-8,-2,-4,-5,-6,-17,-15,-16,-18,-19,-21,31,-11,-13,-12,-14,-20,-9,-10,]),'rHardBracket':([2,3,4,5,9,10,11,12,18,19,20,21,22,23,25,26,27,28,29,30,31,32,],[-1,-3,-7,-8,-2,-4,-5,-6,-17,-15,-16,-18,-19,-21,32,-11,-13,-12,-14,-20,-9,-10,]),'dotProduct':([3,],[17,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'expression':([0,12,13,],[1,22,23,]),'term':([0,12,13,],[2,2,2,]),'factor':([0,12,13,],[8,8,8,]),}
+_lr_goto_items = {'expression':([0,13,14,],[1,24,25,]),'term':([0,13,14,],[2,2,2,]),'factor':([0,13,14,],[9,9,9,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -47,4 +47,5 @@ _lr_productions = [
   ('expression -> transpose matrix','expression',2,'p_expression_transpose_matrix','yacc_test.py',90),
   ('expression -> determinant matrix','expression',2,'p_expression_det_matrix','yacc_test.py',94),
   ('expression -> vector dotProduct vector','expression',3,'p_expression_dot_product_vector','yacc_test.py',98),
+  ('expression -> inverse matrix','expression',2,'p_expression_inverse_matrix','yacc_test.py',102),
 ]

@@ -102,6 +102,31 @@ class matrix:
             temp_vec.clear()
         return matrix.rec_det(row_matrix)
 
+    def inv(self):
+        mat_det = self.det()
+        if self.isSquare == False or mat_det == 0:
+            print("Matrix is not square or matrix determinant is zero")
+            return None
+        row_matrix = []
+        for i in range(self.numOfRows):
+            temp_vec = [int(x) for x in self.RowVecs[i].elems]
+            row_matrix.append(temp_vec.copy())
+            temp_vec.clear()
+        star_mat = matrix.star(row_matrix.copy())
+        adjoint_mat = []
+        temp_vec.clear()
+        for row in range(self.numOfColumns):
+            adjoint_mat.append(temp_vec[:])
+            temp_vec.clear()
+            for column in range(self.numOfColumns):
+                temp_vec.append(star_mat[row][column]/mat_det)
+        adjoint_mat.append(temp_vec[:])
+        adjoint_mat = [x for x in adjoint_mat.copy() if x]
+        vec_list = []
+        for i in range(len(adjoint_mat)):
+            vec_list.append(vector(matrix.FormatColumnVectors(adjoint_mat[i])))
+        return matrix(matrix.formatList(vec_list))
+
     @staticmethod
     def rec_det(mat):
         mat_cpy = mat.copy()
@@ -152,5 +177,27 @@ class matrix:
                 tempStr = tempStr + vector.__str__(vecList[i])
         tempStr += "]"
         return tempStr
+    
+    @staticmethod
+    def star(mat):
+        off_row = True
+        temp_vec = []
+        adjoint_mat = []
+        for row in range(len(mat)):
+            adjoint_mat.append(temp_vec[:])
+            temp_vec.clear()
+            off_row = not off_row
+            for column in range(len(mat)):
+                if off_row:
+                    val = pow(-1,column+1)*matrix.rec_det(matrix.not_in_row_or_column(mat,len(mat),row,column))
+                else:
+                    val = pow(-1,column)*matrix.rec_det(matrix.not_in_row_or_column(mat,len(mat),row,column))
+                temp_vec.append(val)
+        adjoint_mat.append(temp_vec[:])
+        temp_vec.clear()
+        adjoint_mat = [x for x in adjoint_mat.copy() if x]
+        return adjoint_mat
 
-
+mat = matrix("[[1 3 2];[2 2 1];[3 1 3]]")
+mat1 = matrix("[[4 7 9];[1 2 6];[2 2 3]]")
+mat2 = matrix("[[1 3];[2 4]]")

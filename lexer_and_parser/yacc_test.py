@@ -96,8 +96,11 @@ def p_expression_det_matrix(p):
 
 def p_expression_dot_product_vector(p):
     'expression : vector dotProduct vector'
-
     p[0] = vector(p[1]).dot_product(vector(p[3]))
+
+def p_expression_inverse_matrix(p):
+    'expression : inverse matrix'
+    p[0] = matrix(p[2]).inv()
 
 
 parser = yacc.yacc()
