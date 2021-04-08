@@ -100,7 +100,7 @@ class matrix:
             temp_vec.clear()
         return matrix.rec_det(row_matrix)
 
-    def inv(self): #needs refactoring
+    def inv(self): 
         mat_det = self.det()
         if self.isSquare == False or mat_det == 0:
             print("Matrix is not square or matrix determinant is zero")
