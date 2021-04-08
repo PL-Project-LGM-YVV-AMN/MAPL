@@ -7,32 +7,30 @@ class matrix:
     VectorRule = re.compile(lt.t_vector)
 
     def __init__(self, string):
-        ColumnVecsFromRE = matrix.VectorRule.findall(string)
-        self.numOfColumns = len(ColumnVecsFromRE)
-        self.ColumnVecs = []
-        sizeOfVecs = []
-        for i in range(self.numOfColumns):
-            self.ColumnVecs.append(vector(matrix.FormatColumnVectors(ColumnVecsFromRE[i])))
-            sizeOfVecs.append(len(self.ColumnVecs[i]))
-        maxColumnSize = max(sizeOfVecs)
-        for j in range(self.numOfColumns):
-            self.ColumnVecs[j] =  matrix.appendZeroes(self.ColumnVecs[j],self.ColumnVecs[j].size,maxColumnSize)
-        RowVecs = []
-        temp_list = []
-        for k in range(maxColumnSize):
-            if k != 0:
-                RowVecs.append(temp_list)
-                del temp_list
-                temp_list = []
-            for z in range(self.numOfColumns):
-                temp_list.append(self.ColumnVecs[z].elems[k])
-        RowVecs.append(temp_list)
-        del temp_list
-        self.size = maxColumnSize*self.numOfColumns
-        self.numOfRows = len(RowVecs)
+        RowVecsFromRE = matrix.VectorRule.findall(string)
+        self.numOfRows = len(RowVecsFromRE)
         self.RowVecs = []
+        sizeOfVecs = []
         for i in range(self.numOfRows):
-            self.RowVecs.append(vector(matrix.FormatColumnVectors(RowVecs[i])))
+            self.RowVecs.append(vector(matrix.FormatColumnVectors(RowVecsFromRE[i])))
+            sizeOfVecs.append(len(self.RowVecs[i]))
+        maxRowSize = max(sizeOfVecs)
+        for j in range(self.numOfRows):
+            self.RowVecs[j] =  matrix.appendZeroes(self.RowVecs[j],self.RowVecs[j].size,maxRowSize)
+        ColumnVecs = []
+        temp_list = []
+        for k in range(maxRowSize):
+            if k != 0:
+                ColumnVecs.append(temp_list[:])
+                temp_list.clear()
+            for z in range(self.numOfRows):
+                temp_list.append(self.RowVecs[z].elems[k])
+        ColumnVecs.append(temp_list[:])
+        self.size = maxRowSize*self.numOfRows
+        self.numOfColumns = len(ColumnVecs)
+        self.ColumnVecs = []
+        for i in range(self.numOfColumns):
+            self.ColumnVecs.append(vector(matrix.FormatColumnVectors(ColumnVecs[i])))
         self.isSquare = False
         if math.sqrt(self.size) == math.floor(math.sqrt(self.size)):
             self.isSquare = True
@@ -47,25 +45,25 @@ class matrix:
         if self.numOfColumns != RightMatrix.numOfColumns and self.numOfRows != RightMatrix.numOfRows:
             return None
         vecList = []
-        for vecs in range(self.numOfColumns):
-            vecList.append(self.ColumnVecs[vecs] + RightMatrix.ColumnVecs[vecs])
+        for vecs in range(self.numOfRows):
+            vecList.append(self.RowVecs[vecs] + RightMatrix.RowVecs[vecs])
         return matrix(matrix.formatList(vecList))
 
     def __sub__(self,RightMatrix):
         if self.numOfColumns != RightMatrix.numOfColumns and self.numOfRows != RightMatrix.numOfRows:
             return None
         vecList = []
-        for vecs in range(self.numOfColumns):
-            vecList.append(self.ColumnVecs[vecs] - RightMatrix.ColumnVecs[vecs])
+        for vecs in range(self.numOfRows):
+            vecList.append(self.RowVecs[vecs] - RightMatrix.RowVecs[vecs])
         return matrix(matrix.formatList(vecList))
 
     def scalar_multiplication(self, multiplier):
         vecList = []
         for i in range(self.numOfColumns):
-            vecList.append(self.ColumnVecs[i].scalar_multiplication(multiplier))
+            vecList.append(self.RowVecs[i].scalar_multiplication(multiplier))
         return matrix(matrix.formatList(vecList))
     
-    def cross_product(self, rightMat):
+    def cross_product(self, rightMat): #needs refactoring
         if self.numOfColumns != rightMat.numOfRows:
             print("Left matrix's number of columns not equal to right matrix's number of rows")
             return None
@@ -83,13 +81,13 @@ class matrix:
         new_mat_str_list = []
         for k in range(len(new_column_vecs)):
             new_mat_str_list.append(vector(vector.FormatColumnVectors(new_column_vecs[k])))
-        return matrix(matrix.formatList(new_mat_str_list))
+        return matrix(matrix.formatList(new_mat_str_list)).transpose()
     
     def transpose(self):
-        new_column_vecs = []
-        for i in range(self.numOfRows):
-            new_column_vecs.append(vector(matrix.FormatColumnVectors(self.RowVecs[i])))
-        return matrix(matrix.formatList(new_column_vecs))
+        new_row_vecs = []
+        for i in range(self.numOfColumns):
+            new_row_vecs.append(vector(matrix.FormatColumnVectors(self.ColumnVecs[i])))
+        return matrix(matrix.formatList(new_row_vecs))
 
     def det(self):
         if self.isSquare == False:
@@ -102,7 +100,7 @@ class matrix:
             temp_vec.clear()
         return matrix.rec_det(row_matrix)
 
-    def inv(self):
+    def inv(self): #needs refactoring
         mat_det = self.det()
         if self.isSquare == False or mat_det == 0:
             print("Matrix is not square or matrix determinant is zero")
@@ -199,5 +197,10 @@ class matrix:
         return adjoint_mat
 
 mat = matrix("[[1 3 2];[2 2 1];[3 1 3]]")
-mat1 = matrix("[[4 7 9];[1 2 6];[2 2 3]]")
-mat2 = matrix("[[1 3];[2 4]]")
+mat1 = matrix("[[1 2 3];[4 5 6];[7 8 9]]")
+mat2 = matrix("[[1 2];[3 4]]")
+
+print(mat2.inv())
+
+#{{1,3,2},{2,2,1},{3,1,3}}
+#{{1,2,3},{4,5,6},{7,8,9}}
