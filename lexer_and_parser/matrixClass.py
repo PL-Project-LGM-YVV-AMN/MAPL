@@ -105,33 +105,33 @@ class matrix:
         if self.isSquare == False or mat_det == 0:
             print("Matrix is not square or matrix determinant is zero")
             return None
-        return self.__inv_and_adjoint__(mat_det)
+        return self.__inv_and_adjugate__(mat_det)
 
-    def adjoint(self):
+    def adjugate(self):
         if self.isSquare == False:
             print("Matrix is not square")
             return None
-        return self.__inv_and_adjoint__(1.0)
+        return self.__inv_and_adjugate__(1.0)
 
-    def __inv_and_adjoint__(self,det):
+    def __inv_and_adjugate__(self,det):
         column_matrix = []
         for i in range(self.numOfColumns):
             temp_vec = [float(x) for x in self.ColumnVecs[i].elems]
             column_matrix.append(temp_vec.copy())
             temp_vec.clear()
         star_mat = matrix.star(column_matrix.copy())
-        adjoint_mat = []
+        adjugate_mat = []
         temp_vec.clear()
         for row in range(self.numOfColumns):
-            adjoint_mat.append(temp_vec[:])
+            adjugate_mat.append(temp_vec[:])
             temp_vec.clear()
             for column in range(self.numOfColumns):
                 temp_vec.append(star_mat[row][column]/det)
-        adjoint_mat.append(temp_vec[:])
-        adjoint_mat = [x for x in adjoint_mat.copy() if x]
+        adjugate_mat.append(temp_vec[:])
+        adjugate_mat = [x for x in adjugate_mat.copy() if x]
         vec_list = []
-        for i in range(len(adjoint_mat)):
-            vec_list.append(vector(matrix.FormatColumnVectors(adjoint_mat[i])))
+        for i in range(len(adjugate_mat)):
+            vec_list.append(vector(matrix.FormatColumnVectors(adjugate_mat[i])))
         return matrix(matrix.formatList(vec_list))
 
 
@@ -189,20 +189,19 @@ class matrix:
     @staticmethod
     def star(mat):
         temp_vec = []
-        adjoint_mat = []
+        adjugate_mat = []
         for row in range(len(mat)):
-            adjoint_mat.append(temp_vec[:])
+            adjugate_mat.append(temp_vec[:])
             temp_vec.clear()
             for column in range(len(mat)):
                 val = pow(-1,column+row)*matrix.rec_det(matrix.not_in_row_or_column(mat,len(mat),row,column))
                 temp_vec.append(val)
-        adjoint_mat.append(temp_vec[:])
+        adjugate_mat.append(temp_vec[:])
         temp_vec.clear()
-        adjoint_mat = [x for x in adjoint_mat.copy() if x]
-        return adjoint_mat
+        adjugate_mat = [x for x in adjugate_mat.copy() if x]
+        return adjugate_mat
 
 #{{1,2,3},{3,2,1},{2,1,3}}
 
 x = matrix("[[1 2 3];[3 2 1];[2 1 3]]")
-
-print(x.adjoint())
+print(x.adjugate())

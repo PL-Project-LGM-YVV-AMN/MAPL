@@ -102,9 +102,9 @@ def p_expression_inverse_matrix(p):
     'expression : inverse matrix'
     p[0] = matrix(p[2]).inv()
 
-def p_expression_adjoint_matrix(p):
-    'expression : adjoint matrix'
-    p[0] = matrix(p[2]).adjoint()
+def p_expression_adjugate_matrix(p):
+    'expression : adjugate matrix'
+    p[0] = matrix(p[2]).adjugate()
 
 
 parser = yacc.yacc()

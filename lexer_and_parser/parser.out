@@ -28,11 +28,11 @@ Rule 18    expression -> transpose matrix
 Rule 19    expression -> determinant matrix
 Rule 20    expression -> vector dotProduct vector
 Rule 21    expression -> inverse matrix
-Rule 22    expression -> adjoint matrix
+Rule 22    expression -> adjugate matrix
 
 Terminals, with rules where they appear
 
-adjoint              : 22
+adjugate             : 22
 comma                : 4
 crossProduct         : 
 determinant          : 19
@@ -75,7 +75,7 @@ state 0
     (19) expression -> . determinant matrix
     (20) expression -> . vector dotProduct vector
     (21) expression -> . inverse matrix
-    (22) expression -> . adjoint matrix
+    (22) expression -> . adjugate matrix
     (2) term -> . factor
     (3) term -> . vector
     (4) term -> . comma
@@ -92,7 +92,7 @@ state 0
     determinant     shift and go to state 7
     vector          shift and go to state 3
     inverse         shift and go to state 8
-    adjoint         shift and go to state 9
+    adjugate        shift and go to state 9
     comma           shift and go to state 11
     float           shift and go to state 12
     int             shift and go to state 13
@@ -190,7 +190,7 @@ state 8
 
 state 9
 
-    (22) expression -> adjoint . matrix
+    (22) expression -> adjugate . matrix
 
     matrix          shift and go to state 25
 
@@ -254,7 +254,7 @@ state 14
     (19) expression -> . determinant matrix
     (20) expression -> . vector dotProduct vector
     (21) expression -> . inverse matrix
-    (22) expression -> . adjoint matrix
+    (22) expression -> . adjugate matrix
     (2) term -> . factor
     (3) term -> . vector
     (4) term -> . comma
@@ -271,7 +271,7 @@ state 14
     determinant     shift and go to state 7
     vector          shift and go to state 3
     inverse         shift and go to state 8
-    adjoint         shift and go to state 9
+    adjugate        shift and go to state 9
     comma           shift and go to state 11
     float           shift and go to state 12
     int             shift and go to state 13
@@ -297,7 +297,7 @@ state 15
     (19) expression -> . determinant matrix
     (20) expression -> . vector dotProduct vector
     (21) expression -> . inverse matrix
-    (22) expression -> . adjoint matrix
+    (22) expression -> . adjugate matrix
     (2) term -> . factor
     (3) term -> . vector
     (4) term -> . comma
@@ -314,7 +314,7 @@ state 15
     determinant     shift and go to state 7
     vector          shift and go to state 3
     inverse         shift and go to state 8
-    adjoint         shift and go to state 9
+    adjugate        shift and go to state 9
     comma           shift and go to state 11
     float           shift and go to state 12
     int             shift and go to state 13
@@ -418,13 +418,13 @@ state 24
 
 state 25
 
-    (22) expression -> adjoint matrix .
+    (22) expression -> adjugate matrix .
 
-    plus            reduce using rule 22 (expression -> adjoint matrix .)
-    minus           reduce using rule 22 (expression -> adjoint matrix .)
-    $end            reduce using rule 22 (expression -> adjoint matrix .)
-    rCurlyBracket   reduce using rule 22 (expression -> adjoint matrix .)
-    rHardBracket    reduce using rule 22 (expression -> adjoint matrix .)
+    plus            reduce using rule 22 (expression -> adjugate matrix .)
+    minus           reduce using rule 22 (expression -> adjugate matrix .)
+    $end            reduce using rule 22 (expression -> adjugate matrix .)
+    rCurlyBracket   reduce using rule 22 (expression -> adjugate matrix .)
+    rHardBracket    reduce using rule 22 (expression -> adjugate matrix .)
 
 
 state 26
