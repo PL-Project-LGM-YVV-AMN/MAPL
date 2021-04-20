@@ -5,11 +5,12 @@ A vector class object admits as its sole argument a string whose regex expressio
 \[(?:\s*(?:-?'\d+\.\d+|-?\d)\s*)+\]
 ```
 
-For example a vector would look something like this:
+For example, a vector would look something like this:
 > [1 2 3]
 
 or some thing like this
 > [1.0 2.0 3.0 4]
+___
 
 ## Class Functions Documentation
 
