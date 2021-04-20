@@ -16,6 +16,9 @@ class vector:
 
     def __add__(self, RightVec):
         result = []
+        if self.size != RightVec.size:
+            print("Vectors are not of equal size")
+            return None
         for i in range(self.size):
             result.append(float(self.elems[i])+float(RightVec.elems[i]))
         vecResult = vector(vector.FormatColumnVectors(str(result)))
@@ -23,6 +26,9 @@ class vector:
 
     def __sub__(self, RightVec):
         result = []
+        if self.size != RightVec.size:
+            print("Vectors are not of equal size")
+            return None
         for i in range(self.size):
             result.append(float(self.elems[i])-float(RightVec.elems[i]))
         vecResult = vector(vector.FormatColumnVectors(str(result)))
@@ -59,3 +65,4 @@ y = vector("[4 5 6]")
 
 print(x.dot_product(y))
 '''
+

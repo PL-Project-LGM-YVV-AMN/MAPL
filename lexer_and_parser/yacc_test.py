@@ -1,13 +1,14 @@
 import ply.yacc as yacc
 
 # Get the token map from the lexer.  This is required.
-from lexer_test import tokens
+from lexer_test import tokens, t_vector, t_matrix
 from vectorClass import vector
 from matrixClass import matrix
 import re
 
 
 precedence = (
+    #('left', 'KEYWORDS')
     ('right', 'EQUALS'),
     ('left','multiplier'),
     ('left', 'plus', 'minus'),
@@ -16,7 +17,7 @@ precedence = (
 names = {}
 
 def p_assignment(p):
-    'expression : identifier EQUALS term'
+    'expression : identifier EQUALS expression'
     names[p[1]] = p[3]
 
 def p_expression_term(p):
@@ -44,77 +45,78 @@ def p_factor(p):
     p[0] = p[2]
 
 
-def p_expression_plus_vector(p):
-    'expression : expression plus vector'
-    RightVector = vector(p[1])
-    LeftVector = vector(p[3])
-    if LeftVector.size != RightVector.size:
-        print("Vectors are not of equal size")
-        return
-    p[0] = RightVector+LeftVector
+def p_expression_plus(p):
+    'expression : expression plus expression'
+    if re.match(t_vector, p[1]) and re.match(t_vector, p[3]):
+        RightThing = vector(p[1])
+        LeftThing = vector(p[3])
+    elif re.match(t_matrix, p[1]) and re.match(t_matrix, p[3]):
+        RightThing = matrix(p[1])
+        LeftThing = matrix(p[3])
+    else:
+        return None
+    p[0] = RightThing+LeftThing
 
 
-def p_expression_minus_vector(p):
-    'expression : expression minus vector'
-    RightVector = vector(p[1])
-    LeftVector = vector(p[3])
-    if LeftVector.size != RightVector.size:
-        print("Vectors are not of equal size")
-        return
-    p[0] = RightVector-LeftVector
+def p_expression_minus(p):
+    'expression : expression minus expression'
+    if re.match(t_vector, p[1]) and re.match(t_vector, p[3]):
+        RightThing = vector(p[1])
+        LeftThing = vector(p[3])
+    elif re.match(t_matrix, p[1]) and re.match(t_matrix, p[3]):
+        RightThing = matrix(p[1])
+        LeftThing = matrix(p[3])
+    p[0] = RightThing-LeftThing
 
-def p_expression_plus_matrix(p):
-    'expression : expression plus matrix'
-    RightMatrix = matrix(p[3])
-    LeftMatrix = matrix(p[1])
-    p[0] = LeftMatrix + RightMatrix
-
-def p_expression_minus_matrix(p):
-    'expression : expression minus matrix'
-    RightMatrix = matrix(p[3])
-    LeftMatrix = matrix(p[1])
-    p[0] = LeftMatrix - RightMatrix
-
-def p_expression_scalar_vector(p):
-    'expression : multiplier vector'
-    vecToBeMultiplied = vector(p[2])
-    multiplier = float(p[1])
-    p[0] = vecToBeMultiplied.scalar_multiplication(multiplier)
-
-def p_expression_scalar_matrix(p):
-    'expression : multiplier matrix'
-    matrixToBeMultiplied = matrix(p[2])
-    multiplier = float(p[1])
-    p[0] = matrixToBeMultiplied.scalar_multiplication(multiplier)
+def p_expression_scalar(p):
+    'expression : multiplier expression'
+    if re.match(t_vector, p[2]):
+        thingToBeMultiplied = vector(p[2])
+    elif re.match(t_matrix,p[2]):
+        thingToBeMultiplied = matrix(p[2])
+    else:
+        return None
+    p[0] = thingToBeMultiplied.scalar_multiplication(float(p[1]))
 
 def p_expression_cross_product_matrix(p):
-    'expression : matrix matrix'
+    'expression : expression crossProduct expression'
+    if not (re.match(t_matrix, p[1]) and re.match(t_matrix, p[3])):
+        return None
     leftMat = matrix(p[1])
-    rightMat = matrix(p[2])
+    rightMat = matrix(p[3])
     p[0] = leftMat.cross_product(rightMat)
 
+#Needs to change symbol so it doesn't confuse transpose with an identifier 
 def p_expression_transpose_matrix(p):
-    'expression : transpose matrix'
+    'expression : transpose expression'
+    if not(re.match(t_matrix, p[2])):
+        return None
     p[0] = matrix(p[2]).transpose()
 
 def p_expression_det_matrix(p):
-    'expression : determinant matrix'
+    'expression : determinant expression determinant'
+    if not(re.match(t_matrix, p[2])):
+        return None
     p[0] = matrix(p[2]).det()
 
 def p_expression_dot_product_vector(p):
-    'expression : expression dotProduct vector'
+    'expression : expression dotProduct expression'
+    if not(re.match(t_vector, p[1] and re.match(t_vector, p[3]))):
+        return None
     p[0] = vector(p[1]).dot_product(vector(p[3]))
 
-# def p_identifier_dot_product_vector(p):
-#     'expression : identifier dotProduct vector'
-#     p[0] = vector(p[1]).dot_product(vector(p[3]))
-
+#Needs to change symbol so it doesn't confuse inv with an identifier 
 def p_expression_inverse_matrix(p):
-    'expression : inverse matrix'
+    'expression : inverse expression'
+    if not(re.match(t_matrix, p[2])):
+        return None
     p[0] = matrix(p[2]).inv()
 
+#Needs to change symbol so it doesn't confuse adjugate with an identifier 
 def p_expression_adjugate_matrix(p):
-    'expression : adjugate matrix'
+    'expression : adjugate expression'
+    if not(re.match(t_matrix, p[2])):
+        return None
     p[0] = matrix(p[2]).adjugate()
 
 def p_term_name(p):

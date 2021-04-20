@@ -21,6 +21,7 @@ tokens = (
     'determinant',
     'inverse',
     'adjugate',
+    # 'KEYWORDS',
 )
 
 t_EQUALS = r"="
@@ -31,8 +32,8 @@ t_float = r'\d+\.\d+'
 t_plus = r'\+'
 t_minus = r'\-'
 t_dotProduct = r'\.'
-t_crossProduct = 'X'
-t_determinant = r'det'
+t_crossProduct = r'\*'
+t_determinant = r'\|'
 t_comma = r'\,'
 t_lCurlyBracket = r'\{'
 t_rCurlyBracket = r'\}'
@@ -44,6 +45,11 @@ t_transpose = r"\s*\s*T"
 t_inverse = r'inv'
 t_adjugate = r'adjugate'
 t_ignore = ' \t'
+# t_KEYWORDS = (
+#     'inv',
+#     'adjugate',
+#     'transpose',
+# )
 
 def t_identifier(t):
     r'[a-zA-Z_]([a-zA-Z_0-9])*'
@@ -65,9 +71,10 @@ def t_error(t):
 
 
 lexer = lex.lex()
-"""
+
+'''
 data = input("Input data: ")
 lexer.input(data)
 for tok in lexer:
     print(tok)
-"""
+'''

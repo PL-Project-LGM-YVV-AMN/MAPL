@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'rightEQUALSleftmultiplierleftplusminusEQUALS adjugate comma crossProduct determinant dotProduct float identifier int inverse lCurlyBracket lHardBracket matrix minus multiplier plus rCurlyBracket rHardBracket transpose vectorexpression : identifier EQUALS termexpression : termterm : factor\n            | vector\n            | comma\n            | float\n            | int\n            | matrix\n            | multiplierfactor : lCurlyBracket expression rCurlyBracket\n              | lHardBracket expression rHardBracketexpression : expression plus vectorexpression : expression minus vectorexpression : expression plus matrixexpression : expression minus matrixexpression : multiplier vectorexpression : multiplier matrixexpression : matrix matrixexpression : transpose matrixexpression : determinant matrixexpression : expression dotProduct vectorexpression : inverse matrixexpression : adjugate matrixterm : identifier'
+_lr_signature = 'rightEQUALSleftmultiplierleftplusminusEQUALS adjugate comma crossProduct determinant dotProduct float identifier int inverse lCurlyBracket lHardBracket matrix minus multiplier plus rCurlyBracket rHardBracket transpose vectorexpression : identifier EQUALS expressionexpression : termterm : factor\n            | vector\n            | comma\n            | float\n            | int\n            | matrix\n            | multiplierfactor : lCurlyBracket expression rCurlyBracket\n              | lHardBracket expression rHardBracketexpression : expression plus expressionexpression : expression minus expressionexpression : multiplier expressionexpression : expression crossProduct expressionexpression : transpose expressionexpression : determinant expression determinantexpression : expression dotProduct expressionexpression : inverse expressionexpression : adjugate expressionterm : identifier'
     
-_lr_action_items = {'identifier':([0,15,16,20,],[2,2,2,35,]),'multiplier':([0,15,16,20,],[6,6,6,38,]),'matrix':([0,5,6,7,8,9,10,15,16,17,18,20,],[5,21,23,24,25,26,27,5,5,31,33,37,]),'transpose':([0,15,16,],[7,7,7,]),'determinant':([0,15,16,],[8,8,8,]),'inverse':([0,15,16,],[9,9,9,]),'adjugate':([0,15,16,],[10,10,10,]),'vector':([0,6,15,16,17,18,19,20,],[4,22,4,4,30,32,34,4,]),'comma':([0,15,16,20,],[12,12,12,12,]),'float':([0,15,16,20,],[13,13,13,13,]),'int':([0,15,16,20,],[14,14,14,14,]),'lCurlyBracket':([0,15,16,20,],[15,15,15,15,]),'lHardBracket':([0,15,16,20,],[16,16,16,16,]),'$end':([1,2,3,4,5,6,11,12,13,14,21,22,23,24,25,26,27,30,31,32,33,34,35,36,37,38,39,40,],[0,-24,-2,-4,-8,-9,-3,-5,-6,-7,-18,-16,-17,-19,-20,-22,-23,-12,-14,-13,-15,-21,-24,-1,-8,-9,-10,-11,]),'plus':([1,2,3,4,5,6,11,12,13,14,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,],[17,-24,-2,-4,-8,-9,-3,-5,-6,-7,-18,-16,-17,-19,-20,-22,-23,17,17,-12,-14,-13,-15,-21,-24,-1,-8,-9,-10,-11,]),'minus':([1,2,3,4,5,6,11,12,13,14,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,],[18,-24,-2,-4,-8,-9,-3,-5,-6,-7,-18,-16,-17,-19,-20,-22,-23,18,18,-12,-14,-13,-15,-21,-24,-1,-8,-9,-10,-11,]),'dotProduct':([1,2,3,4,5,6,11,12,13,14,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,],[19,-24,-2,-4,-8,-9,-3,-5,-6,-7,-18,-16,-17,-19,-20,-22,-23,19,19,-12,-14,-13,-15,-21,-24,-1,-8,-9,-10,-11,]),'EQUALS':([2,],[20,]),'rCurlyBracket':([2,3,4,5,6,11,12,13,14,21,22,23,24,25,26,27,28,30,31,32,33,34,35,36,37,38,39,40,],[-24,-2,-4,-8,-9,-3,-5,-6,-7,-18,-16,-17,-19,-20,-22,-23,39,-12,-14,-13,-15,-21,-24,-1,-8,-9,-10,-11,]),'rHardBracket':([2,3,4,5,6,11,12,13,14,21,22,23,24,25,26,27,29,30,31,32,33,34,35,36,37,38,39,40,],[-24,-2,-4,-8,-9,-3,-5,-6,-7,-18,-16,-17,-19,-20,-22,-23,40,-12,-14,-13,-15,-21,-24,-1,-8,-9,-10,-11,]),}
+_lr_action_items = {'identifier':([0,4,5,6,7,8,15,16,17,18,19,20,21,],[2,2,2,2,2,2,2,2,2,2,2,2,2,]),'multiplier':([0,4,5,6,7,8,15,16,17,18,19,20,21,],[4,4,4,4,4,4,4,4,4,4,4,4,4,]),'transpose':([0,4,5,6,7,8,15,16,17,18,19,20,21,],[5,5,5,5,5,5,5,5,5,5,5,5,5,]),'determinant':([0,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,29,30,31,32,33,34,35,36,],[6,-21,-2,-9,6,6,6,6,-3,-4,-5,-6,-7,-8,6,6,6,6,6,6,6,-14,-16,34,-19,-20,-12,-13,-15,-18,-1,-17,-10,-11,]),'inverse':([0,4,5,6,7,8,15,16,17,18,19,20,21,],[7,7,7,7,7,7,7,7,7,7,7,7,7,]),'adjugate':([0,4,5,6,7,8,15,16,17,18,19,20,21,],[8,8,8,8,8,8,8,8,8,8,8,8,8,]),'vector':([0,4,5,6,7,8,15,16,17,18,19,20,21,],[10,10,10,10,10,10,10,10,10,10,10,10,10,]),'comma':([0,4,5,6,7,8,15,16,17,18,19,20,21,],[11,11,11,11,11,11,11,11,11,11,11,11,11,]),'float':([0,4,5,6,7,8,15,16,17,18,19,20,21,],[12,12,12,12,12,12,12,12,12,12,12,12,12,]),'int':([0,4,5,6,7,8,15,16,17,18,19,20,21,],[13,13,13,13,13,13,13,13,13,13,13,13,13,]),'matrix':([0,4,5,6,7,8,15,16,17,18,19,20,21,],[14,14,14,14,14,14,14,14,14,14,14,14,14,]),'lCurlyBracket':([0,4,5,6,7,8,15,16,17,18,19,20,21,],[15,15,15,15,15,15,15,15,15,15,15,15,15,]),'lHardBracket':([0,4,5,6,7,8,15,16,17,18,19,20,21,],[16,16,16,16,16,16,16,16,16,16,16,16,16,]),'$end':([1,2,3,4,9,10,11,12,13,14,22,23,25,26,29,30,31,32,33,34,35,36,],[0,-21,-2,-9,-3,-4,-5,-6,-7,-8,-14,-16,-19,-20,-12,-13,-15,-18,-1,-17,-10,-11,]),'plus':([1,2,3,4,9,10,11,12,13,14,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,],[17,-21,-2,-9,-3,-4,-5,-6,-7,-8,17,17,17,17,17,17,17,-12,-13,17,17,17,-17,-10,-11,]),'minus':([1,2,3,4,9,10,11,12,13,14,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,],[18,-21,-2,-9,-3,-4,-5,-6,-7,-8,18,18,18,18,18,18,18,-12,-13,18,18,18,-17,-10,-11,]),'crossProduct':([1,2,3,4,9,10,11,12,13,14,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,],[19,-21,-2,-9,-3,-4,-5,-6,-7,-8,-14,19,19,19,19,19,19,-12,-13,19,19,-1,-17,-10,-11,]),'dotProduct':([1,2,3,4,9,10,11,12,13,14,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,],[20,-21,-2,-9,-3,-4,-5,-6,-7,-8,-14,20,20,20,20,20,20,-12,-13,20,20,-1,-17,-10,-11,]),'EQUALS':([2,],[21,]),'rCurlyBracket':([2,3,4,9,10,11,12,13,14,22,23,25,26,27,29,30,31,32,33,34,35,36,],[-21,-2,-9,-3,-4,-5,-6,-7,-8,-14,-16,-19,-20,35,-12,-13,-15,-18,-1,-17,-10,-11,]),'rHardBracket':([2,3,4,9,10,11,12,13,14,22,23,25,26,28,29,30,31,32,33,34,35,36,],[-21,-2,-9,-3,-4,-5,-6,-7,-8,-14,-16,-19,-20,36,-12,-13,-15,-18,-1,-17,-10,-11,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'expression':([0,15,16,],[1,28,29,]),'term':([0,15,16,20,],[3,3,3,36,]),'factor':([0,15,16,20,],[11,11,11,11,]),}
+_lr_goto_items = {'expression':([0,4,5,6,7,8,15,16,17,18,19,20,21,],[1,22,23,24,25,26,27,28,29,30,31,32,33,]),'term':([0,4,5,6,7,8,15,16,17,18,19,20,21,],[3,3,3,3,3,3,3,3,3,3,3,3,3,]),'factor':([0,4,5,6,7,8,15,16,17,18,19,20,21,],[9,9,9,9,9,9,9,9,9,9,9,9,9,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,28 +27,25 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> expression","S'",1,None,None,None),
-  ('expression -> identifier EQUALS term','expression',3,'p_assignment','yacc_test.py',19),
-  ('expression -> term','expression',1,'p_expression_term','yacc_test.py',23),
-  ('term -> factor','term',1,'p_term_vector','yacc_test.py',32),
-  ('term -> vector','term',1,'p_term_vector','yacc_test.py',33),
-  ('term -> comma','term',1,'p_term_vector','yacc_test.py',34),
-  ('term -> float','term',1,'p_term_vector','yacc_test.py',35),
-  ('term -> int','term',1,'p_term_vector','yacc_test.py',36),
-  ('term -> matrix','term',1,'p_term_vector','yacc_test.py',37),
-  ('term -> multiplier','term',1,'p_term_vector','yacc_test.py',38),
-  ('factor -> lCurlyBracket expression rCurlyBracket','factor',3,'p_factor','yacc_test.py',42),
-  ('factor -> lHardBracket expression rHardBracket','factor',3,'p_factor','yacc_test.py',43),
-  ('expression -> expression plus vector','expression',3,'p_expression_plus_vector','yacc_test.py',48),
-  ('expression -> expression minus vector','expression',3,'p_expression_minus_vector','yacc_test.py',57),
-  ('expression -> expression plus matrix','expression',3,'p_expression_plus_matrix','yacc_test.py',66),
-  ('expression -> expression minus matrix','expression',3,'p_expression_minus_matrix','yacc_test.py',72),
-  ('expression -> multiplier vector','expression',2,'p_expression_scalar_vector','yacc_test.py',78),
-  ('expression -> multiplier matrix','expression',2,'p_expression_scalar_matrix','yacc_test.py',84),
-  ('expression -> matrix matrix','expression',2,'p_expression_cross_product_matrix','yacc_test.py',90),
-  ('expression -> transpose matrix','expression',2,'p_expression_transpose_matrix','yacc_test.py',96),
-  ('expression -> determinant matrix','expression',2,'p_expression_det_matrix','yacc_test.py',100),
-  ('expression -> expression dotProduct vector','expression',3,'p_expression_dot_product_vector','yacc_test.py',104),
-  ('expression -> inverse matrix','expression',2,'p_expression_inverse_matrix','yacc_test.py',112),
-  ('expression -> adjugate matrix','expression',2,'p_expression_adjugate_matrix','yacc_test.py',116),
-  ('term -> identifier','term',1,'p_term_name','yacc_test.py',120),
+  ('expression -> identifier EQUALS expression','expression',3,'p_assignment','yacc_test.py',20),
+  ('expression -> term','expression',1,'p_expression_term','yacc_test.py',24),
+  ('term -> factor','term',1,'p_term_vector','yacc_test.py',33),
+  ('term -> vector','term',1,'p_term_vector','yacc_test.py',34),
+  ('term -> comma','term',1,'p_term_vector','yacc_test.py',35),
+  ('term -> float','term',1,'p_term_vector','yacc_test.py',36),
+  ('term -> int','term',1,'p_term_vector','yacc_test.py',37),
+  ('term -> matrix','term',1,'p_term_vector','yacc_test.py',38),
+  ('term -> multiplier','term',1,'p_term_vector','yacc_test.py',39),
+  ('factor -> lCurlyBracket expression rCurlyBracket','factor',3,'p_factor','yacc_test.py',43),
+  ('factor -> lHardBracket expression rHardBracket','factor',3,'p_factor','yacc_test.py',44),
+  ('expression -> expression plus expression','expression',3,'p_expression_plus','yacc_test.py',49),
+  ('expression -> expression minus expression','expression',3,'p_expression_minus','yacc_test.py',62),
+  ('expression -> multiplier expression','expression',2,'p_expression_scalar','yacc_test.py',72),
+  ('expression -> expression crossProduct expression','expression',3,'p_expression_cross_product_matrix','yacc_test.py',82),
+  ('expression -> transpose expression','expression',2,'p_expression_transpose_matrix','yacc_test.py',91),
+  ('expression -> determinant expression determinant','expression',3,'p_expression_det_matrix','yacc_test.py',97),
+  ('expression -> expression dotProduct expression','expression',3,'p_expression_dot_product_vector','yacc_test.py',103),
+  ('expression -> inverse expression','expression',2,'p_expression_inverse_matrix','yacc_test.py',110),
+  ('expression -> adjugate expression','expression',2,'p_expression_adjugate_matrix','yacc_test.py',117),
+  ('term -> identifier','term',1,'p_term_name','yacc_test.py',123),
 ]

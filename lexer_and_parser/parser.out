@@ -1,13 +1,9 @@
 Created by PLY version 3.11 (http://www.dabeaz.com/ply)
 
-Unused terminals:
-
-    crossProduct
-
 Grammar
 
 Rule 0     S' -> expression
-Rule 1     expression -> identifier EQUALS term
+Rule 1     expression -> identifier EQUALS expression
 Rule 2     expression -> term
 Rule 3     term -> factor
 Rule 4     term -> vector
@@ -18,69 +14,63 @@ Rule 8     term -> matrix
 Rule 9     term -> multiplier
 Rule 10    factor -> lCurlyBracket expression rCurlyBracket
 Rule 11    factor -> lHardBracket expression rHardBracket
-Rule 12    expression -> expression plus vector
-Rule 13    expression -> expression minus vector
-Rule 14    expression -> expression plus matrix
-Rule 15    expression -> expression minus matrix
-Rule 16    expression -> multiplier vector
-Rule 17    expression -> multiplier matrix
-Rule 18    expression -> matrix matrix
-Rule 19    expression -> transpose matrix
-Rule 20    expression -> determinant matrix
-Rule 21    expression -> expression dotProduct vector
-Rule 22    expression -> inverse matrix
-Rule 23    expression -> adjugate matrix
-Rule 24    term -> identifier
+Rule 12    expression -> expression plus expression
+Rule 13    expression -> expression minus expression
+Rule 14    expression -> multiplier expression
+Rule 15    expression -> expression crossProduct expression
+Rule 16    expression -> transpose expression
+Rule 17    expression -> determinant expression determinant
+Rule 18    expression -> expression dotProduct expression
+Rule 19    expression -> inverse expression
+Rule 20    expression -> adjugate expression
+Rule 21    term -> identifier
 
 Terminals, with rules where they appear
 
 EQUALS               : 1
-adjugate             : 23
+adjugate             : 20
 comma                : 5
-crossProduct         : 
-determinant          : 20
-dotProduct           : 21
+crossProduct         : 15
+determinant          : 17 17
+dotProduct           : 18
 error                : 
 float                : 6
-identifier           : 1 24
+identifier           : 1 21
 int                  : 7
-inverse              : 22
+inverse              : 19
 lCurlyBracket        : 10
 lHardBracket         : 11
-matrix               : 8 14 15 17 18 18 19 20 22 23
-minus                : 13 15
-multiplier           : 9 16 17
-plus                 : 12 14
+matrix               : 8
+minus                : 13
+multiplier           : 9 14
+plus                 : 12
 rCurlyBracket        : 10
 rHardBracket         : 11
-transpose            : 19
-vector               : 4 12 13 16 21
+transpose            : 16
+vector               : 4
 
 Nonterminals, with rules where they appear
 
-expression           : 10 11 12 13 14 15 21 0
+expression           : 1 10 11 12 12 13 13 14 15 15 16 17 18 18 19 20 0
 factor               : 3
-term                 : 1 2
+term                 : 2
 
 Parsing method: LALR
 
 state 0
 
     (0) S' -> . expression
-    (1) expression -> . identifier EQUALS term
+    (1) expression -> . identifier EQUALS expression
     (2) expression -> . term
-    (12) expression -> . expression plus vector
-    (13) expression -> . expression minus vector
-    (14) expression -> . expression plus matrix
-    (15) expression -> . expression minus matrix
-    (16) expression -> . multiplier vector
-    (17) expression -> . multiplier matrix
-    (18) expression -> . matrix matrix
-    (19) expression -> . transpose matrix
-    (20) expression -> . determinant matrix
-    (21) expression -> . expression dotProduct vector
-    (22) expression -> . inverse matrix
-    (23) expression -> . adjugate matrix
+    (12) expression -> . expression plus expression
+    (13) expression -> . expression minus expression
+    (14) expression -> . multiplier expression
+    (15) expression -> . expression crossProduct expression
+    (16) expression -> . transpose expression
+    (17) expression -> . determinant expression determinant
+    (18) expression -> . expression dotProduct expression
+    (19) expression -> . inverse expression
+    (20) expression -> . adjugate expression
     (3) term -> . factor
     (4) term -> . vector
     (5) term -> . comma
@@ -88,54 +78,56 @@ state 0
     (7) term -> . int
     (8) term -> . matrix
     (9) term -> . multiplier
-    (24) term -> . identifier
+    (21) term -> . identifier
     (10) factor -> . lCurlyBracket expression rCurlyBracket
     (11) factor -> . lHardBracket expression rHardBracket
 
     identifier      shift and go to state 2
-    multiplier      shift and go to state 6
-    matrix          shift and go to state 5
-    transpose       shift and go to state 7
-    determinant     shift and go to state 8
-    inverse         shift and go to state 9
-    adjugate        shift and go to state 10
-    vector          shift and go to state 4
-    comma           shift and go to state 12
-    float           shift and go to state 13
-    int             shift and go to state 14
+    multiplier      shift and go to state 4
+    transpose       shift and go to state 5
+    determinant     shift and go to state 6
+    inverse         shift and go to state 7
+    adjugate        shift and go to state 8
+    vector          shift and go to state 10
+    comma           shift and go to state 11
+    float           shift and go to state 12
+    int             shift and go to state 13
+    matrix          shift and go to state 14
     lCurlyBracket   shift and go to state 15
     lHardBracket    shift and go to state 16
 
     expression                     shift and go to state 1
     term                           shift and go to state 3
-    factor                         shift and go to state 11
+    factor                         shift and go to state 9
 
 state 1
 
     (0) S' -> expression .
-    (12) expression -> expression . plus vector
-    (13) expression -> expression . minus vector
-    (14) expression -> expression . plus matrix
-    (15) expression -> expression . minus matrix
-    (21) expression -> expression . dotProduct vector
+    (12) expression -> expression . plus expression
+    (13) expression -> expression . minus expression
+    (15) expression -> expression . crossProduct expression
+    (18) expression -> expression . dotProduct expression
 
     plus            shift and go to state 17
     minus           shift and go to state 18
-    dotProduct      shift and go to state 19
+    crossProduct    shift and go to state 19
+    dotProduct      shift and go to state 20
 
 
 state 2
 
-    (1) expression -> identifier . EQUALS term
-    (24) term -> identifier .
+    (1) expression -> identifier . EQUALS expression
+    (21) term -> identifier .
 
-    EQUALS          shift and go to state 20
-    plus            reduce using rule 24 (term -> identifier .)
-    minus           reduce using rule 24 (term -> identifier .)
-    dotProduct      reduce using rule 24 (term -> identifier .)
-    $end            reduce using rule 24 (term -> identifier .)
-    rCurlyBracket   reduce using rule 24 (term -> identifier .)
-    rHardBracket    reduce using rule 24 (term -> identifier .)
+    EQUALS          shift and go to state 21
+    plus            reduce using rule 21 (term -> identifier .)
+    minus           reduce using rule 21 (term -> identifier .)
+    crossProduct    reduce using rule 21 (term -> identifier .)
+    dotProduct      reduce using rule 21 (term -> identifier .)
+    $end            reduce using rule 21 (term -> identifier .)
+    determinant     reduce using rule 21 (term -> identifier .)
+    rCurlyBracket   reduce using rule 21 (term -> identifier .)
+    rHardBracket    reduce using rule 21 (term -> identifier .)
 
 
 state 3
@@ -144,516 +136,957 @@ state 3
 
     plus            reduce using rule 2 (expression -> term .)
     minus           reduce using rule 2 (expression -> term .)
+    crossProduct    reduce using rule 2 (expression -> term .)
     dotProduct      reduce using rule 2 (expression -> term .)
     $end            reduce using rule 2 (expression -> term .)
+    determinant     reduce using rule 2 (expression -> term .)
     rCurlyBracket   reduce using rule 2 (expression -> term .)
     rHardBracket    reduce using rule 2 (expression -> term .)
 
 
 state 4
 
-    (4) term -> vector .
+    (14) expression -> multiplier . expression
+    (9) term -> multiplier .
+    (1) expression -> . identifier EQUALS expression
+    (2) expression -> . term
+    (12) expression -> . expression plus expression
+    (13) expression -> . expression minus expression
+    (14) expression -> . multiplier expression
+    (15) expression -> . expression crossProduct expression
+    (16) expression -> . transpose expression
+    (17) expression -> . determinant expression determinant
+    (18) expression -> . expression dotProduct expression
+    (19) expression -> . inverse expression
+    (20) expression -> . adjugate expression
+    (3) term -> . factor
+    (4) term -> . vector
+    (5) term -> . comma
+    (6) term -> . float
+    (7) term -> . int
+    (8) term -> . matrix
+    (9) term -> . multiplier
+    (21) term -> . identifier
+    (10) factor -> . lCurlyBracket expression rCurlyBracket
+    (11) factor -> . lHardBracket expression rHardBracket
 
-    plus            reduce using rule 4 (term -> vector .)
-    minus           reduce using rule 4 (term -> vector .)
-    dotProduct      reduce using rule 4 (term -> vector .)
-    $end            reduce using rule 4 (term -> vector .)
-    rCurlyBracket   reduce using rule 4 (term -> vector .)
-    rHardBracket    reduce using rule 4 (term -> vector .)
+    plus            reduce using rule 9 (term -> multiplier .)
+    minus           reduce using rule 9 (term -> multiplier .)
+    crossProduct    reduce using rule 9 (term -> multiplier .)
+    dotProduct      reduce using rule 9 (term -> multiplier .)
+    $end            reduce using rule 9 (term -> multiplier .)
+    determinant     reduce using rule 9 (term -> multiplier .)
+    rCurlyBracket   reduce using rule 9 (term -> multiplier .)
+    rHardBracket    reduce using rule 9 (term -> multiplier .)
+    identifier      shift and go to state 2
+    multiplier      shift and go to state 4
+    transpose       shift and go to state 5
+    inverse         shift and go to state 7
+    adjugate        shift and go to state 8
+    vector          shift and go to state 10
+    comma           shift and go to state 11
+    float           shift and go to state 12
+    int             shift and go to state 13
+    matrix          shift and go to state 14
+    lCurlyBracket   shift and go to state 15
+    lHardBracket    shift and go to state 16
 
+  ! determinant     [ shift and go to state 6 ]
+
+    expression                     shift and go to state 22
+    term                           shift and go to state 3
+    factor                         shift and go to state 9
 
 state 5
 
-    (18) expression -> matrix . matrix
-    (8) term -> matrix .
+    (16) expression -> transpose . expression
+    (1) expression -> . identifier EQUALS expression
+    (2) expression -> . term
+    (12) expression -> . expression plus expression
+    (13) expression -> . expression minus expression
+    (14) expression -> . multiplier expression
+    (15) expression -> . expression crossProduct expression
+    (16) expression -> . transpose expression
+    (17) expression -> . determinant expression determinant
+    (18) expression -> . expression dotProduct expression
+    (19) expression -> . inverse expression
+    (20) expression -> . adjugate expression
+    (3) term -> . factor
+    (4) term -> . vector
+    (5) term -> . comma
+    (6) term -> . float
+    (7) term -> . int
+    (8) term -> . matrix
+    (9) term -> . multiplier
+    (21) term -> . identifier
+    (10) factor -> . lCurlyBracket expression rCurlyBracket
+    (11) factor -> . lHardBracket expression rHardBracket
 
-    matrix          shift and go to state 21
-    plus            reduce using rule 8 (term -> matrix .)
-    minus           reduce using rule 8 (term -> matrix .)
-    dotProduct      reduce using rule 8 (term -> matrix .)
-    $end            reduce using rule 8 (term -> matrix .)
-    rCurlyBracket   reduce using rule 8 (term -> matrix .)
-    rHardBracket    reduce using rule 8 (term -> matrix .)
+    identifier      shift and go to state 2
+    multiplier      shift and go to state 4
+    transpose       shift and go to state 5
+    determinant     shift and go to state 6
+    inverse         shift and go to state 7
+    adjugate        shift and go to state 8
+    vector          shift and go to state 10
+    comma           shift and go to state 11
+    float           shift and go to state 12
+    int             shift and go to state 13
+    matrix          shift and go to state 14
+    lCurlyBracket   shift and go to state 15
+    lHardBracket    shift and go to state 16
 
+    expression                     shift and go to state 23
+    term                           shift and go to state 3
+    factor                         shift and go to state 9
 
 state 6
 
-    (16) expression -> multiplier . vector
-    (17) expression -> multiplier . matrix
-    (9) term -> multiplier .
+    (17) expression -> determinant . expression determinant
+    (1) expression -> . identifier EQUALS expression
+    (2) expression -> . term
+    (12) expression -> . expression plus expression
+    (13) expression -> . expression minus expression
+    (14) expression -> . multiplier expression
+    (15) expression -> . expression crossProduct expression
+    (16) expression -> . transpose expression
+    (17) expression -> . determinant expression determinant
+    (18) expression -> . expression dotProduct expression
+    (19) expression -> . inverse expression
+    (20) expression -> . adjugate expression
+    (3) term -> . factor
+    (4) term -> . vector
+    (5) term -> . comma
+    (6) term -> . float
+    (7) term -> . int
+    (8) term -> . matrix
+    (9) term -> . multiplier
+    (21) term -> . identifier
+    (10) factor -> . lCurlyBracket expression rCurlyBracket
+    (11) factor -> . lHardBracket expression rHardBracket
 
-    vector          shift and go to state 22
-    matrix          shift and go to state 23
-    plus            reduce using rule 9 (term -> multiplier .)
-    minus           reduce using rule 9 (term -> multiplier .)
-    dotProduct      reduce using rule 9 (term -> multiplier .)
-    $end            reduce using rule 9 (term -> multiplier .)
-    rCurlyBracket   reduce using rule 9 (term -> multiplier .)
-    rHardBracket    reduce using rule 9 (term -> multiplier .)
+    identifier      shift and go to state 2
+    multiplier      shift and go to state 4
+    transpose       shift and go to state 5
+    determinant     shift and go to state 6
+    inverse         shift and go to state 7
+    adjugate        shift and go to state 8
+    vector          shift and go to state 10
+    comma           shift and go to state 11
+    float           shift and go to state 12
+    int             shift and go to state 13
+    matrix          shift and go to state 14
+    lCurlyBracket   shift and go to state 15
+    lHardBracket    shift and go to state 16
 
+    expression                     shift and go to state 24
+    term                           shift and go to state 3
+    factor                         shift and go to state 9
 
 state 7
 
-    (19) expression -> transpose . matrix
+    (19) expression -> inverse . expression
+    (1) expression -> . identifier EQUALS expression
+    (2) expression -> . term
+    (12) expression -> . expression plus expression
+    (13) expression -> . expression minus expression
+    (14) expression -> . multiplier expression
+    (15) expression -> . expression crossProduct expression
+    (16) expression -> . transpose expression
+    (17) expression -> . determinant expression determinant
+    (18) expression -> . expression dotProduct expression
+    (19) expression -> . inverse expression
+    (20) expression -> . adjugate expression
+    (3) term -> . factor
+    (4) term -> . vector
+    (5) term -> . comma
+    (6) term -> . float
+    (7) term -> . int
+    (8) term -> . matrix
+    (9) term -> . multiplier
+    (21) term -> . identifier
+    (10) factor -> . lCurlyBracket expression rCurlyBracket
+    (11) factor -> . lHardBracket expression rHardBracket
 
-    matrix          shift and go to state 24
+    identifier      shift and go to state 2
+    multiplier      shift and go to state 4
+    transpose       shift and go to state 5
+    determinant     shift and go to state 6
+    inverse         shift and go to state 7
+    adjugate        shift and go to state 8
+    vector          shift and go to state 10
+    comma           shift and go to state 11
+    float           shift and go to state 12
+    int             shift and go to state 13
+    matrix          shift and go to state 14
+    lCurlyBracket   shift and go to state 15
+    lHardBracket    shift and go to state 16
 
+    expression                     shift and go to state 25
+    term                           shift and go to state 3
+    factor                         shift and go to state 9
 
 state 8
 
-    (20) expression -> determinant . matrix
+    (20) expression -> adjugate . expression
+    (1) expression -> . identifier EQUALS expression
+    (2) expression -> . term
+    (12) expression -> . expression plus expression
+    (13) expression -> . expression minus expression
+    (14) expression -> . multiplier expression
+    (15) expression -> . expression crossProduct expression
+    (16) expression -> . transpose expression
+    (17) expression -> . determinant expression determinant
+    (18) expression -> . expression dotProduct expression
+    (19) expression -> . inverse expression
+    (20) expression -> . adjugate expression
+    (3) term -> . factor
+    (4) term -> . vector
+    (5) term -> . comma
+    (6) term -> . float
+    (7) term -> . int
+    (8) term -> . matrix
+    (9) term -> . multiplier
+    (21) term -> . identifier
+    (10) factor -> . lCurlyBracket expression rCurlyBracket
+    (11) factor -> . lHardBracket expression rHardBracket
 
-    matrix          shift and go to state 25
+    identifier      shift and go to state 2
+    multiplier      shift and go to state 4
+    transpose       shift and go to state 5
+    determinant     shift and go to state 6
+    inverse         shift and go to state 7
+    adjugate        shift and go to state 8
+    vector          shift and go to state 10
+    comma           shift and go to state 11
+    float           shift and go to state 12
+    int             shift and go to state 13
+    matrix          shift and go to state 14
+    lCurlyBracket   shift and go to state 15
+    lHardBracket    shift and go to state 16
 
+    expression                     shift and go to state 26
+    term                           shift and go to state 3
+    factor                         shift and go to state 9
 
 state 9
-
-    (22) expression -> inverse . matrix
-
-    matrix          shift and go to state 26
-
-
-state 10
-
-    (23) expression -> adjugate . matrix
-
-    matrix          shift and go to state 27
-
-
-state 11
 
     (3) term -> factor .
 
     plus            reduce using rule 3 (term -> factor .)
     minus           reduce using rule 3 (term -> factor .)
+    crossProduct    reduce using rule 3 (term -> factor .)
     dotProduct      reduce using rule 3 (term -> factor .)
     $end            reduce using rule 3 (term -> factor .)
+    determinant     reduce using rule 3 (term -> factor .)
     rCurlyBracket   reduce using rule 3 (term -> factor .)
     rHardBracket    reduce using rule 3 (term -> factor .)
 
 
-state 12
+state 10
+
+    (4) term -> vector .
+
+    plus            reduce using rule 4 (term -> vector .)
+    minus           reduce using rule 4 (term -> vector .)
+    crossProduct    reduce using rule 4 (term -> vector .)
+    dotProduct      reduce using rule 4 (term -> vector .)
+    $end            reduce using rule 4 (term -> vector .)
+    determinant     reduce using rule 4 (term -> vector .)
+    rCurlyBracket   reduce using rule 4 (term -> vector .)
+    rHardBracket    reduce using rule 4 (term -> vector .)
+
+
+state 11
 
     (5) term -> comma .
 
     plus            reduce using rule 5 (term -> comma .)
     minus           reduce using rule 5 (term -> comma .)
+    crossProduct    reduce using rule 5 (term -> comma .)
     dotProduct      reduce using rule 5 (term -> comma .)
     $end            reduce using rule 5 (term -> comma .)
+    determinant     reduce using rule 5 (term -> comma .)
     rCurlyBracket   reduce using rule 5 (term -> comma .)
     rHardBracket    reduce using rule 5 (term -> comma .)
 
 
-state 13
+state 12
 
     (6) term -> float .
 
     plus            reduce using rule 6 (term -> float .)
     minus           reduce using rule 6 (term -> float .)
+    crossProduct    reduce using rule 6 (term -> float .)
     dotProduct      reduce using rule 6 (term -> float .)
     $end            reduce using rule 6 (term -> float .)
+    determinant     reduce using rule 6 (term -> float .)
     rCurlyBracket   reduce using rule 6 (term -> float .)
     rHardBracket    reduce using rule 6 (term -> float .)
 
 
-state 14
+state 13
 
     (7) term -> int .
 
     plus            reduce using rule 7 (term -> int .)
     minus           reduce using rule 7 (term -> int .)
+    crossProduct    reduce using rule 7 (term -> int .)
     dotProduct      reduce using rule 7 (term -> int .)
     $end            reduce using rule 7 (term -> int .)
+    determinant     reduce using rule 7 (term -> int .)
     rCurlyBracket   reduce using rule 7 (term -> int .)
     rHardBracket    reduce using rule 7 (term -> int .)
 
 
-state 15
-
-    (10) factor -> lCurlyBracket . expression rCurlyBracket
-    (1) expression -> . identifier EQUALS term
-    (2) expression -> . term
-    (12) expression -> . expression plus vector
-    (13) expression -> . expression minus vector
-    (14) expression -> . expression plus matrix
-    (15) expression -> . expression minus matrix
-    (16) expression -> . multiplier vector
-    (17) expression -> . multiplier matrix
-    (18) expression -> . matrix matrix
-    (19) expression -> . transpose matrix
-    (20) expression -> . determinant matrix
-    (21) expression -> . expression dotProduct vector
-    (22) expression -> . inverse matrix
-    (23) expression -> . adjugate matrix
-    (3) term -> . factor
-    (4) term -> . vector
-    (5) term -> . comma
-    (6) term -> . float
-    (7) term -> . int
-    (8) term -> . matrix
-    (9) term -> . multiplier
-    (24) term -> . identifier
-    (10) factor -> . lCurlyBracket expression rCurlyBracket
-    (11) factor -> . lHardBracket expression rHardBracket
-
-    identifier      shift and go to state 2
-    multiplier      shift and go to state 6
-    matrix          shift and go to state 5
-    transpose       shift and go to state 7
-    determinant     shift and go to state 8
-    inverse         shift and go to state 9
-    adjugate        shift and go to state 10
-    vector          shift and go to state 4
-    comma           shift and go to state 12
-    float           shift and go to state 13
-    int             shift and go to state 14
-    lCurlyBracket   shift and go to state 15
-    lHardBracket    shift and go to state 16
-
-    expression                     shift and go to state 28
-    term                           shift and go to state 3
-    factor                         shift and go to state 11
-
-state 16
-
-    (11) factor -> lHardBracket . expression rHardBracket
-    (1) expression -> . identifier EQUALS term
-    (2) expression -> . term
-    (12) expression -> . expression plus vector
-    (13) expression -> . expression minus vector
-    (14) expression -> . expression plus matrix
-    (15) expression -> . expression minus matrix
-    (16) expression -> . multiplier vector
-    (17) expression -> . multiplier matrix
-    (18) expression -> . matrix matrix
-    (19) expression -> . transpose matrix
-    (20) expression -> . determinant matrix
-    (21) expression -> . expression dotProduct vector
-    (22) expression -> . inverse matrix
-    (23) expression -> . adjugate matrix
-    (3) term -> . factor
-    (4) term -> . vector
-    (5) term -> . comma
-    (6) term -> . float
-    (7) term -> . int
-    (8) term -> . matrix
-    (9) term -> . multiplier
-    (24) term -> . identifier
-    (10) factor -> . lCurlyBracket expression rCurlyBracket
-    (11) factor -> . lHardBracket expression rHardBracket
-
-    identifier      shift and go to state 2
-    multiplier      shift and go to state 6
-    matrix          shift and go to state 5
-    transpose       shift and go to state 7
-    determinant     shift and go to state 8
-    inverse         shift and go to state 9
-    adjugate        shift and go to state 10
-    vector          shift and go to state 4
-    comma           shift and go to state 12
-    float           shift and go to state 13
-    int             shift and go to state 14
-    lCurlyBracket   shift and go to state 15
-    lHardBracket    shift and go to state 16
-
-    expression                     shift and go to state 29
-    term                           shift and go to state 3
-    factor                         shift and go to state 11
-
-state 17
-
-    (12) expression -> expression plus . vector
-    (14) expression -> expression plus . matrix
-
-    vector          shift and go to state 30
-    matrix          shift and go to state 31
-
-
-state 18
-
-    (13) expression -> expression minus . vector
-    (15) expression -> expression minus . matrix
-
-    vector          shift and go to state 32
-    matrix          shift and go to state 33
-
-
-state 19
-
-    (21) expression -> expression dotProduct . vector
-
-    vector          shift and go to state 34
-
-
-state 20
-
-    (1) expression -> identifier EQUALS . term
-    (3) term -> . factor
-    (4) term -> . vector
-    (5) term -> . comma
-    (6) term -> . float
-    (7) term -> . int
-    (8) term -> . matrix
-    (9) term -> . multiplier
-    (24) term -> . identifier
-    (10) factor -> . lCurlyBracket expression rCurlyBracket
-    (11) factor -> . lHardBracket expression rHardBracket
-
-    vector          shift and go to state 4
-    comma           shift and go to state 12
-    float           shift and go to state 13
-    int             shift and go to state 14
-    matrix          shift and go to state 37
-    multiplier      shift and go to state 38
-    identifier      shift and go to state 35
-    lCurlyBracket   shift and go to state 15
-    lHardBracket    shift and go to state 16
-
-    term                           shift and go to state 36
-    factor                         shift and go to state 11
-
-state 21
-
-    (18) expression -> matrix matrix .
-
-    plus            reduce using rule 18 (expression -> matrix matrix .)
-    minus           reduce using rule 18 (expression -> matrix matrix .)
-    dotProduct      reduce using rule 18 (expression -> matrix matrix .)
-    $end            reduce using rule 18 (expression -> matrix matrix .)
-    rCurlyBracket   reduce using rule 18 (expression -> matrix matrix .)
-    rHardBracket    reduce using rule 18 (expression -> matrix matrix .)
-
-
-state 22
-
-    (16) expression -> multiplier vector .
-
-    plus            reduce using rule 16 (expression -> multiplier vector .)
-    minus           reduce using rule 16 (expression -> multiplier vector .)
-    dotProduct      reduce using rule 16 (expression -> multiplier vector .)
-    $end            reduce using rule 16 (expression -> multiplier vector .)
-    rCurlyBracket   reduce using rule 16 (expression -> multiplier vector .)
-    rHardBracket    reduce using rule 16 (expression -> multiplier vector .)
-
-
-state 23
-
-    (17) expression -> multiplier matrix .
-
-    plus            reduce using rule 17 (expression -> multiplier matrix .)
-    minus           reduce using rule 17 (expression -> multiplier matrix .)
-    dotProduct      reduce using rule 17 (expression -> multiplier matrix .)
-    $end            reduce using rule 17 (expression -> multiplier matrix .)
-    rCurlyBracket   reduce using rule 17 (expression -> multiplier matrix .)
-    rHardBracket    reduce using rule 17 (expression -> multiplier matrix .)
-
-
-state 24
-
-    (19) expression -> transpose matrix .
-
-    plus            reduce using rule 19 (expression -> transpose matrix .)
-    minus           reduce using rule 19 (expression -> transpose matrix .)
-    dotProduct      reduce using rule 19 (expression -> transpose matrix .)
-    $end            reduce using rule 19 (expression -> transpose matrix .)
-    rCurlyBracket   reduce using rule 19 (expression -> transpose matrix .)
-    rHardBracket    reduce using rule 19 (expression -> transpose matrix .)
-
-
-state 25
-
-    (20) expression -> determinant matrix .
-
-    plus            reduce using rule 20 (expression -> determinant matrix .)
-    minus           reduce using rule 20 (expression -> determinant matrix .)
-    dotProduct      reduce using rule 20 (expression -> determinant matrix .)
-    $end            reduce using rule 20 (expression -> determinant matrix .)
-    rCurlyBracket   reduce using rule 20 (expression -> determinant matrix .)
-    rHardBracket    reduce using rule 20 (expression -> determinant matrix .)
-
-
-state 26
-
-    (22) expression -> inverse matrix .
-
-    plus            reduce using rule 22 (expression -> inverse matrix .)
-    minus           reduce using rule 22 (expression -> inverse matrix .)
-    dotProduct      reduce using rule 22 (expression -> inverse matrix .)
-    $end            reduce using rule 22 (expression -> inverse matrix .)
-    rCurlyBracket   reduce using rule 22 (expression -> inverse matrix .)
-    rHardBracket    reduce using rule 22 (expression -> inverse matrix .)
-
-
-state 27
-
-    (23) expression -> adjugate matrix .
-
-    plus            reduce using rule 23 (expression -> adjugate matrix .)
-    minus           reduce using rule 23 (expression -> adjugate matrix .)
-    dotProduct      reduce using rule 23 (expression -> adjugate matrix .)
-    $end            reduce using rule 23 (expression -> adjugate matrix .)
-    rCurlyBracket   reduce using rule 23 (expression -> adjugate matrix .)
-    rHardBracket    reduce using rule 23 (expression -> adjugate matrix .)
-
-
-state 28
-
-    (10) factor -> lCurlyBracket expression . rCurlyBracket
-    (12) expression -> expression . plus vector
-    (13) expression -> expression . minus vector
-    (14) expression -> expression . plus matrix
-    (15) expression -> expression . minus matrix
-    (21) expression -> expression . dotProduct vector
-
-    rCurlyBracket   shift and go to state 39
-    plus            shift and go to state 17
-    minus           shift and go to state 18
-    dotProduct      shift and go to state 19
-
-
-state 29
-
-    (11) factor -> lHardBracket expression . rHardBracket
-    (12) expression -> expression . plus vector
-    (13) expression -> expression . minus vector
-    (14) expression -> expression . plus matrix
-    (15) expression -> expression . minus matrix
-    (21) expression -> expression . dotProduct vector
-
-    rHardBracket    shift and go to state 40
-    plus            shift and go to state 17
-    minus           shift and go to state 18
-    dotProduct      shift and go to state 19
-
-
-state 30
-
-    (12) expression -> expression plus vector .
-
-    plus            reduce using rule 12 (expression -> expression plus vector .)
-    minus           reduce using rule 12 (expression -> expression plus vector .)
-    dotProduct      reduce using rule 12 (expression -> expression plus vector .)
-    $end            reduce using rule 12 (expression -> expression plus vector .)
-    rCurlyBracket   reduce using rule 12 (expression -> expression plus vector .)
-    rHardBracket    reduce using rule 12 (expression -> expression plus vector .)
-
-
-state 31
-
-    (14) expression -> expression plus matrix .
-
-    plus            reduce using rule 14 (expression -> expression plus matrix .)
-    minus           reduce using rule 14 (expression -> expression plus matrix .)
-    dotProduct      reduce using rule 14 (expression -> expression plus matrix .)
-    $end            reduce using rule 14 (expression -> expression plus matrix .)
-    rCurlyBracket   reduce using rule 14 (expression -> expression plus matrix .)
-    rHardBracket    reduce using rule 14 (expression -> expression plus matrix .)
-
-
-state 32
-
-    (13) expression -> expression minus vector .
-
-    plus            reduce using rule 13 (expression -> expression minus vector .)
-    minus           reduce using rule 13 (expression -> expression minus vector .)
-    dotProduct      reduce using rule 13 (expression -> expression minus vector .)
-    $end            reduce using rule 13 (expression -> expression minus vector .)
-    rCurlyBracket   reduce using rule 13 (expression -> expression minus vector .)
-    rHardBracket    reduce using rule 13 (expression -> expression minus vector .)
-
-
-state 33
-
-    (15) expression -> expression minus matrix .
-
-    plus            reduce using rule 15 (expression -> expression minus matrix .)
-    minus           reduce using rule 15 (expression -> expression minus matrix .)
-    dotProduct      reduce using rule 15 (expression -> expression minus matrix .)
-    $end            reduce using rule 15 (expression -> expression minus matrix .)
-    rCurlyBracket   reduce using rule 15 (expression -> expression minus matrix .)
-    rHardBracket    reduce using rule 15 (expression -> expression minus matrix .)
-
-
-state 34
-
-    (21) expression -> expression dotProduct vector .
-
-    plus            reduce using rule 21 (expression -> expression dotProduct vector .)
-    minus           reduce using rule 21 (expression -> expression dotProduct vector .)
-    dotProduct      reduce using rule 21 (expression -> expression dotProduct vector .)
-    $end            reduce using rule 21 (expression -> expression dotProduct vector .)
-    rCurlyBracket   reduce using rule 21 (expression -> expression dotProduct vector .)
-    rHardBracket    reduce using rule 21 (expression -> expression dotProduct vector .)
-
-
-state 35
-
-    (24) term -> identifier .
-
-    plus            reduce using rule 24 (term -> identifier .)
-    minus           reduce using rule 24 (term -> identifier .)
-    dotProduct      reduce using rule 24 (term -> identifier .)
-    $end            reduce using rule 24 (term -> identifier .)
-    rCurlyBracket   reduce using rule 24 (term -> identifier .)
-    rHardBracket    reduce using rule 24 (term -> identifier .)
-
-
-state 36
-
-    (1) expression -> identifier EQUALS term .
-
-    plus            reduce using rule 1 (expression -> identifier EQUALS term .)
-    minus           reduce using rule 1 (expression -> identifier EQUALS term .)
-    dotProduct      reduce using rule 1 (expression -> identifier EQUALS term .)
-    $end            reduce using rule 1 (expression -> identifier EQUALS term .)
-    rCurlyBracket   reduce using rule 1 (expression -> identifier EQUALS term .)
-    rHardBracket    reduce using rule 1 (expression -> identifier EQUALS term .)
-
-
-state 37
+state 14
 
     (8) term -> matrix .
 
     plus            reduce using rule 8 (term -> matrix .)
     minus           reduce using rule 8 (term -> matrix .)
+    crossProduct    reduce using rule 8 (term -> matrix .)
     dotProduct      reduce using rule 8 (term -> matrix .)
     $end            reduce using rule 8 (term -> matrix .)
+    determinant     reduce using rule 8 (term -> matrix .)
     rCurlyBracket   reduce using rule 8 (term -> matrix .)
     rHardBracket    reduce using rule 8 (term -> matrix .)
 
 
-state 38
+state 15
 
-    (9) term -> multiplier .
+    (10) factor -> lCurlyBracket . expression rCurlyBracket
+    (1) expression -> . identifier EQUALS expression
+    (2) expression -> . term
+    (12) expression -> . expression plus expression
+    (13) expression -> . expression minus expression
+    (14) expression -> . multiplier expression
+    (15) expression -> . expression crossProduct expression
+    (16) expression -> . transpose expression
+    (17) expression -> . determinant expression determinant
+    (18) expression -> . expression dotProduct expression
+    (19) expression -> . inverse expression
+    (20) expression -> . adjugate expression
+    (3) term -> . factor
+    (4) term -> . vector
+    (5) term -> . comma
+    (6) term -> . float
+    (7) term -> . int
+    (8) term -> . matrix
+    (9) term -> . multiplier
+    (21) term -> . identifier
+    (10) factor -> . lCurlyBracket expression rCurlyBracket
+    (11) factor -> . lHardBracket expression rHardBracket
 
-    plus            reduce using rule 9 (term -> multiplier .)
-    minus           reduce using rule 9 (term -> multiplier .)
-    dotProduct      reduce using rule 9 (term -> multiplier .)
-    $end            reduce using rule 9 (term -> multiplier .)
-    rCurlyBracket   reduce using rule 9 (term -> multiplier .)
-    rHardBracket    reduce using rule 9 (term -> multiplier .)
+    identifier      shift and go to state 2
+    multiplier      shift and go to state 4
+    transpose       shift and go to state 5
+    determinant     shift and go to state 6
+    inverse         shift and go to state 7
+    adjugate        shift and go to state 8
+    vector          shift and go to state 10
+    comma           shift and go to state 11
+    float           shift and go to state 12
+    int             shift and go to state 13
+    matrix          shift and go to state 14
+    lCurlyBracket   shift and go to state 15
+    lHardBracket    shift and go to state 16
+
+    expression                     shift and go to state 27
+    term                           shift and go to state 3
+    factor                         shift and go to state 9
+
+state 16
+
+    (11) factor -> lHardBracket . expression rHardBracket
+    (1) expression -> . identifier EQUALS expression
+    (2) expression -> . term
+    (12) expression -> . expression plus expression
+    (13) expression -> . expression minus expression
+    (14) expression -> . multiplier expression
+    (15) expression -> . expression crossProduct expression
+    (16) expression -> . transpose expression
+    (17) expression -> . determinant expression determinant
+    (18) expression -> . expression dotProduct expression
+    (19) expression -> . inverse expression
+    (20) expression -> . adjugate expression
+    (3) term -> . factor
+    (4) term -> . vector
+    (5) term -> . comma
+    (6) term -> . float
+    (7) term -> . int
+    (8) term -> . matrix
+    (9) term -> . multiplier
+    (21) term -> . identifier
+    (10) factor -> . lCurlyBracket expression rCurlyBracket
+    (11) factor -> . lHardBracket expression rHardBracket
+
+    identifier      shift and go to state 2
+    multiplier      shift and go to state 4
+    transpose       shift and go to state 5
+    determinant     shift and go to state 6
+    inverse         shift and go to state 7
+    adjugate        shift and go to state 8
+    vector          shift and go to state 10
+    comma           shift and go to state 11
+    float           shift and go to state 12
+    int             shift and go to state 13
+    matrix          shift and go to state 14
+    lCurlyBracket   shift and go to state 15
+    lHardBracket    shift and go to state 16
+
+    expression                     shift and go to state 28
+    term                           shift and go to state 3
+    factor                         shift and go to state 9
+
+state 17
+
+    (12) expression -> expression plus . expression
+    (1) expression -> . identifier EQUALS expression
+    (2) expression -> . term
+    (12) expression -> . expression plus expression
+    (13) expression -> . expression minus expression
+    (14) expression -> . multiplier expression
+    (15) expression -> . expression crossProduct expression
+    (16) expression -> . transpose expression
+    (17) expression -> . determinant expression determinant
+    (18) expression -> . expression dotProduct expression
+    (19) expression -> . inverse expression
+    (20) expression -> . adjugate expression
+    (3) term -> . factor
+    (4) term -> . vector
+    (5) term -> . comma
+    (6) term -> . float
+    (7) term -> . int
+    (8) term -> . matrix
+    (9) term -> . multiplier
+    (21) term -> . identifier
+    (10) factor -> . lCurlyBracket expression rCurlyBracket
+    (11) factor -> . lHardBracket expression rHardBracket
+
+    identifier      shift and go to state 2
+    multiplier      shift and go to state 4
+    transpose       shift and go to state 5
+    determinant     shift and go to state 6
+    inverse         shift and go to state 7
+    adjugate        shift and go to state 8
+    vector          shift and go to state 10
+    comma           shift and go to state 11
+    float           shift and go to state 12
+    int             shift and go to state 13
+    matrix          shift and go to state 14
+    lCurlyBracket   shift and go to state 15
+    lHardBracket    shift and go to state 16
+
+    expression                     shift and go to state 29
+    term                           shift and go to state 3
+    factor                         shift and go to state 9
+
+state 18
+
+    (13) expression -> expression minus . expression
+    (1) expression -> . identifier EQUALS expression
+    (2) expression -> . term
+    (12) expression -> . expression plus expression
+    (13) expression -> . expression minus expression
+    (14) expression -> . multiplier expression
+    (15) expression -> . expression crossProduct expression
+    (16) expression -> . transpose expression
+    (17) expression -> . determinant expression determinant
+    (18) expression -> . expression dotProduct expression
+    (19) expression -> . inverse expression
+    (20) expression -> . adjugate expression
+    (3) term -> . factor
+    (4) term -> . vector
+    (5) term -> . comma
+    (6) term -> . float
+    (7) term -> . int
+    (8) term -> . matrix
+    (9) term -> . multiplier
+    (21) term -> . identifier
+    (10) factor -> . lCurlyBracket expression rCurlyBracket
+    (11) factor -> . lHardBracket expression rHardBracket
+
+    identifier      shift and go to state 2
+    multiplier      shift and go to state 4
+    transpose       shift and go to state 5
+    determinant     shift and go to state 6
+    inverse         shift and go to state 7
+    adjugate        shift and go to state 8
+    vector          shift and go to state 10
+    comma           shift and go to state 11
+    float           shift and go to state 12
+    int             shift and go to state 13
+    matrix          shift and go to state 14
+    lCurlyBracket   shift and go to state 15
+    lHardBracket    shift and go to state 16
+
+    expression                     shift and go to state 30
+    term                           shift and go to state 3
+    factor                         shift and go to state 9
+
+state 19
+
+    (15) expression -> expression crossProduct . expression
+    (1) expression -> . identifier EQUALS expression
+    (2) expression -> . term
+    (12) expression -> . expression plus expression
+    (13) expression -> . expression minus expression
+    (14) expression -> . multiplier expression
+    (15) expression -> . expression crossProduct expression
+    (16) expression -> . transpose expression
+    (17) expression -> . determinant expression determinant
+    (18) expression -> . expression dotProduct expression
+    (19) expression -> . inverse expression
+    (20) expression -> . adjugate expression
+    (3) term -> . factor
+    (4) term -> . vector
+    (5) term -> . comma
+    (6) term -> . float
+    (7) term -> . int
+    (8) term -> . matrix
+    (9) term -> . multiplier
+    (21) term -> . identifier
+    (10) factor -> . lCurlyBracket expression rCurlyBracket
+    (11) factor -> . lHardBracket expression rHardBracket
+
+    identifier      shift and go to state 2
+    multiplier      shift and go to state 4
+    transpose       shift and go to state 5
+    determinant     shift and go to state 6
+    inverse         shift and go to state 7
+    adjugate        shift and go to state 8
+    vector          shift and go to state 10
+    comma           shift and go to state 11
+    float           shift and go to state 12
+    int             shift and go to state 13
+    matrix          shift and go to state 14
+    lCurlyBracket   shift and go to state 15
+    lHardBracket    shift and go to state 16
+
+    expression                     shift and go to state 31
+    term                           shift and go to state 3
+    factor                         shift and go to state 9
+
+state 20
+
+    (18) expression -> expression dotProduct . expression
+    (1) expression -> . identifier EQUALS expression
+    (2) expression -> . term
+    (12) expression -> . expression plus expression
+    (13) expression -> . expression minus expression
+    (14) expression -> . multiplier expression
+    (15) expression -> . expression crossProduct expression
+    (16) expression -> . transpose expression
+    (17) expression -> . determinant expression determinant
+    (18) expression -> . expression dotProduct expression
+    (19) expression -> . inverse expression
+    (20) expression -> . adjugate expression
+    (3) term -> . factor
+    (4) term -> . vector
+    (5) term -> . comma
+    (6) term -> . float
+    (7) term -> . int
+    (8) term -> . matrix
+    (9) term -> . multiplier
+    (21) term -> . identifier
+    (10) factor -> . lCurlyBracket expression rCurlyBracket
+    (11) factor -> . lHardBracket expression rHardBracket
+
+    identifier      shift and go to state 2
+    multiplier      shift and go to state 4
+    transpose       shift and go to state 5
+    determinant     shift and go to state 6
+    inverse         shift and go to state 7
+    adjugate        shift and go to state 8
+    vector          shift and go to state 10
+    comma           shift and go to state 11
+    float           shift and go to state 12
+    int             shift and go to state 13
+    matrix          shift and go to state 14
+    lCurlyBracket   shift and go to state 15
+    lHardBracket    shift and go to state 16
+
+    expression                     shift and go to state 32
+    term                           shift and go to state 3
+    factor                         shift and go to state 9
+
+state 21
+
+    (1) expression -> identifier EQUALS . expression
+    (1) expression -> . identifier EQUALS expression
+    (2) expression -> . term
+    (12) expression -> . expression plus expression
+    (13) expression -> . expression minus expression
+    (14) expression -> . multiplier expression
+    (15) expression -> . expression crossProduct expression
+    (16) expression -> . transpose expression
+    (17) expression -> . determinant expression determinant
+    (18) expression -> . expression dotProduct expression
+    (19) expression -> . inverse expression
+    (20) expression -> . adjugate expression
+    (3) term -> . factor
+    (4) term -> . vector
+    (5) term -> . comma
+    (6) term -> . float
+    (7) term -> . int
+    (8) term -> . matrix
+    (9) term -> . multiplier
+    (21) term -> . identifier
+    (10) factor -> . lCurlyBracket expression rCurlyBracket
+    (11) factor -> . lHardBracket expression rHardBracket
+
+    identifier      shift and go to state 2
+    multiplier      shift and go to state 4
+    transpose       shift and go to state 5
+    determinant     shift and go to state 6
+    inverse         shift and go to state 7
+    adjugate        shift and go to state 8
+    vector          shift and go to state 10
+    comma           shift and go to state 11
+    float           shift and go to state 12
+    int             shift and go to state 13
+    matrix          shift and go to state 14
+    lCurlyBracket   shift and go to state 15
+    lHardBracket    shift and go to state 16
+
+    expression                     shift and go to state 33
+    term                           shift and go to state 3
+    factor                         shift and go to state 9
+
+state 22
+
+    (14) expression -> multiplier expression .
+    (12) expression -> expression . plus expression
+    (13) expression -> expression . minus expression
+    (15) expression -> expression . crossProduct expression
+    (18) expression -> expression . dotProduct expression
+
+    crossProduct    reduce using rule 14 (expression -> multiplier expression .)
+    dotProduct      reduce using rule 14 (expression -> multiplier expression .)
+    $end            reduce using rule 14 (expression -> multiplier expression .)
+    determinant     reduce using rule 14 (expression -> multiplier expression .)
+    rCurlyBracket   reduce using rule 14 (expression -> multiplier expression .)
+    rHardBracket    reduce using rule 14 (expression -> multiplier expression .)
+    plus            shift and go to state 17
+    minus           shift and go to state 18
+
+  ! plus            [ reduce using rule 14 (expression -> multiplier expression .) ]
+  ! minus           [ reduce using rule 14 (expression -> multiplier expression .) ]
+  ! crossProduct    [ shift and go to state 19 ]
+  ! dotProduct      [ shift and go to state 20 ]
 
 
-state 39
+state 23
+
+    (16) expression -> transpose expression .
+    (12) expression -> expression . plus expression
+    (13) expression -> expression . minus expression
+    (15) expression -> expression . crossProduct expression
+    (18) expression -> expression . dotProduct expression
+
+  ! shift/reduce conflict for plus resolved as shift
+  ! shift/reduce conflict for minus resolved as shift
+  ! shift/reduce conflict for crossProduct resolved as shift
+  ! shift/reduce conflict for dotProduct resolved as shift
+    $end            reduce using rule 16 (expression -> transpose expression .)
+    determinant     reduce using rule 16 (expression -> transpose expression .)
+    rCurlyBracket   reduce using rule 16 (expression -> transpose expression .)
+    rHardBracket    reduce using rule 16 (expression -> transpose expression .)
+    plus            shift and go to state 17
+    minus           shift and go to state 18
+    crossProduct    shift and go to state 19
+    dotProduct      shift and go to state 20
+
+  ! plus            [ reduce using rule 16 (expression -> transpose expression .) ]
+  ! minus           [ reduce using rule 16 (expression -> transpose expression .) ]
+  ! crossProduct    [ reduce using rule 16 (expression -> transpose expression .) ]
+  ! dotProduct      [ reduce using rule 16 (expression -> transpose expression .) ]
+
+
+state 24
+
+    (17) expression -> determinant expression . determinant
+    (12) expression -> expression . plus expression
+    (13) expression -> expression . minus expression
+    (15) expression -> expression . crossProduct expression
+    (18) expression -> expression . dotProduct expression
+
+    determinant     shift and go to state 34
+    plus            shift and go to state 17
+    minus           shift and go to state 18
+    crossProduct    shift and go to state 19
+    dotProduct      shift and go to state 20
+
+
+state 25
+
+    (19) expression -> inverse expression .
+    (12) expression -> expression . plus expression
+    (13) expression -> expression . minus expression
+    (15) expression -> expression . crossProduct expression
+    (18) expression -> expression . dotProduct expression
+
+  ! shift/reduce conflict for plus resolved as shift
+  ! shift/reduce conflict for minus resolved as shift
+  ! shift/reduce conflict for crossProduct resolved as shift
+  ! shift/reduce conflict for dotProduct resolved as shift
+    $end            reduce using rule 19 (expression -> inverse expression .)
+    determinant     reduce using rule 19 (expression -> inverse expression .)
+    rCurlyBracket   reduce using rule 19 (expression -> inverse expression .)
+    rHardBracket    reduce using rule 19 (expression -> inverse expression .)
+    plus            shift and go to state 17
+    minus           shift and go to state 18
+    crossProduct    shift and go to state 19
+    dotProduct      shift and go to state 20
+
+  ! plus            [ reduce using rule 19 (expression -> inverse expression .) ]
+  ! minus           [ reduce using rule 19 (expression -> inverse expression .) ]
+  ! crossProduct    [ reduce using rule 19 (expression -> inverse expression .) ]
+  ! dotProduct      [ reduce using rule 19 (expression -> inverse expression .) ]
+
+
+state 26
+
+    (20) expression -> adjugate expression .
+    (12) expression -> expression . plus expression
+    (13) expression -> expression . minus expression
+    (15) expression -> expression . crossProduct expression
+    (18) expression -> expression . dotProduct expression
+
+  ! shift/reduce conflict for plus resolved as shift
+  ! shift/reduce conflict for minus resolved as shift
+  ! shift/reduce conflict for crossProduct resolved as shift
+  ! shift/reduce conflict for dotProduct resolved as shift
+    $end            reduce using rule 20 (expression -> adjugate expression .)
+    determinant     reduce using rule 20 (expression -> adjugate expression .)
+    rCurlyBracket   reduce using rule 20 (expression -> adjugate expression .)
+    rHardBracket    reduce using rule 20 (expression -> adjugate expression .)
+    plus            shift and go to state 17
+    minus           shift and go to state 18
+    crossProduct    shift and go to state 19
+    dotProduct      shift and go to state 20
+
+  ! plus            [ reduce using rule 20 (expression -> adjugate expression .) ]
+  ! minus           [ reduce using rule 20 (expression -> adjugate expression .) ]
+  ! crossProduct    [ reduce using rule 20 (expression -> adjugate expression .) ]
+  ! dotProduct      [ reduce using rule 20 (expression -> adjugate expression .) ]
+
+
+state 27
+
+    (10) factor -> lCurlyBracket expression . rCurlyBracket
+    (12) expression -> expression . plus expression
+    (13) expression -> expression . minus expression
+    (15) expression -> expression . crossProduct expression
+    (18) expression -> expression . dotProduct expression
+
+    rCurlyBracket   shift and go to state 35
+    plus            shift and go to state 17
+    minus           shift and go to state 18
+    crossProduct    shift and go to state 19
+    dotProduct      shift and go to state 20
+
+
+state 28
+
+    (11) factor -> lHardBracket expression . rHardBracket
+    (12) expression -> expression . plus expression
+    (13) expression -> expression . minus expression
+    (15) expression -> expression . crossProduct expression
+    (18) expression -> expression . dotProduct expression
+
+    rHardBracket    shift and go to state 36
+    plus            shift and go to state 17
+    minus           shift and go to state 18
+    crossProduct    shift and go to state 19
+    dotProduct      shift and go to state 20
+
+
+state 29
+
+    (12) expression -> expression plus expression .
+    (12) expression -> expression . plus expression
+    (13) expression -> expression . minus expression
+    (15) expression -> expression . crossProduct expression
+    (18) expression -> expression . dotProduct expression
+
+    plus            reduce using rule 12 (expression -> expression plus expression .)
+    minus           reduce using rule 12 (expression -> expression plus expression .)
+    crossProduct    reduce using rule 12 (expression -> expression plus expression .)
+    dotProduct      reduce using rule 12 (expression -> expression plus expression .)
+    $end            reduce using rule 12 (expression -> expression plus expression .)
+    determinant     reduce using rule 12 (expression -> expression plus expression .)
+    rCurlyBracket   reduce using rule 12 (expression -> expression plus expression .)
+    rHardBracket    reduce using rule 12 (expression -> expression plus expression .)
+
+  ! plus            [ shift and go to state 17 ]
+  ! minus           [ shift and go to state 18 ]
+  ! crossProduct    [ shift and go to state 19 ]
+  ! dotProduct      [ shift and go to state 20 ]
+
+
+state 30
+
+    (13) expression -> expression minus expression .
+    (12) expression -> expression . plus expression
+    (13) expression -> expression . minus expression
+    (15) expression -> expression . crossProduct expression
+    (18) expression -> expression . dotProduct expression
+
+    plus            reduce using rule 13 (expression -> expression minus expression .)
+    minus           reduce using rule 13 (expression -> expression minus expression .)
+    crossProduct    reduce using rule 13 (expression -> expression minus expression .)
+    dotProduct      reduce using rule 13 (expression -> expression minus expression .)
+    $end            reduce using rule 13 (expression -> expression minus expression .)
+    determinant     reduce using rule 13 (expression -> expression minus expression .)
+    rCurlyBracket   reduce using rule 13 (expression -> expression minus expression .)
+    rHardBracket    reduce using rule 13 (expression -> expression minus expression .)
+
+  ! plus            [ shift and go to state 17 ]
+  ! minus           [ shift and go to state 18 ]
+  ! crossProduct    [ shift and go to state 19 ]
+  ! dotProduct      [ shift and go to state 20 ]
+
+
+state 31
+
+    (15) expression -> expression crossProduct expression .
+    (12) expression -> expression . plus expression
+    (13) expression -> expression . minus expression
+    (15) expression -> expression . crossProduct expression
+    (18) expression -> expression . dotProduct expression
+
+  ! shift/reduce conflict for plus resolved as shift
+  ! shift/reduce conflict for minus resolved as shift
+  ! shift/reduce conflict for crossProduct resolved as shift
+  ! shift/reduce conflict for dotProduct resolved as shift
+    $end            reduce using rule 15 (expression -> expression crossProduct expression .)
+    determinant     reduce using rule 15 (expression -> expression crossProduct expression .)
+    rCurlyBracket   reduce using rule 15 (expression -> expression crossProduct expression .)
+    rHardBracket    reduce using rule 15 (expression -> expression crossProduct expression .)
+    plus            shift and go to state 17
+    minus           shift and go to state 18
+    crossProduct    shift and go to state 19
+    dotProduct      shift and go to state 20
+
+  ! plus            [ reduce using rule 15 (expression -> expression crossProduct expression .) ]
+  ! minus           [ reduce using rule 15 (expression -> expression crossProduct expression .) ]
+  ! crossProduct    [ reduce using rule 15 (expression -> expression crossProduct expression .) ]
+  ! dotProduct      [ reduce using rule 15 (expression -> expression crossProduct expression .) ]
+
+
+state 32
+
+    (18) expression -> expression dotProduct expression .
+    (12) expression -> expression . plus expression
+    (13) expression -> expression . minus expression
+    (15) expression -> expression . crossProduct expression
+    (18) expression -> expression . dotProduct expression
+
+  ! shift/reduce conflict for plus resolved as shift
+  ! shift/reduce conflict for minus resolved as shift
+  ! shift/reduce conflict for crossProduct resolved as shift
+  ! shift/reduce conflict for dotProduct resolved as shift
+    $end            reduce using rule 18 (expression -> expression dotProduct expression .)
+    determinant     reduce using rule 18 (expression -> expression dotProduct expression .)
+    rCurlyBracket   reduce using rule 18 (expression -> expression dotProduct expression .)
+    rHardBracket    reduce using rule 18 (expression -> expression dotProduct expression .)
+    plus            shift and go to state 17
+    minus           shift and go to state 18
+    crossProduct    shift and go to state 19
+    dotProduct      shift and go to state 20
+
+  ! plus            [ reduce using rule 18 (expression -> expression dotProduct expression .) ]
+  ! minus           [ reduce using rule 18 (expression -> expression dotProduct expression .) ]
+  ! crossProduct    [ reduce using rule 18 (expression -> expression dotProduct expression .) ]
+  ! dotProduct      [ reduce using rule 18 (expression -> expression dotProduct expression .) ]
+
+
+state 33
+
+    (1) expression -> identifier EQUALS expression .
+    (12) expression -> expression . plus expression
+    (13) expression -> expression . minus expression
+    (15) expression -> expression . crossProduct expression
+    (18) expression -> expression . dotProduct expression
+
+    crossProduct    reduce using rule 1 (expression -> identifier EQUALS expression .)
+    dotProduct      reduce using rule 1 (expression -> identifier EQUALS expression .)
+    $end            reduce using rule 1 (expression -> identifier EQUALS expression .)
+    determinant     reduce using rule 1 (expression -> identifier EQUALS expression .)
+    rCurlyBracket   reduce using rule 1 (expression -> identifier EQUALS expression .)
+    rHardBracket    reduce using rule 1 (expression -> identifier EQUALS expression .)
+    plus            shift and go to state 17
+    minus           shift and go to state 18
+
+  ! plus            [ reduce using rule 1 (expression -> identifier EQUALS expression .) ]
+  ! minus           [ reduce using rule 1 (expression -> identifier EQUALS expression .) ]
+  ! crossProduct    [ shift and go to state 19 ]
+  ! dotProduct      [ shift and go to state 20 ]
+
+
+state 34
+
+    (17) expression -> determinant expression determinant .
+
+    plus            reduce using rule 17 (expression -> determinant expression determinant .)
+    minus           reduce using rule 17 (expression -> determinant expression determinant .)
+    crossProduct    reduce using rule 17 (expression -> determinant expression determinant .)
+    dotProduct      reduce using rule 17 (expression -> determinant expression determinant .)
+    $end            reduce using rule 17 (expression -> determinant expression determinant .)
+    determinant     reduce using rule 17 (expression -> determinant expression determinant .)
+    rCurlyBracket   reduce using rule 17 (expression -> determinant expression determinant .)
+    rHardBracket    reduce using rule 17 (expression -> determinant expression determinant .)
+
+
+state 35
 
     (10) factor -> lCurlyBracket expression rCurlyBracket .
 
     plus            reduce using rule 10 (factor -> lCurlyBracket expression rCurlyBracket .)
     minus           reduce using rule 10 (factor -> lCurlyBracket expression rCurlyBracket .)
+    crossProduct    reduce using rule 10 (factor -> lCurlyBracket expression rCurlyBracket .)
     dotProduct      reduce using rule 10 (factor -> lCurlyBracket expression rCurlyBracket .)
     $end            reduce using rule 10 (factor -> lCurlyBracket expression rCurlyBracket .)
+    determinant     reduce using rule 10 (factor -> lCurlyBracket expression rCurlyBracket .)
     rCurlyBracket   reduce using rule 10 (factor -> lCurlyBracket expression rCurlyBracket .)
     rHardBracket    reduce using rule 10 (factor -> lCurlyBracket expression rCurlyBracket .)
 
 
-state 40
+state 36
 
     (11) factor -> lHardBracket expression rHardBracket .
 
     plus            reduce using rule 11 (factor -> lHardBracket expression rHardBracket .)
     minus           reduce using rule 11 (factor -> lHardBracket expression rHardBracket .)
+    crossProduct    reduce using rule 11 (factor -> lHardBracket expression rHardBracket .)
     dotProduct      reduce using rule 11 (factor -> lHardBracket expression rHardBracket .)
     $end            reduce using rule 11 (factor -> lHardBracket expression rHardBracket .)
+    determinant     reduce using rule 11 (factor -> lHardBracket expression rHardBracket .)
     rCurlyBracket   reduce using rule 11 (factor -> lHardBracket expression rHardBracket .)
     rHardBracket    reduce using rule 11 (factor -> lHardBracket expression rHardBracket .)
 
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for plus in state 23 resolved as shift
+WARNING: shift/reduce conflict for minus in state 23 resolved as shift
+WARNING: shift/reduce conflict for crossProduct in state 23 resolved as shift
+WARNING: shift/reduce conflict for dotProduct in state 23 resolved as shift
+WARNING: shift/reduce conflict for plus in state 25 resolved as shift
+WARNING: shift/reduce conflict for minus in state 25 resolved as shift
+WARNING: shift/reduce conflict for crossProduct in state 25 resolved as shift
+WARNING: shift/reduce conflict for dotProduct in state 25 resolved as shift
+WARNING: shift/reduce conflict for plus in state 26 resolved as shift
+WARNING: shift/reduce conflict for minus in state 26 resolved as shift
+WARNING: shift/reduce conflict for crossProduct in state 26 resolved as shift
+WARNING: shift/reduce conflict for dotProduct in state 26 resolved as shift
+WARNING: shift/reduce conflict for plus in state 31 resolved as shift
+WARNING: shift/reduce conflict for minus in state 31 resolved as shift
+WARNING: shift/reduce conflict for crossProduct in state 31 resolved as shift
+WARNING: shift/reduce conflict for dotProduct in state 31 resolved as shift
+WARNING: shift/reduce conflict for plus in state 32 resolved as shift
+WARNING: shift/reduce conflict for minus in state 32 resolved as shift
+WARNING: shift/reduce conflict for crossProduct in state 32 resolved as shift
+WARNING: shift/reduce conflict for dotProduct in state 32 resolved as shift
