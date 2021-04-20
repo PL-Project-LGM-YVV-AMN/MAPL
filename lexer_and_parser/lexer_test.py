@@ -64,7 +64,7 @@ def t_error(t):
     t.lexer.skip(1)
 
 
-# lexer = lex.lex()
+lexer = lex.lex()
 """
 data = input("Input data: ")
 lexer.input(data)

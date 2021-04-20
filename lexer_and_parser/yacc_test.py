@@ -16,7 +16,7 @@ precedence = (
 names = {}
 
 def p_assignment(p):
-    'assignment : identifier EQUALS term'
+    'expression : identifier EQUALS term'
     names[p[1]] = p[3]
 
 def p_expression_term(p):
@@ -52,6 +52,7 @@ def p_expression_plus_vector(p):
         print("Vectors are not of equal size")
         return
     p[0] = RightVector+LeftVector
+
 
 def p_expression_minus_vector(p):
     'expression : expression minus vector'
@@ -101,7 +102,7 @@ def p_expression_det_matrix(p):
     p[0] = matrix(p[2]).det()
 
 def p_expression_dot_product_vector(p):
-    'expression : vector dotProduct vector'
+    'expression : expression dotProduct vector'
     p[0] = vector(p[1]).dot_product(vector(p[3]))
 
 # def p_identifier_dot_product_vector(p):
