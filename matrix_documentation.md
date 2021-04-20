@@ -68,3 +68,35 @@ or some thing like this
     - **Purpose**: Returns the determinant of _self_
     - **Precondition**: Matrix object must exist
     - **Post-condition**: The determinant of _self_ is returned as a float, If _self.isSqaure_ is set to false, the function will return _None_   
+
+- ```python
+    def inv(self)
+    ```
+    - **Purpose**: Returns the inverse of _self_ matrix object
+    - **Precondition**: Matrix object must exist
+    - **Post-condition**: A matrix object containing the inverse of _self_ is returned. If _self.isSqaure_ is set to false, the function will return _None_   
+
+- ```python
+    def adjugate(self)
+    ```
+    - **Purpose**: Returns the adjugate of _self_ matrix object
+    - **Precondition**: Matrix object must exist
+    - **Post-condition**: A matrix object containing the adjugate of _self_ is returned. f _self.isSqaure_ is set to false, the function will return _None_   
+
+- ```python
+    def __inv_and_adjugate__(self,det)
+    ```
+    - **Purpose**: Used for calculating inverse and adjugate functions, no intended for use.
+    - **Post-condition**: A matrix whose elements are replaced by the determinant of their co-factors divided by the _det_ parameter is returned 
+
+- ```python
+    def rec_det(mat)
+    ```
+    - **Purpose**: Helper function that calculates the determinant of matrix _mat_. Not intended for use
+    - **Precondition**: The _mat_ parameter must be a list of lists containing float or int values
+    - **Post-condition**: The determinant of _mat_ is returned as a float value
+
+- ```python
+    def not_in_row_or_column(mat,size,target_row,target_column)
+    ```
+    - **Purpose**: 
