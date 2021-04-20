@@ -7,6 +7,8 @@ Universidad de Puerto Rico, Mayagüez
 
 [Link to Preliminary Language Documentation](https://github.com/PL-Project-LGM-YVV-AMN/PL-Project/blob/main/PreliminaryDocumentation.md)
 
+[Link to Vector Class Documentation](https://github.com/PL-Project-LGM-YVV-AMN/PL-Project/blob/main/vec_and_mat_documentation.md "Vec Documentation")
+
 ## I Introduction
 Currently, several programming languages are capable and very well implemented to work with linear algebra methods, being MATLAB, R, and Python the biggest players. 
 
