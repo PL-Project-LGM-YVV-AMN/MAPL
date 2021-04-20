@@ -8,7 +8,7 @@ import re
 
 
 precedence = (
-    ('right', 'assignment'),
+    ('right', 'EQUALS'),
     ('left','multiplier'),
     ('left', 'plus', 'minus'),
 )
@@ -16,12 +16,13 @@ precedence = (
 names = {}
 
 def p_assignment(p):
-    'expression : identifier assignment term'
+    'assignment : identifier EQUALS term'
     names[p[1]] = p[3]
 
 def p_expression_term(p):
     'expression : term'
     p[0] = p[1]
+
 
 # Error rule for syntax errors
 def p_error(p):

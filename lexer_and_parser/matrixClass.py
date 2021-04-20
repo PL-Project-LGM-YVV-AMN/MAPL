@@ -202,6 +202,3 @@ class matrix:
         return adjugate_mat
 
 #{{1,2,3},{3,2,1},{2,1,3}}
-
-x = matrix("[[1 2 3];[3 2 1];[2 1 3]]")
-print(x.adjugate())

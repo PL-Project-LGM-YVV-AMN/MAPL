@@ -2,7 +2,7 @@ import ply.lex as lex
 # Poner los tokens en mayúscula
 tokens = (
     'identifier',
-    'assignment',
+    'EQUALS',
     'rHardBracket',
     'lHardBracket',
     'int',
@@ -23,7 +23,7 @@ tokens = (
     'adjugate',
 )
 
-t_assignment = r"="
+t_EQUALS = r"="
 t_lHardBracket = r'\['
 t_rHardBracket = r'\]'
 t_int = r'\d+'
