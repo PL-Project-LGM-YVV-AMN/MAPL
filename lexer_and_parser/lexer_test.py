@@ -1,17 +1,19 @@
 import ply.lex as lex
-
+# Poner los tokens en mayúscula
 tokens = (
+    'identifier',
+    'assignment',
     'rHardBracket',
     'lHardBracket',
     'int',
-    'float', 
+    'float',
     'plus',
     'minus',
     'dotProduct',
     'crossProduct',
     'comma',
     'rCurlyBracket',
-    'lCurlyBracket', 
+    'lCurlyBracket',
     'vector',
     'matrix',
     'multiplier',
@@ -21,6 +23,7 @@ tokens = (
     'adjugate',
 )
 
+t_assignment = r"="
 t_lHardBracket = r'\['
 t_rHardBracket = r'\]'
 t_int = r'\d+'
@@ -41,6 +44,14 @@ t_inverse = r'inv'
 t_adjugate = r'adjugate'
 t_ignore = ' \t'
 
+def t_identifier(t):
+    r'[a-zA-Z_]([a-zA-Z_0-9])*'
+    return t
+
+def t_COMMENT(t):
+    r'\#.*'
+    pass
+    # No return value. Token discarded
 
 def t_newline(t):
     r'\n+'
@@ -52,11 +63,10 @@ def t_error(t):
     t.lexer.skip(1)
 
 
-lexer = lex.lex()
+# lexer = lex.lex()
 """
 data = input("Input data: ")
 lexer.input(data)
 for tok in lexer:
     print(tok)
 """
-

@@ -8,17 +8,22 @@ import re
 
 
 precedence = (
+    ('right', 'assignment'),
     ('left','multiplier'),
     ('left', 'plus', 'minus'),
 )
+
+names = {}
+
+def p_assignment(p):
+    'expression : identifier assignment term'
+    names[p[1]] = p[3]
 
 def p_expression_term(p):
     'expression : term'
     p[0] = p[1]
 
 # Error rule for syntax errors
-
-
 def p_error(p):
     print("Syntax error in input!")
 
@@ -98,6 +103,10 @@ def p_expression_dot_product_vector(p):
     'expression : vector dotProduct vector'
     p[0] = vector(p[1]).dot_product(vector(p[3]))
 
+# def p_identifier_dot_product_vector(p):
+#     'expression : identifier dotProduct vector'
+#     p[0] = vector(p[1]).dot_product(vector(p[3]))
+
 def p_expression_inverse_matrix(p):
     'expression : inverse matrix'
     p[0] = matrix(p[2]).inv()
@@ -106,6 +115,13 @@ def p_expression_adjugate_matrix(p):
     'expression : adjugate matrix'
     p[0] = matrix(p[2]).adjugate()
 
+def p_term_name(p):
+    'term : identifier'
+    try:
+        p[0] = names[p[1]]
+    except LookupError:
+        print('Unknown name ', p[1])
+        p[0] = 0
 
 parser = yacc.yacc()
 while True:

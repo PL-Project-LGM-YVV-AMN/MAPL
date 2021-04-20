@@ -12,7 +12,7 @@ def not_in_row_or_column(mat,size,target_row,target_column):
     new_mat.append(temp_vec)
     new_mat = list([x for x in new_mat.copy() if x])
     return new_mat
-    
+
 def det(mat):
     mat_cpy = mat.copy()
     if len(mat) <= 1:
@@ -36,7 +36,7 @@ def helper_adjoint(mat):
     temp_vec.clear()
     adjoint_mat = [x for x in adjoint_mat.copy() if x]
     return adjoint_mat
-    
+
 
 
 
