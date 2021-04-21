@@ -37,8 +37,9 @@ class matrix:
 
     def __str__(self):
         ans = ""
-        for i in range(self.numOfRows):
-           ans = ans + vector.__str__(self.RowVecs[i]) + '\n'
+        for i in range(self.numOfRows-1):
+           ans += "[" + vector.__str__(self.RowVecs[i]) + ';'
+        ans +=  vector.__str__(self.RowVecs[self.numOfRows-1]) + "]"
         return ans
 
     def __add__(self,RightMatrix):
@@ -201,4 +202,6 @@ class matrix:
         adjugate_mat = [x for x in adjugate_mat.copy() if x]
         return adjugate_mat
 
-#{{1,2,3},{3,2,1},{2,1,3}}
+x = matrix("[[1 2];[3 4]")
+
+print(x)

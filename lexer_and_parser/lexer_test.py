@@ -72,9 +72,8 @@ def t_error(t):
 
 lexer = lex.lex()
 
-'''
-data = input("Input data: ")
-lexer.input(data)
-for tok in lexer:
-    print(tok)
-'''
+if __name__ == "__main__":
+    data = input("Input data: ")
+    lexer.input(data)
+    for tok in lexer:
+        print(tok)
