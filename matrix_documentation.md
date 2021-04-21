@@ -74,14 +74,14 @@ or some thing like this
     ```
     - **Purpose**: Returns the inverse of _self_ matrix object
     - **Precondition**: Matrix object must exist
-    - **Post-condition**: A matrix object containing the inverse of _self_ is returned. If _self.isSqaure_ is set to false, the function will return _None_   
+    - **Post-condition**: A matrix object containing the inverse of _self_ is returned. If _self.isSquare_ is set to false, the function will return _None_   
 
 - ```python
     def adjugate(self)
     ```
     - **Purpose**: Returns the adjugate of _self_ matrix object
     - **Precondition**: Matrix object must exist
-    - **Post-condition**: A matrix object containing the adjugate of _self_ is returned. f _self.isSqaure_ is set to false, the function will return _None_   
+    - **Post-condition**: A matrix object containing the adjugate of _self_ is returned. f _self.isSquare_ is set to false, the function will return _None_   
 
 - ```python
     def __inv_and_adjugate__(self,det)
@@ -97,6 +97,40 @@ or some thing like this
     - **Post-condition**: The determinant of _mat_ is returned as a float value
 
 - ```python
+    @staticmethod
     def not_in_row_or_column(mat,size,target_row,target_column)
     ```
-    - **Purpose**: 
+    - **Purpose**: Returns the co-factors of a element in position [_target_row_][_target_column_] in the matrix _mat_ of length _size_. Not intended for use.
+    - **Precondition**: A list of list containing float values must be passed as _mat_, size must be the amount of lists in _mat_ and _target_row_ and _target_column_ must be in range of _mat_.
+    - **Post-condition**: A list of list containing float values of the co-factors of the target are returned.
+
+- ```python
+    @staticmethod
+    def FormatColumnVectors(string)
+    ```
+    - **Purpose**: Return a string that removes commas and single quotes from _string_. Used for formatting vector objects
+    - **Post-condition**: A string that removes commas and single quotes from _string_ is returned
+
+- ```python
+    @staticmethod
+    def appendZeroes(vec,initialSize ,maxColumnSize)
+    ```
+    - **Purpose**: Add _maxColumnSize_ minus _initial_size_ amount of zeroes to list _vec_
+    - **Precondition**: _vec_  must be a list and _initial_size_ must be less than or equal to _maxColumnSize_
+    - **Post-condition**: _vec_ will have been the difference of _maxColumnSize_ and _initialSize_ of zeroes appended
+
+- ```python
+    @staticmethod
+    def formatList(vecList)
+    ```
+    - **Purpose**: Returns a string formatted in the form required by matrix class regex
+    - **Precondition**: _veclist_ must be a list of vector objects
+    - **Post-condition**: A string that is matrix class regex complaint is returned
+
+- ```python
+    @staticmethod
+    def star(mat)
+    ```
+    - **Purpose**: Returns the list of lists of floats created by the co-factors of the corresponding elements transposed
+    - **Precondition**: _mat_ must be a list of lists of floats
+    - **Post-condition**: Returns the star matrix
