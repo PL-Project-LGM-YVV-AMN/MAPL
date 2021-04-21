@@ -51,8 +51,9 @@ def t_error(t):
 
 # Build the lexer
 lexer = lex.lex()
-
+'''
 data = input("Input data: ")
 lexer.input(data)
 for tok in lexer:
     print(tok)
+'''

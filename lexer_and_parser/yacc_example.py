@@ -1,7 +1,7 @@
 import ply.yacc as yacc
 
 # Get the token map from the lexer.  This is required.
-from lexer_test import tokens
+from lexer_example import tokens
 
 
 def p_expression_plus(p):
