@@ -33,7 +33,7 @@ After this short overview through the most widely used programming languages for
 2.  It has a complete functions library for practically all linear algebra operations and most common methods (i.e. reduced row echelon form).
 
 ## III Example of a program
-![Program Example](https://github.com/PL-Project-LGM-YVV-AMN/PL-Project/blob/main/ProgramExample.PNG)
+![Program Example](https://github.com/PL-Project-LGM-YVV-AMN/PL-Project/blob/main/ProgramExample.png)
 ## IV  Implementation requirements and tools
 - For the following program to work, as an implementation requirement the user must have already installed Python3 in the machine they plan to work on. This is very important, since the language itself is derived from said program.
 - An important tool that must be pre-installed privy to using the program is to have the “Numpy” (v1.20.0) library downloaded. Once again, the reason being that we are deriving our program from Python 3 and the programming language is taking said library’s functionality and implementing them within the confines of the program.
