@@ -1,5 +1,4 @@
 import ply.yacc as yacc
-
 # Get the token map from the lexer.  This is required.
 from lexer import tokens, t_vector, t_matrix
 from vectorClass import vector
@@ -144,13 +143,14 @@ def p_term_name(p):
         p[0] = 0
 
 parser = yacc.yacc()
-while True:
-    try:
-        s = input('calc > ')
-    except EOFError:
-        break
-    if not s:
-        continue
-    result = parser.parse(s)
-    print(result)
+if __name__ == "__main__":
+    while True:
+        try:
+            s = input('calc > ')
+        except EOFError:
+            break
+        if not s:
+            continue
+        result = parser.parse(s)
+        print(result)
 

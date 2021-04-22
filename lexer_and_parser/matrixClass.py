@@ -202,6 +202,3 @@ class matrix:
         adjugate_mat = [x for x in adjugate_mat.copy() if x]
         return adjugate_mat
 
-x = matrix("[[1 2];[3 4]")
-
-print(x)
