@@ -1,4 +1,23 @@
-x = [1 2 3]
-y = [4 5 6]
+x = [[1 2];[3 4]]
+y = [[4 3];[2 1]]
+x+y
 z = x+y
-INV z
+x-y
+q = x-z
+z-q
+2 x
+2 z
+suc = 2 x
+sucs = 2 q
+T suc
+T sucs
+INV sucs
+INV suc
+k = INV sucs
+sucs*suc
+o = sucs*suc
+|x|
+|sucs|
+tuhtuh = |sucs|
+ADJUGATE sucs
+boh = ADJUGATE suc

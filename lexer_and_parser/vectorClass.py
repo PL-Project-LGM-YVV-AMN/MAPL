@@ -59,10 +59,11 @@ class vector:
         return sum(product_nums)
 
 
-'''
-x = vector("[1 2 3]")
-y = vector("[4 5 6]")
 
-print(x.dot_product(y))
-'''
+# x = vector("[1 2 3]")
+# y = vector("[4 5 6]")
+#
+# temp = x.__str__()
+# print()
+
 

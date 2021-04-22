@@ -40,7 +40,7 @@ t_vector = t_lHardBracket + \
     r'(?:\s*(?:-?' + t_float + r'|-?' + t_int + r')\s*)+' + t_rHardBracket
 t_matrix = t_lHardBracket + r'((' + t_vector + r')\s*;?)+' + t_rHardBracket
 t_multiplier = r'\s*(?:-?' + t_float + r'|-?' + t_int + r')'
-t_transpose = r"\s*T"
+t_transpose = r"T"
 t_inverse = r'INV'
 t_adjugate = r'ADJUGATE'
 t_ignore = ' \t'
@@ -71,3 +71,4 @@ if __name__ == "__main__":
     lexer.input(data)
     for tok in lexer:
         print(tok)
+

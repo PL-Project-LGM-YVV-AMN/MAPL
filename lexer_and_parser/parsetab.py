@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'rightEQUALSleftmultiplierleftplusminusEQUALS adjugate comma crossProduct determinant dotProduct float identifier int inverse lCurlyBracket lHardBracket matrix minus multiplier plus rCurlyBracket rHardBracket transpose vectorexpression : identifier EQUALS expressionexpression : termterm : factor\n            | vector\n            | comma\n            | float\n            | int\n            | matrix\n            | multiplierfactor : lCurlyBracket expression rCurlyBracket\n              | lHardBracket expression rHardBracketexpression : expression plus expressionexpression : expression minus expressionexpression : multiplier expressionexpression : expression crossProduct expressionexpression : transpose expressionexpression : determinant expression determinantexpression : expression dotProduct expressionexpression : inverse expressionexpression : adjugate expressionterm : identifier'
+_lr_signature = 'rightEQUALSleftmultiplierleftcrossProductlefttransposeleftdeterminantleftinverseleftadjugateleftplusminusleftdotProductEQUALS adjugate comma crossProduct determinant dotProduct float identifier int inverse lCurlyBracket lHardBracket matrix minus multiplier plus rCurlyBracket rHardBracket transpose vectorexpression : identifier EQUALS expressionexpression : termterm : factor\n            | vector\n            | comma\n            | float\n            | int\n            | matrix\n            | multiplierfactor : lCurlyBracket expression rCurlyBracket\n              | lHardBracket expression rHardBracketexpression : expression plus expressionexpression : expression dotProduct expressionexpression : expression minus expressionexpression : multiplier expressionexpression : expression crossProduct expressionexpression : transpose expressionexpression : determinant expression determinantexpression : inverse expressionexpression : adjugate expressionterm : identifier'
     
-_lr_action_items = {'identifier':([0,4,5,6,7,8,15,16,17,18,19,20,21,],[2,2,2,2,2,2,2,2,2,2,2,2,2,]),'multiplier':([0,4,5,6,7,8,15,16,17,18,19,20,21,],[4,4,4,4,4,4,4,4,4,4,4,4,4,]),'transpose':([0,4,5,6,7,8,15,16,17,18,19,20,21,],[5,5,5,5,5,5,5,5,5,5,5,5,5,]),'determinant':([0,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,29,30,31,32,33,34,35,36,],[6,-21,-2,-9,6,6,6,6,-3,-4,-5,-6,-7,-8,6,6,6,6,6,6,6,-14,-16,34,-19,-20,-12,-13,-15,-18,-1,-17,-10,-11,]),'inverse':([0,4,5,6,7,8,15,16,17,18,19,20,21,],[7,7,7,7,7,7,7,7,7,7,7,7,7,]),'adjugate':([0,4,5,6,7,8,15,16,17,18,19,20,21,],[8,8,8,8,8,8,8,8,8,8,8,8,8,]),'vector':([0,4,5,6,7,8,15,16,17,18,19,20,21,],[10,10,10,10,10,10,10,10,10,10,10,10,10,]),'comma':([0,4,5,6,7,8,15,16,17,18,19,20,21,],[11,11,11,11,11,11,11,11,11,11,11,11,11,]),'float':([0,4,5,6,7,8,15,16,17,18,19,20,21,],[12,12,12,12,12,12,12,12,12,12,12,12,12,]),'int':([0,4,5,6,7,8,15,16,17,18,19,20,21,],[13,13,13,13,13,13,13,13,13,13,13,13,13,]),'matrix':([0,4,5,6,7,8,15,16,17,18,19,20,21,],[14,14,14,14,14,14,14,14,14,14,14,14,14,]),'lCurlyBracket':([0,4,5,6,7,8,15,16,17,18,19,20,21,],[15,15,15,15,15,15,15,15,15,15,15,15,15,]),'lHardBracket':([0,4,5,6,7,8,15,16,17,18,19,20,21,],[16,16,16,16,16,16,16,16,16,16,16,16,16,]),'$end':([1,2,3,4,9,10,11,12,13,14,22,23,25,26,29,30,31,32,33,34,35,36,],[0,-21,-2,-9,-3,-4,-5,-6,-7,-8,-14,-16,-19,-20,-12,-13,-15,-18,-1,-17,-10,-11,]),'plus':([1,2,3,4,9,10,11,12,13,14,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,],[17,-21,-2,-9,-3,-4,-5,-6,-7,-8,17,17,17,17,17,17,17,-12,-13,17,17,17,-17,-10,-11,]),'minus':([1,2,3,4,9,10,11,12,13,14,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,],[18,-21,-2,-9,-3,-4,-5,-6,-7,-8,18,18,18,18,18,18,18,-12,-13,18,18,18,-17,-10,-11,]),'crossProduct':([1,2,3,4,9,10,11,12,13,14,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,],[19,-21,-2,-9,-3,-4,-5,-6,-7,-8,-14,19,19,19,19,19,19,-12,-13,19,19,-1,-17,-10,-11,]),'dotProduct':([1,2,3,4,9,10,11,12,13,14,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,],[20,-21,-2,-9,-3,-4,-5,-6,-7,-8,-14,20,20,20,20,20,20,-12,-13,20,20,-1,-17,-10,-11,]),'EQUALS':([2,],[21,]),'rCurlyBracket':([2,3,4,9,10,11,12,13,14,22,23,25,26,27,29,30,31,32,33,34,35,36,],[-21,-2,-9,-3,-4,-5,-6,-7,-8,-14,-16,-19,-20,35,-12,-13,-15,-18,-1,-17,-10,-11,]),'rHardBracket':([2,3,4,9,10,11,12,13,14,22,23,25,26,28,29,30,31,32,33,34,35,36,],[-21,-2,-9,-3,-4,-5,-6,-7,-8,-14,-16,-19,-20,36,-12,-13,-15,-18,-1,-17,-10,-11,]),}
+_lr_action_items = {'identifier':([0,4,5,6,7,8,15,16,17,18,19,20,21,],[2,2,2,2,2,2,2,2,2,2,2,2,2,]),'multiplier':([0,4,5,6,7,8,15,16,17,18,19,20,21,],[4,4,4,4,4,4,4,4,4,4,4,4,4,]),'transpose':([0,4,5,6,7,8,15,16,17,18,19,20,21,],[5,5,5,5,5,5,5,5,5,5,5,5,5,]),'determinant':([0,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,29,30,31,32,33,34,35,36,],[6,-21,-2,6,6,6,6,6,-3,-4,-5,-6,-7,-8,6,6,6,6,6,6,6,-15,-17,34,-19,-20,-12,-13,-14,-16,-1,-18,-10,-11,]),'inverse':([0,4,5,6,7,8,15,16,17,18,19,20,21,],[7,7,7,7,7,7,7,7,7,7,7,7,7,]),'adjugate':([0,4,5,6,7,8,15,16,17,18,19,20,21,],[8,8,8,8,8,8,8,8,8,8,8,8,8,]),'vector':([0,4,5,6,7,8,15,16,17,18,19,20,21,],[10,10,10,10,10,10,10,10,10,10,10,10,10,]),'comma':([0,4,5,6,7,8,15,16,17,18,19,20,21,],[11,11,11,11,11,11,11,11,11,11,11,11,11,]),'float':([0,4,5,6,7,8,15,16,17,18,19,20,21,],[12,12,12,12,12,12,12,12,12,12,12,12,12,]),'int':([0,4,5,6,7,8,15,16,17,18,19,20,21,],[13,13,13,13,13,13,13,13,13,13,13,13,13,]),'matrix':([0,4,5,6,7,8,15,16,17,18,19,20,21,],[14,14,14,14,14,14,14,14,14,14,14,14,14,]),'lCurlyBracket':([0,4,5,6,7,8,15,16,17,18,19,20,21,],[15,15,15,15,15,15,15,15,15,15,15,15,15,]),'lHardBracket':([0,4,5,6,7,8,15,16,17,18,19,20,21,],[16,16,16,16,16,16,16,16,16,16,16,16,16,]),'$end':([1,2,3,4,9,10,11,12,13,14,22,23,25,26,29,30,31,32,33,34,35,36,],[0,-21,-2,-9,-3,-4,-5,-6,-7,-8,-15,-17,-19,-20,-12,-13,-14,-16,-1,-18,-10,-11,]),'plus':([1,2,3,4,9,10,11,12,13,14,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,],[17,-21,-2,-9,-3,-4,-5,-6,-7,-8,17,17,17,17,17,17,17,-12,-13,-14,17,17,-18,-10,-11,]),'dotProduct':([1,2,3,4,9,10,11,12,13,14,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,],[18,-21,-2,-9,-3,-4,-5,-6,-7,-8,18,18,18,18,18,18,18,18,-13,18,18,18,-18,-10,-11,]),'minus':([1,2,3,4,9,10,11,12,13,14,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,],[19,-21,-2,-9,-3,-4,-5,-6,-7,-8,19,19,19,19,19,19,19,-12,-13,-14,19,19,-18,-10,-11,]),'crossProduct':([1,2,3,4,9,10,11,12,13,14,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,],[20,-21,-2,-9,-3,-4,-5,-6,-7,-8,20,-17,20,-19,-20,20,20,-12,-13,-14,-16,20,-18,-10,-11,]),'EQUALS':([2,],[21,]),'rCurlyBracket':([2,3,4,9,10,11,12,13,14,22,23,25,26,27,29,30,31,32,33,34,35,36,],[-21,-2,-9,-3,-4,-5,-6,-7,-8,-15,-17,-19,-20,35,-12,-13,-14,-16,-1,-18,-10,-11,]),'rHardBracket':([2,3,4,9,10,11,12,13,14,22,23,25,26,28,29,30,31,32,33,34,35,36,],[-21,-2,-9,-3,-4,-5,-6,-7,-8,-15,-17,-19,-20,36,-12,-13,-14,-16,-1,-18,-10,-11,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -27,25 +27,25 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> expression","S'",1,None,None,None),
-  ('expression -> identifier EQUALS expression','expression',3,'p_assignment','grammar.py',19),
-  ('expression -> term','expression',1,'p_expression_term','grammar.py',23),
-  ('term -> factor','term',1,'p_term_vector','grammar.py',32),
-  ('term -> vector','term',1,'p_term_vector','grammar.py',33),
-  ('term -> comma','term',1,'p_term_vector','grammar.py',34),
-  ('term -> float','term',1,'p_term_vector','grammar.py',35),
-  ('term -> int','term',1,'p_term_vector','grammar.py',36),
-  ('term -> matrix','term',1,'p_term_vector','grammar.py',37),
-  ('term -> multiplier','term',1,'p_term_vector','grammar.py',38),
-  ('factor -> lCurlyBracket expression rCurlyBracket','factor',3,'p_factor','grammar.py',42),
-  ('factor -> lHardBracket expression rHardBracket','factor',3,'p_factor','grammar.py',43),
-  ('expression -> expression plus expression','expression',3,'p_expression_plus','grammar.py',49),
-  ('expression -> expression minus expression','expression',3,'p_expression_minus','grammar.py',64),
-  ('expression -> multiplier expression','expression',2,'p_expression_scalar','grammar.py',78),
-  ('expression -> expression crossProduct expression','expression',3,'p_expression_cross_product_matrix','grammar.py',89),
-  ('expression -> transpose expression','expression',2,'p_expression_transpose_matrix','grammar.py',100),
-  ('expression -> determinant expression determinant','expression',3,'p_expression_det_matrix','grammar.py',107),
-  ('expression -> expression dotProduct expression','expression',3,'p_expression_dot_product_vector','grammar.py',114),
-  ('expression -> inverse expression','expression',2,'p_expression_inverse_matrix','grammar.py',123),
-  ('expression -> adjugate expression','expression',2,'p_expression_adjugate_matrix','grammar.py',131),
-  ('term -> identifier','term',1,'p_term_name','grammar.py',138),
+  ('expression -> identifier EQUALS expression','expression',3,'p_assignment','grammar.py',24),
+  ('expression -> term','expression',1,'p_expression_term','grammar.py',28),
+  ('term -> factor','term',1,'p_term_vector','grammar.py',37),
+  ('term -> vector','term',1,'p_term_vector','grammar.py',38),
+  ('term -> comma','term',1,'p_term_vector','grammar.py',39),
+  ('term -> float','term',1,'p_term_vector','grammar.py',40),
+  ('term -> int','term',1,'p_term_vector','grammar.py',41),
+  ('term -> matrix','term',1,'p_term_vector','grammar.py',42),
+  ('term -> multiplier','term',1,'p_term_vector','grammar.py',43),
+  ('factor -> lCurlyBracket expression rCurlyBracket','factor',3,'p_factor','grammar.py',47),
+  ('factor -> lHardBracket expression rHardBracket','factor',3,'p_factor','grammar.py',48),
+  ('expression -> expression plus expression','expression',3,'p_expression_plus','grammar.py',54),
+  ('expression -> expression dotProduct expression','expression',3,'p_expression_dot_product_vector','grammar.py',68),
+  ('expression -> expression minus expression','expression',3,'p_expression_minus','grammar.py',77),
+  ('expression -> multiplier expression','expression',2,'p_expression_scalar','grammar.py',91),
+  ('expression -> expression crossProduct expression','expression',3,'p_expression_cross_product_matrix','grammar.py',102),
+  ('expression -> transpose expression','expression',2,'p_expression_transpose_matrix','grammar.py',113),
+  ('expression -> determinant expression determinant','expression',3,'p_expression_det_matrix','grammar.py',120),
+  ('expression -> inverse expression','expression',2,'p_expression_inverse_matrix','grammar.py',129),
+  ('expression -> adjugate expression','expression',2,'p_expression_adjugate_matrix','grammar.py',137),
+  ('term -> identifier','term',1,'p_term_name','grammar.py',144),
 ]

@@ -9,8 +9,13 @@ import re
 precedence = (
     ('right', 'EQUALS'),
     ('left','multiplier'),
+    ('left', 'crossProduct'),
+    ('left', 'transpose'),
+    ('left', 'determinant'),
+    ('left', 'inverse'),
+    ('left', 'adjugate'),
     ('left', 'plus', 'minus'),
-
+    ('left', 'dotProduct')
 )
 
 names = {}
@@ -58,6 +63,14 @@ def p_expression_plus(p):
     else:
         return None
     p[0] = LeftThing+RightThing
+
+def p_expression_dot_product_vector(p):
+    'expression : expression dotProduct expression'
+    left_vec_str = str(p[1])
+    right_vec_str = str(p[3])
+    if not(re.match(t_vector, p[1]) and re.match(t_vector, p[3])):
+        return None
+    p[0] = vector(left_vec_str).dot_product(vector(right_vec_str))
 
 
 def p_expression_minus(p):
@@ -110,13 +123,6 @@ def p_expression_det_matrix(p):
         return None
     p[0] = matrix(mat_str).det()
 
-def p_expression_dot_product_vector(p):
-    'expression : expression dotProduct expression'
-    left_vec_str = str(p[1])
-    right_vec_str = str(p[3])
-    if not(re.match(t_vector, p[1]) and re.match(t_vector, p[3])):
-        return None
-    p[0] = vector(left_vec_str).dot_product(vector(right_vec_str))
 
 #Needs to change symbol so it doesn't confuse inv with an identifier 
 def p_expression_inverse_matrix(p):
