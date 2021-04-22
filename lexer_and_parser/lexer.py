@@ -21,7 +21,6 @@ tokens = (
     'determinant',
     'inverse',
     'adjugate',
-    # 'KEYWORDS',
 )
 
 t_EQUALS = r"="
@@ -41,18 +40,13 @@ t_vector = t_lHardBracket + \
     r'(?:\s*(?:-?' + t_float + r'|-?' + t_int + r')\s*)+' + t_rHardBracket
 t_matrix = t_lHardBracket + r'((' + t_vector + r')\s*;?)+' + t_rHardBracket
 t_multiplier = r'\s*(?:-?' + t_float + r'|-?' + t_int + r')'
-t_transpose = r"\s*\s*T"
-t_inverse = r'inv'
-t_adjugate = r'adjugate'
+t_transpose = r"\s*T"
+t_inverse = r'INV'
+t_adjugate = r'ADJUGATE'
 t_ignore = ' \t'
-# t_KEYWORDS = (
-#     'inv',
-#     'adjugate',
-#     'transpose',
-# )
 
 def t_identifier(t):
-    r'[a-zA-Z_]([a-zA-Z_0-9])*'
+    r'[a-z_]+'
     return t
 
 def t_COMMENT(t):

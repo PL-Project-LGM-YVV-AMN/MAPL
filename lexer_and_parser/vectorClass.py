@@ -1,4 +1,4 @@
-import lexer_test as lt
+import lexer as lt
 import re
 
 

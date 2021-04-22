@@ -1,7 +1,7 @@
 import ply.yacc as yacc
 
 # Get the token map from the lexer.  This is required.
-from lexer_test import tokens, t_vector, t_matrix
+from lexer import tokens, t_vector, t_matrix
 from vectorClass import vector
 from matrixClass import matrix
 import re
