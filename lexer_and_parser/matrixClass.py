@@ -42,12 +42,12 @@ class matrix:
     
     VectorRule = re.compile(lt.t_vector)
 
-    def __init__(self, string: str):
+    def __init__(self, string: str) -> "matrix":
         """
         Parameters
         ----------
         string : str
-            needs to be compliant with matrix regex
+            needs to be compliant with matrix regex from in lexer.py as t_matrix
         """
         RowVecsFromRE = matrix.VectorRule.findall(string)
         self.numOfRows = len(RowVecsFromRE)
@@ -87,7 +87,7 @@ class matrix:
         ans +=  vector.__str__(self.RowVecs[self.numOfRows-1]) + "]"
         return ans
 
-    def __add__(self,RightMatrix):
+    def __add__(self,RightMatrix: "matrix") -> "matrix":
         """
         returns a matrix object containing the sum of self and RightMatrix
         Parameters
@@ -102,7 +102,7 @@ class matrix:
             vecList.append(self.RowVecs[vecs] + RightMatrix.RowVecs[vecs])
         return matrix(matrix.formatList(vecList))
 
-    def __sub__(self,RightMatrix):
+    def __sub__(self,RightMatrix: "matrix") -> "matrix":
         """
         returns a matrix object containing the difference of self and RightMatrix
         Parameters
@@ -117,7 +117,7 @@ class matrix:
             vecList.append(self.RowVecs[vecs] - RightMatrix.RowVecs[vecs])
         return matrix(matrix.formatList(vecList))
 
-    def scalar_multiplication(self, multiplier: float):
+    def scalar_multiplication(self, multiplier: float) -> "matrix":
         """
         returns a matrix object containing the elements of self
         scalar multiplied by a factor by multiplier
@@ -131,7 +131,7 @@ class matrix:
             vecList.append(self.RowVecs[i].scalar_multiplication(multiplier))
         return matrix(matrix.formatList(vecList))
 
-    def cross_product(self, rightMat):
+    def cross_product(self, rightMat: "matrix") -> "matrix":
         """
         **returns a matrix object containing the cross product with rightMat.**\n
         rightMat.numOfRows must equal to self.numOfColumns for the operation to be performed
@@ -160,7 +160,7 @@ class matrix:
 
 
     
-    def transpose(self):
+    def transpose(self) -> "matrix":
         """
         returns a matrix object that contains the elements of self transposed
         i.e the rows become columns and columns become rows
@@ -184,7 +184,7 @@ class matrix:
             temp_vec.clear()
         return matrix.rec_det(row_matrix)
 
-    def inv(self): 
+    def inv(self) -> "matrix": 
         """
         returns a matrix object containing the inv of self
         """
@@ -194,7 +194,7 @@ class matrix:
             return None
         return self.__inv_and_adjugate__(mat_det)
 
-    def adjugate(self):
+    def adjugate(self) -> "matrix":
         """
         returns a matrix object that is the adjugate of self
         """
@@ -203,7 +203,7 @@ class matrix:
             return None
         return self.__inv_and_adjugate__(1.0)
 
-    def __inv_and_adjugate__(self,det: float):
+    def __inv_and_adjugate__(self,det: float) -> "matrix":
         """
         returns a matrix object that can produce the star matrix
         divided by det
