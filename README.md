@@ -1,5 +1,4 @@
 # Matrix & Matrix Operations Programming Language
-_Lenier Gerena Meléndez, Yadiel Vélez Vargas, Aramis Matos Nieves_
 
 Universidad de Puerto Rico, Mayagüez
 
@@ -31,12 +30,77 @@ After this short overview through the most widely used programming languages for
 ## II  Main language features
 1.  It is designed to have a very lightweight, readable, and intuitive syntax.
 2.  It has a complete functions library for practically all linear algebra operations and most common methods (i.e. reduced row echelon form).
-
 ## III Example of a program
-![Program Example](https://github.com/PL-Project-LGM-YVV-AMN/PL-Project/blob/main/ProgramExample.png)
+```PYTHON
+# Example of declaring matrices and matrix operations
+
+a = [[1 2] [3 4]]
+b = [[5 6] [7 8]]
+
+# Adition of matrices
+
+c = a + b
+
+# Substraction of matrices
+
+d = a - b
+
+# Multiplying matrices (Cross Product)
+
+e = a * b
+
+# Multiplying Vectors (Dot Product)
+
+f = [9 1 2]
+g = [3 4 5]
+
+h = f . g
+
+# Inverse of a matrix
+
+INV a
+INV b
+
+# Transpose of a matrix
+
+T a
+T b
+
+# Adjugate matrix
+
+ADJUGATE a
+ADJUGATE b
+
+# Determinant of a matrix
+
+|a|
+|b|
+
+# Printing a matrix
+
+PRINT a
+a
+
+PRINT b
+b
+```
 ## IV  Implementation requirements and tools
 - For the following program to work, as an implementation requirement the user must have already installed Python3 in the machine they plan to work on. This is very important, since the language itself is derived from said program.
 - An important tool that must be pre-installed privy to using the program is to have the “Numpy” (v1.20.0) library downloaded. Once again, the reason being that we are deriving our program from Python 3 and the programming language is taking said library’s functionality and implementing them within the confines of the program.
 - The program will be using PLY (Python Lex - Yacc) for lexing and parsing in our code. The current version for PLY is 3.5, this being compatible with both Python 2 (specifically version Python 2.6) and Python 3.
-## V Project plan and timeline
+
+## V  Notes about instructions and usage
+- When defining a variable to hold a certain value (be it a matrix, a vector, or a value of an operation), it needs to be lowercased. 
+   - Such definitions like A = \[] or firstMatrix = \[] wont work
+   - Another such definition would be a0 = \[], matrix0 = \[], and so on.
+- No comas are needed, nor parenthesis for executing any of the presented operations
+- Printing with the operation PRINT can be either a matrix, a vector, a variable, or an operation. In addition, printing can also be done without the print function, so specifying the matrix, vector, or operation will do the same effect.
+- Multiple operations such as z = vector . vector + vector or z = matrix * matrix + matrix,... cant be done in sucession.
+
+## VI Project plan and timeline
 ![Gantt Chart](https://github.com/PL-Project-LGM-YVV-AMN/PL-Project/blob/main/GanttChart.png)
+
+Credits to:
+[Aramis E. Matos Nieves](https://github.com/aramis-matos)
+[Yadiel Velez Vargas](https://github.com/hernan-yadiel)
+[Lenier Gerena Melendez](https://github.com/Suaniel)
