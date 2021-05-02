@@ -45,6 +45,10 @@ c = a + b
 
 d = a - b
 
+# Scalar Multiplication (vector or matrix)
+
+z = 3a
+
 # Multiplying matrices (Cross Product)
 
 e = a * b
@@ -95,6 +99,7 @@ b
    - Another such definition would be a0 = \[], matrix0 = \[], and so on.
 - No comas are needed, nor parenthesis for executing any of the presented operations
 - Printing with the operation PRINT can be either a matrix, a vector, a variable, or an operation. In addition, printing can also be done without the print function, so specifying the matrix, vector, or operation will do the same effect.
+   - For example, specifying (vector . vector) or (matrix * matrix) will print out its result, as well as just writing the variable that holds a value (z).
 - Multiple operations such as z = (vector . vector + vector)     or    z = (matrix * matrix + matrix)  ,... cant be done in sucession.
 
 ## VI Project plan and timeline
