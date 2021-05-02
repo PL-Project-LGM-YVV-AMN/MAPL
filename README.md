@@ -98,8 +98,8 @@ b
    - Such definitions like A = \[] or firstMatrix = \[] wont work
    - Another such definition would be a0 = \[], matrix0 = \[], and so on.
 - No comas are needed, nor parenthesis for executing any of the presented operations
-- Printing with the operation PRINT can be either a matrix, a vector, a variable, or an operation. In addition, printing can also be done without the print function, so specifying the matrix, vector, or operation will do the same effect.
-   - For example, specifying (vector . vector) or (matrix * matrix) will print out its result, as well as just writing the variable that holds a value (z).
+- Printing with the operation PRINT can be either a matrix, a vector, a variable, or an operation.
+   - For example, specifying PRINT vector . vector or PRINT matrix * matrix will print out its result, as well as just writing the variable that holds a value, PRINT z.
 - Multiple operations such as z = (vector . vector + vector)     or    z = (matrix * matrix + matrix)  ,... cant be done in sucession.
 
 ## VI Project plan and timeline
