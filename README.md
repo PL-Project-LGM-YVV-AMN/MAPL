@@ -95,12 +95,14 @@ b
    - Another such definition would be a0 = \[], matrix0 = \[], and so on.
 - No comas are needed, nor parenthesis for executing any of the presented operations
 - Printing with the operation PRINT can be either a matrix, a vector, a variable, or an operation. In addition, printing can also be done without the print function, so specifying the matrix, vector, or operation will do the same effect.
-- Multiple operations such as z = vector . vector + vector or z = matrix * matrix + matrix,... cant be done in sucession.
+- Multiple operations such as z = vector . vector + vector     or    z = matrix * matrix + matrix  ,... cant be done in sucession.
 
 ## VI Project plan and timeline
 ![Gantt Chart](https://github.com/PL-Project-LGM-YVV-AMN/PL-Project/blob/main/GanttChart.png)
 
 Credits to:
 [Aramis E. Matos Nieves](https://github.com/aramis-matos)
+
 [Yadiel Velez Vargas](https://github.com/hernan-yadiel)
+
 [Lenier Gerena Melendez](https://github.com/Suaniel)
