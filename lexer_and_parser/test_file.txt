@@ -13,7 +13,7 @@ T suc
 T sucs
 INV sucs
 INV suc
-k = INV sucs
+INV ADJUGATE sucs
 sucs*suc
 o = sucs*suc
 |x|
