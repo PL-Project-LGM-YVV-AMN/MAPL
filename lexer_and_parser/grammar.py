@@ -1,5 +1,4 @@
 import ply.yacc as yacc
-# Get the token map from the lexer.  This is required.
 from lexer import tokens, t_vector, t_matrix
 from vectorClass import vector
 from matrixClass import matrix
@@ -65,15 +64,6 @@ def p_expression_plus(p):
         return None
     p[0] = LeftThing+RightThing
 
-def p_expression_dot_product_vector(p):
-    'expression : expression dotProduct expression'
-    left_vec_str = str(p[1])
-    right_vec_str = str(p[3])
-    if not(re.match(t_vector, p[1]) and re.match(t_vector, p[3])):
-        return None
-    p[0] = vector(left_vec_str).dot_product(vector(right_vec_str))
-
-
 def p_expression_minus(p):
     'expression : expression minus expression'
     left_thing_str = str(p[1])
@@ -87,6 +77,14 @@ def p_expression_minus(p):
     else:
         return None
     p[0] = LeftThing-RightThing
+
+def p_expression_dot_product_vector(p):
+    'expression : expression dotProduct expression'
+    left_vec_str = str(p[1])
+    right_vec_str = str(p[3])
+    if not(re.match(t_vector, p[1]) and re.match(t_vector, p[3])):
+        return None
+    p[0] = vector(left_vec_str).dot_product(vector(right_vec_str))
 
 def p_expression_scalar(p):
     'expression : multiplier expression'
@@ -165,4 +163,3 @@ if __name__ == "__main__":
             continue
         result = parser.parse(s)
         print(result)
-

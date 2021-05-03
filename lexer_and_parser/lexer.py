@@ -1,5 +1,5 @@
 import ply.lex as lex
-# Poner los tokens en mayúscula
+
 tokens = (
     'identifier',
     'EQUALS',
@@ -51,15 +51,14 @@ def t_identifier(t):
     r'[a-z_]+'
     return t
 
-def t_COMMENT(t):
-    r'\#.*'
-    pass
-    # No return value. Token discarded
-
 def t_newline(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
 
+def t_COMMENT(t):
+    r'\#.*'
+    pass
+    # No return value. Token discarded
 
 def t_error(t):
     print("Illegal character '%s'" % t.value[0])

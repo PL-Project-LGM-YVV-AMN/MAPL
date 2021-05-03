@@ -4,14 +4,16 @@ Universidad de Puerto Rico, Mayagüez
 
 [Link to Phase I document](https://docs.google.com/document/d/1dfvMnkUe5Wjo51EHsakjpaxmlbP3l3K8RXAxQnGUtbM/edit?usp=sharing)
 
-[Link to Preliminary Language Documentation](https://github.com/PL-Project-LGM-YVV-AMN/PL-Project/blob/main/PreliminaryDocumentation.md)
-
 [Link to Vector Class Documentation](https://github.com/PL-Project-LGM-YVV-AMN/PL-Project/blob/main/vector_documentation.md "Vec Docs")
 
 [Link to Matrix Class Documentation](https://github.com/PL-Project-LGM-YVV-AMN/PL-Project/blob/main/matrix_documentation.md "Mat Docs")
 
+[Link to Grammar Module Documentation](https://github.com/PL-Project-LGM-YVV-AMN/PL-Project/blob/main/grammar_documentation.md "Grammar Docs")
+
+[Link to Lexer Module Documentation](https://github.com/PL-Project-LGM-YVV-AMN/PL-Project/blob/main/lexer_documentation.md "Lexer Docs")
+
 ## I Introduction
-Currently, several programming languages are capable and very well implemented to work with linear algebra methods, being MATLAB, R, and Python the biggest players. 
+Currently, several programming languages are capable and very well implemented to work with linear algebra methods, being MATLAB, R, and Python the biggest players.
 
 R is widely used for statistical computing and graphics, and it is open source, and hence completely free. However, its learning curve is somewhat steep, mostly because of its syntax. For example, (1) shows how we create a vector v with four elements 1, 2, 3, and 4.
 
