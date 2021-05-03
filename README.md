@@ -36,8 +36,8 @@ After this short overview through the most widely used programming languages for
 ```PYTHON
 # Example of declaring matrices and matrix operations
 
-a = [[1 2] [3 4]]
-b = [[5 6] [7 8]]
+a = [[1 2];[3 4]]
+b = [[5 6];[7 8]]
 
 # Adition of matrices
 
