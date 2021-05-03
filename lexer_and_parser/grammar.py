@@ -8,6 +8,7 @@ import re
 
 precedence = (
     ('right', 'EQUALS'),
+    ('left', 'PRINT'),
     ('left','multiplier'),
     ('left', 'crossProduct'),
     ('left', 'transpose'),
@@ -15,7 +16,7 @@ precedence = (
     ('left', 'inverse'),
     ('left', 'adjugate'),
     ('left', 'plus', 'minus'),
-    ('left', 'dotProduct')
+    ('left', 'dotProduct'),
 )
 
 names = {}
@@ -147,6 +148,11 @@ def p_term_name(p):
     except LookupError:
         print('Unknown name ', p[1])
         p[0] = 0
+
+def p_expression_print(p):
+    'expression : PRINT expression'
+    print(p[2])
+    p[0] = None
 
 parser = yacc.yacc()
 if __name__ == "__main__":

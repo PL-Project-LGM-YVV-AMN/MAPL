@@ -21,6 +21,7 @@ tokens = (
     'determinant',
     'inverse',
     'adjugate',
+    'PRINT'
 )
 
 t_EQUALS = r"="
@@ -43,6 +44,7 @@ t_multiplier = r'\s*(?:-?' + t_float + r'|-?' + t_int + r')'
 t_transpose = r"T"
 t_inverse = r'INV'
 t_adjugate = r'ADJUGATE'
+t_PRINT = r'PRINT'
 t_ignore = ' \t'
 
 def t_identifier(t):

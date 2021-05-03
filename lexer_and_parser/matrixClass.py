@@ -3,10 +3,52 @@ from vectorClass import vector
 import re
 import math
 class matrix:
+    """
+    **A class used to represnt a matrix**
+
+    Attributes
+    ----------
+    numOfRows : int
+        the number of vectors found in the string 
+    RowVecs : list
+        a list of vector objects created from the string
+    size : int
+        the amount of elements in the matrix 
+    numOfColumns : int
+        the number of columns in the matrix
+    ColumnVecs : list
+        a list of vector objects created from RowVecs
+    isSqaure : bool
+        is true if the matrix has a sqaure number of elements, else false
+
+    Methods
+    -------
+    scalar_multiplication(multiplier)
+        Returns a matrix object containing the the elements 
+        of self scalar multiplied\n
+    cross_product(rightMat)
+        Returns a matrix object containing the the elements 
+        of self cross multiplied with the elements of rightMat\n
+    tanspose()
+        Returns a matrix object containing the the elements 
+        of self transposed\n
+    det()
+        Returns the determinant of self\n
+    inv()
+        Returns a matrix object containing the inverse of self\n
+    adjugate()
+        Returns a matrix object containing the adjugate of self\n
+    """
     
     VectorRule = re.compile(lt.t_vector)
 
-    def __init__(self, string):
+    def __init__(self, string: str) -> "matrix":
+        """
+        Parameters
+        ----------
+        string : str
+            needs to be compliant with matrix regex from in lexer.py as t_matrix
+        """
         RowVecsFromRE = matrix.VectorRule.findall(string)
         self.numOfRows = len(RowVecsFromRE)
         self.RowVecs = []
@@ -35,14 +77,24 @@ class matrix:
         if math.sqrt(self.size) == math.floor(math.sqrt(self.size)):
             self.isSquare = True
 
-    def __str__(self):
+    def __str__(self) -> str:
+        """
+        returns the row vectors formatted to be compliant with matrix regex
+        """
         ans = ""
         for i in range(self.numOfRows-1):
            ans += "[" + vector.__str__(self.RowVecs[i]) + ';'
         ans +=  vector.__str__(self.RowVecs[self.numOfRows-1]) + "]"
         return ans
 
-    def __add__(self,RightMatrix):
+    def __add__(self,RightMatrix: "matrix") -> "matrix":
+        """
+        returns a matrix object containing the sum of self and RightMatrix
+        Parameters
+        ----------
+        RightMatrix : matrix
+            must be of the same size as self
+        """
         if self.numOfColumns != RightMatrix.numOfColumns and self.numOfRows != RightMatrix.numOfRows:
             return None
         vecList = []
@@ -50,7 +102,14 @@ class matrix:
             vecList.append(self.RowVecs[vecs] + RightMatrix.RowVecs[vecs])
         return matrix(matrix.formatList(vecList))
 
-    def __sub__(self,RightMatrix):
+    def __sub__(self,RightMatrix: "matrix") -> "matrix":
+        """
+        returns a matrix object containing the difference of self and RightMatrix
+        Parameters
+        ----------
+        RightMatrix : matrix
+            must be of the same size as self
+        """
         if self.numOfColumns != RightMatrix.numOfColumns and self.numOfRows != RightMatrix.numOfRows:
             return None
         vecList = []
@@ -58,13 +117,30 @@ class matrix:
             vecList.append(self.RowVecs[vecs] - RightMatrix.RowVecs[vecs])
         return matrix(matrix.formatList(vecList))
 
-    def scalar_multiplication(self, multiplier):
+    def scalar_multiplication(self, multiplier: float) -> "matrix":
+        """
+        returns a matrix object containing the elements of self
+        scalar multiplied by a factor by multiplier
+        Parameters
+        ----------
+        multiplier : float
+            the value by which the matrix will be multiplied by
+        """
         vecList = []
         for i in range(self.numOfColumns):
             vecList.append(self.RowVecs[i].scalar_multiplication(multiplier))
         return matrix(matrix.formatList(vecList))
 
-    def cross_product(self, rightMat):
+    def cross_product(self, rightMat: "matrix") -> "matrix":
+        """
+        **returns a matrix object containing the cross product with rightMat.**\n
+        rightMat.numOfRows must equal to self.numOfColumns for the operation to be performed
+        otherwise None will be returned
+        Parameters
+        ----------
+        rightMat : matrix
+            numOfRows must equal to self.numOfColumns for the operation to be performed
+        """
         if self.numOfColumns != rightMat.numOfRows:
             print("Left matrix's number of columns not equal to right matrix's number of rows")
             return None
@@ -84,13 +160,20 @@ class matrix:
 
 
     
-    def transpose(self):
+    def transpose(self) -> "matrix":
+        """
+        returns a matrix object that contains the elements of self transposed
+        i.e the rows become columns and columns become rows
+        """
         new_row_vecs = []
         for i in range(self.numOfColumns):
             new_row_vecs.append(vector(matrix.FormatColumnVectors(self.ColumnVecs[i])))
         return matrix(matrix.formatList(new_row_vecs))
 
-    def det(self):
+    def det(self) -> float:
+        """
+        returns the determinant of self as a float value
+        """
         if self.isSquare == False:
             print("Matrix is not square")
             return None
@@ -101,20 +184,34 @@ class matrix:
             temp_vec.clear()
         return matrix.rec_det(row_matrix)
 
-    def inv(self): 
+    def inv(self) -> "matrix": 
+        """
+        returns a matrix object containing the inv of self
+        """
         mat_det = self.det()
         if self.isSquare == False or mat_det == 0:
             print("Matrix is not square or matrix determinant is zero")
             return None
         return self.__inv_and_adjugate__(mat_det)
 
-    def adjugate(self):
+    def adjugate(self) -> "matrix":
+        """
+        returns a matrix object that is the adjugate of self
+        """
         if self.isSquare == False:
             print("Matrix is not square")
             return None
         return self.__inv_and_adjugate__(1.0)
 
-    def __inv_and_adjugate__(self,det):
+    def __inv_and_adjugate__(self,det: float) -> "matrix":
+        """
+        returns a matrix object that can produce the star matrix
+        divided by det
+        Parameters
+        ----------
+        det : float
+            what the star matrix is divided by by
+        """
         column_matrix = []
         for i in range(self.numOfColumns):
             temp_vec = [float(x) for x in self.ColumnVecs[i].elems]
@@ -137,7 +234,10 @@ class matrix:
 
 
     @staticmethod
-    def rec_det(mat):
+    def rec_det(mat) -> float:
+        """
+        returns the determinant of a list of lists containing float values
+        """
         mat_cpy = mat.copy()
         if len(mat) <= 1:
             return float(re.sub(r'\[|\]',"",str(mat_cpy)))
@@ -148,7 +248,22 @@ class matrix:
             return sum
 
     @staticmethod
-    def not_in_row_or_column(mat,size,target_row,target_column):
+    def not_in_row_or_column(mat: list,size: int,target_row: int,target_column: int) -> list:
+        """
+        returns a list of lists containing float values of all the
+        values that are not in the position target row and target column
+        also called the co-factors of a position
+        Parameters
+        ----------
+        mat : list
+            is a list of lists containing float values
+        size : int
+            is the length of mat
+        target_row : int
+            the row that element you want to find the co-factors of
+        target_column : int
+            the column that element you want to find the co-factors of
+        """
         temp_vec = []
         new_mat = []
         for row in range(size):
@@ -163,13 +278,31 @@ class matrix:
         return new_mat
 
     @staticmethod
-    def FormatColumnVectors(string):
+    def FormatColumnVectors(string: str) -> str:
+        """
+        removes commas and single quotes from string
+        Parameters
+        ----------
+        string : str
+            must be a the string of a list containing strings
+        """
         result = re.sub(r'\'', '', str(string))
         result = re.sub(",","", str(result))
         return result
     
     @staticmethod
-    def appendZeroes(vec,initialSize ,maxColumnSize):
+    def appendZeroes(vec: list, initialSize: int, maxColumnSize: int) -> list:
+        """
+        add the difference of maxColumnSize and initialSize of zeroes to vec
+        Parameters
+        ----------
+        vec : list
+            the list you wish to add zeroes to
+        initialSize : int
+            the initial length of vec
+        maxColumnSize : int
+            the size you wish to compare with initialSize
+        """
         while initialSize < maxColumnSize:
             vec.elems.append(0.0)
             vec.size = vec.size + 1
@@ -177,7 +310,7 @@ class matrix:
         return vec
 
     @staticmethod
-    def formatList(vecList):
+    def formatList(vecList: list) -> list:
         tempStr = "["
         for i in range(len(vecList)):
             if i != len(vecList) - 1:
@@ -188,7 +321,17 @@ class matrix:
         return tempStr
     
     @staticmethod
-    def star(mat):
+    def star(mat: list) -> list:
+        """
+        returns a list of lists of floats containing
+        the star transformation of mat\n
+        **is a helper function**
+        Parameters
+        ----------
+        mat : list
+            returns a list of lists of floats containing the row vectors 
+            of a square matrix
+        """
         temp_vec = []
         adjugate_mat = []
         for row in range(len(mat)):
