@@ -40,7 +40,7 @@ t_rCurlyBracket = r'\}'
 t_vector = t_lHardBracket + \
     r'(?:\s*(?:-?' + t_float + r'|-?' + t_int + r')\s*)+' + t_rHardBracket
 t_matrix = t_lHardBracket + r'((' + t_vector + r')\s*;?)+' + t_rHardBracket
-t_multiplier = r'\s*(?:-?' + t_float + r'|-?' + t_int + r')'
+t_multiplier = r'\s*(?:-?' + t_float + r'|-?' + t_int + r')\s*'
 t_transpose = r"T"
 t_inverse = r'INV'
 t_adjugate = r'ADJUGATE'

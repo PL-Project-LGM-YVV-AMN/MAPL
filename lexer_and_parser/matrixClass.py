@@ -127,7 +127,7 @@ class matrix:
             the value by which the matrix will be multiplied by
         """
         vecList = []
-        for i in range(self.numOfColumns):
+        for i in range(self.numOfRows):
             vecList.append(self.RowVecs[i].scalar_multiplication(multiplier))
         return matrix(matrix.formatList(vecList))
 
