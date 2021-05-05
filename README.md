@@ -1,4 +1,4 @@
-# Matrix & Matrix Operations Programming Language
+# Matrix Algebra Programming Language (MAPL)
 
 Universidad de Puerto Rico, Mayagüez
 
