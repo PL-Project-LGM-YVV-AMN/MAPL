@@ -4,7 +4,7 @@ import re
 import math
 class matrix:
     """
-    **A class used to represnt a matrix**
+    **A class used to represent a matrix**
 
     Attributes
     ----------
@@ -19,7 +19,7 @@ class matrix:
     ColumnVecs : list
         a list of vector objects created from RowVecs
     isSqaure : bool
-        is true if the matrix has a sqaure number of elements, else false
+        is true if the matrix has a square number of elements, else false
 
     Methods
     -------
