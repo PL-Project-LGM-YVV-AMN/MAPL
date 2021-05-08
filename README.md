@@ -108,7 +108,7 @@ b
 
 [![Program Demo:](https://raw.githubusercontent.com/PL-Project-LGM-YVV-AMN/MAPL/main/Program_demo_thumbnail.webp)](https://www.youtube.com/watch?v=KlPyU8p-n7s)
 
-## VI Project plan and timeline
+### VI Project plan and timeline
 ![Gantt Chart](https://github.com/PL-Project-LGM-YVV-AMN/PL-Project/blob/main/GanttChart.png)
 
 Credits to:
