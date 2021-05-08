@@ -104,11 +104,11 @@ b
    - For example, specifying PRINT vector . vector or PRINT matrix * matrix will print out its result, as well as just writing the variable that holds a value, PRINT z.
 - Multiple operations such as z = (vector . vector + vector)     or    z = (matrix * matrix + matrix)  ,... cant be done in sucession.
 
-## Program Demo for instructions and usage
+### Program Demo for instructions and usage
 
 [![Program Demo:](https://raw.githubusercontent.com/PL-Project-LGM-YVV-AMN/MAPL/main/Program_demo_thumbnail.webp)](https://www.youtube.com/watch?v=KlPyU8p-n7s)
 
-### VI Project plan and timeline
+## VI Project plan and timeline
 ![Gantt Chart](https://github.com/PL-Project-LGM-YVV-AMN/PL-Project/blob/main/GanttChart.png)
 
 Credits to:
