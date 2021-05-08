@@ -105,7 +105,7 @@ b
 - Multiple operations such as z = (vector . vector + vector)     or    z = (matrix * matrix + matrix)  ,... cant be done in sucession.
 
 ### Program Demo for instructions and usage
-   \*Click the following Image to access the video:*\
+   \*Click the following Image to access the video*\
 [![Program Demo:](https://raw.githubusercontent.com/PL-Project-LGM-YVV-AMN/MAPL/main/Program_demo_thumbnail.webp)](https://www.youtube.com/watch?v=KlPyU8p-n7s)
 
 ## VI Project plan and timeline
