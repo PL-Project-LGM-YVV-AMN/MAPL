@@ -96,6 +96,15 @@ b
 - The program will be using PLY (Python Lex - Yacc) for lexing and parsing in our code. The current version for PLY is 3.5, this being compatible with both Python 2 (specifically version Python 2.6) and Python 3.
 
 ## V  Notes about instructions and usage
+### Installing Instructions
+Prerequisites
+Have Python 3 installed in your PC
+1. Go to https://github.com/dabeaz/ply and download or clone the code.
+2. Open the folder and run install.ply
+3. Download or clone the code from this repository.
+4. Write your program in a .txt file
+5. Run Python3 in your terminal and import the grammar module.
+
 - When defining a variable to hold a certain value (be it a matrix, a vector, or a value of an operation), it needs to be lowercased. 
    - Such definitions like A = \[] or firstMatrix = \[] wont work
    - Another such definition would be a0 = \[], matrix0 = \[], and so on.
